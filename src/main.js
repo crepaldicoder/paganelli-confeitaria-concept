@@ -30,8 +30,9 @@ const logoMark=(variant,{decorative}={})=>{
 
 document.querySelector('#app').innerHTML=`
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<div class="build-intro" aria-hidden="true"><div class="intro-panel intro-panel--left"></div><div class="intro-panel intro-panel--right"></div><div class="intro-stage"><span class="intro-index">SÃO JOSÉ DO RIO PRETO · 1947</span><img src="/images/logo-paganelli.svg" alt=""><svg class="intro-stroke" viewBox="0 0 720 80"><path pathLength="1" d="M12 52 C150 4 250 79 376 37 S586 20 708 46"/></svg><p>uma receita construída<br>camada por camada</p></div></div><div class="scroll-progress" aria-hidden="true"><i></i></div>
 <header class="topbar">
-  <a class="brand" href="#inicio" aria-label="Paganelli, início">${logoMark('nav',{decorative:true})}</a>
+  <a class="brand" href="#inicio" aria-label="Paganelli, início"><img class="literal-logo" src="/images/logo-paganelli.svg" alt=""></a>
   <nav class="desktop-nav" aria-label="Principal"><a href="#oficio">O ofício</a><a href="#mesa">Da vitrine</a><a href="#avaliacoes">Avaliações</a><a href="#visita">Visite</a></nav>
   <a class="top-cta" href="${phone}">${svg('phone')} Ligar agora</a>
   <button class="menu-trigger" aria-expanded="false" aria-controls="menu"><span>Menu</span><i></i><i></i></button>
@@ -49,30 +50,30 @@ document.querySelector('#app').innerHTML=`
   <p class="hero-intro reveal">Uma proposta digital para celebrar o fazer artesanal, a vitrine generosa e os encontros que atravessam gerações.</p>
   <div class="hero-actions reveal"><a class="button primary" href="${phone}">${svg('phone')} Falar com a confeitaria</a><a class="text-link" href="#oficio">Conhecer a proposta ${svg('arrow')}</a></div>
   <div class="hero-facts reveal"><span><b>4,7</b> avaliação pública</span><span><b>1</b> endereço em Rio Preto</span></div>
-  <div class="hero-signature">${logoMark('hero',{decorative:true})}</div>
+  <div class="hero-signature"><img class="literal-logo" src="/images/logo-paganelli.svg" alt=""></div>
  </div>
- <figure class="hero-image"><img src="/images/hero-folhado.png" alt="Massa folhada com creme e frutas em uma bancada de confeitaria" fetchpriority="high"><figcaption>Direção de arte conceitual — não representa produto específico do estabelecimento.</figcaption></figure>
+ <figure class="hero-image image-build"><img src="/images/hero-folhado.png" alt="Massa folhada com creme e frutas em uma bancada de confeitaria" fetchpriority="high"><figcaption>Direção de arte conceitual — não representa produto específico do estabelecimento.</figcaption></figure>
  <div class="stamp" aria-hidden="true"><span>feito com tempo</span><b>1947</b><small>RIO PRETO</small></div>
 </section>
 <section class="ribbon" aria-label="Valores"><div class="ribbon-track"><span>massa folhada</span><i>◆</i><span>receitas de família</span><i>◆</i><span>produção artesanal</span><i>◆</i><span>memória afetiva</span><i>◆</i><span>massa folhada</span><i>◆</i><span>receitas de família</span></div></section>
-<section class="manifesto" id="oficio">
+<section class="manifesto construct" id="oficio">
  <div class="chapter reveal"><span>Capítulo 01</span><b>O ofício</b></div>
  <div class="manifesto-copy reveal"><p class="kicker">Nem toda receita começa no papel.</p><h2>Algumas começam <em>nas mãos.</em></h2><p>A história pública da Paganelli aponta para uma confeitaria presente em Rio Preto há décadas. Esta página não inventa um passado: transforma esse sinal de tradição em uma experiência digital clara, calorosa e útil.</p></div>
- <figure class="craft-image reveal"><img src="/images/maos-oficio.png" alt="Mãos peneirando açúcar sobre uma massa folhada"><figcaption><span>01</span> O gesto antes da vitrine</figcaption></figure>
+ <figure class="craft-image reveal image-build"><img src="/images/maos-oficio.png" alt="Mãos peneirando açúcar sobre uma massa folhada"><figcaption><span>01</span> O gesto antes da vitrine</figcaption></figure>
  <div class="recipe-note reveal"><span>UMA BOA RECEITA PEDE</span><ul><li><b>01</b> matéria-prima</li><li><b>02</b> repetição e cuidado</li><li><b>03</b> tempo de forno</li><li><b>04</b> gente à mesa</li></ul></div>
 </section>
-<section class="quote-band reveal"><p>“Tradição não é ficar parada.<br><em>É saber o que não pode se perder.</em>”</p><span>— conceito editorial desta proposta</span></section>
-<section class="table-section" id="mesa">
+<section class="quote-band reveal construct"><p>“Tradição não é ficar parada.<br><em>É saber o que não pode se perder.</em>”</p><span>— conceito editorial desta proposta</span></section>
+<section class="table-section construct" id="mesa">
  <div class="chapter light reveal"><span>Capítulo 02</span><b>Da vitrine</b></div>
  <div class="table-head reveal"><h2>Do doce ao salgado,<br><em>uma mesa inteira.</em></h2><p>A presença pública descreve a Paganelli como confeitaria. Em vez de publicar um cardápio possivelmente desatualizado, esta proposta convida o cliente a consultar a seleção do dia diretamente.</p></div>
- <figure class="table-image reveal"><img src="/images/mesa-doces.png" alt="Mesa vista de cima com doces e salgados variados"><figcaption>Imagem conceitual criada para esta proposta; itens sujeitos à disponibilidade real.</figcaption></figure>
+ <figure class="table-image reveal image-build"><img src="/images/mesa-doces.png" alt="Mesa vista de cima com doces e salgados variados"><figcaption>Imagem conceitual criada para esta proposta; itens sujeitos à disponibilidade real.</figcaption></figure>
  <div class="daily-card reveal"><small>A ESCOLHA CERTA É A DE HOJE</small><h3>Consulte a vitrine<br>e faça sua encomenda.</h3><a class="button paper" href="${phone}">${svg('phone')} (17) 3231-4174</a></div>
 </section>
-<section class="heritage">
+<section class="heritage construct">
  <div class="heritage-number reveal"><small>Segundo o perfil público</small><b>19<span>47</span></b></div>
  <div class="heritage-copy reveal"><h2>Uma história que merece<br>um endereço digital à altura.</h2><p>A página organiza contato e localização sem apagar a personalidade de um negócio tradicional. É uma demonstração independente, criada para mostrar esse potencial.</p><div class="rules"><span>Sem inventar preços</span><span>Sem prometer disponibilidade</span><span>Com contato direto</span></div></div>
 </section>
-<section class="reviews" id="avaliacoes">
+<section class="reviews construct" id="avaliacoes">
  <div class="chapter reveal"><span>Capítulo 03</span><b>Avaliações</b></div>
  <div class="reviews-head reveal"><p class="kicker">Reputação pública</p><h2>O que fica<br><em>depois da visita.</em></h2><div class="review-score"><b>4,7</b><span aria-label="4,7 de 5 estrelas">★★★★★</span><small>nota exibida no Google Maps<br>na data da consulta</small></div></div>
  <div class="reviews-grid">
@@ -82,7 +83,7 @@ document.querySelector('#app').innerHTML=`
  </div>
  <div class="reviews-note reveal"><p>Trechos de avaliações públicas reproduzidos parcialmente, com autoria, origem e antiguidade. Comentários antigos não são apresentados como atuais.</p><a class="text-link" href="https://restaurantguru.com.br/Paganelli-Sao-Jose-do-Rio-Preto" target="_blank" rel="noopener">Ver fonte ${svg('arrow')}</a></div>
 </section>
-<section class="before-you-go">
+<section class="before-you-go construct">
  <div class="chapter reveal"><span>Antes de sair</span><b>Informação útil</b></div>
  <div class="guide-head reveal"><p class="kicker">Uma página bonita também precisa ser honesta</p><h2>Confirme hoje.<br><em>Aproveite sem dúvida.</em></h2><p>Cadastros públicos mudam. Por isso, esta proposta separa o que foi encontrado online do que deve ser confirmado diretamente antes da visita.</p></div>
  <div class="guide-grid reveal">
@@ -97,7 +98,7 @@ document.querySelector('#app').innerHTML=`
  </div>
  <div class="source-note reveal"><span>FONTES CONSULTADAS</span><p>Google Maps e perfil público no Instagram. A alegação “desde 1947” é atribuída ao próprio perfil social da empresa. Informações verificadas para esta proposta em setembro de 2026.</p></div>
 </section>
-<section class="visit" id="visita">
+<section class="visit construct" id="visita">
  <div class="chapter reveal"><span>Capítulo 04</span><b>Visite</b></div>
  <div class="visit-grid">
   <div class="visit-copy reveal"><p class="kicker">Vila Redentora · São José do Rio Preto</p><h2>O caminho<br>mais curto até<br><em>a vitrine.</em></h2></div>
@@ -123,8 +124,9 @@ const wrapWords=(root)=>{
   node.replaceWith(fragment);
  });
  root.classList.add('scribe-title');
+ root.insertAdjacentHTML('beforeend','<svg class="write-line" viewBox="0 0 600 70" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M8 48 C112 18 205 66 302 39 S486 24 592 45"/></svg>');
 };
-writingTargets.forEach(root=>matchMedia('(max-width:520px)').matches?root.classList.add('scribe-title'):wrapWords(root));
+writingTargets.forEach(wrapWords);
 
 const trigger=document.querySelector('.menu-trigger'), menu=document.querySelector('.mobile-menu'), close=document.querySelector('.menu-close');
 menu.inert=true;
@@ -134,4 +136,14 @@ function closeMenu(){menu.classList.remove('open');menu.setAttribute('aria-hidde
 trigger.addEventListener('click',openMenu);close.addEventListener('click',closeMenu);menu.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',closeMenu));
 document.addEventListener('keydown',e=>{if(!menu.classList.contains('open'))return;if(e.key==='Escape')closeMenu();if(e.key==='Tab'){const f=focusables(),first=f[0],last=f.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(reduced){document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}
+const revealTargets=[...document.querySelectorAll('.reveal,.construct,.image-build')];
+if(reduced){document.body.classList.add('site-ready');revealTargets.forEach(el=>el.classList.add(el.classList.contains('reveal')?'visible':'built'))}
+else{
+ document.body.classList.add('intro-playing');
+ setTimeout(()=>{document.body.classList.add('site-ready');document.body.classList.remove('intro-playing');document.querySelector('.hero-image')?.classList.add('built')},4600);
+ const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target;if(el.classList.contains('reveal'))el.classList.add('visible');if(el.classList.contains('construct')||el.classList.contains('image-build'))el.classList.add('built');if(el.classList.contains('construct'))el.querySelectorAll('.image-build').forEach(img=>img.classList.add('built','visible'));io.unobserve(el)}),{threshold:.08,rootMargin:'0px 0px -4%'});
+ revealTargets.forEach((el,i)=>{if(el.classList.contains('reveal'))el.style.setProperty('--reveal-delay',`${(i%4)*90}ms`);io.observe(el)});
+ const progress=document.querySelector('.scroll-progress');let ticking=false;
+ const updateMotion=()=>{const max=document.documentElement.scrollHeight-innerHeight;progress?.style.setProperty('--progress',Math.max(0,Math.min(1,scrollY/(max||1))));document.querySelectorAll('.image-build img').forEach(img=>{const r=img.parentElement.getBoundingClientRect();const d=(r.top+r.height/2-innerHeight/2)/innerHeight;img.style.transform=`translate3d(0,${Math.max(-22,Math.min(22,-d*18))}px,0) scale(1.045)`});ticking=false};
+ addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(updateMotion);ticking=true}},{passive:true});updateMotion();
+}
