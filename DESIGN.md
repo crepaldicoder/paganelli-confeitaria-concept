@@ -13,7 +13,7 @@
 - Corpo: Manrope, legibilidade contemporânea.
 - Escala: 1.25; base 16px.
 - Cores ajustadas às referências públicas do espaço: papel-creme, ameixa escura, rosa-framboesa e ciano da fachada. A estrutura editorial original foi preservada.
-- Logo: wordmark “Paganelli Confeitaria” criado com GPT Image 2, rosa com gesto ciano e fundo transparente.
+- Logo: lettering “Paganelli” reconstruído como SVG vetorial a partir da fotografia pública da fachada fornecida pelo usuário; arquitetura, céu e sombra solar não fazem parte do vetor.
 - Unidade de espaço: 8px.
 - Raios: 0 e 999px. Sem cards arredondados genéricos.
 - Sombra: nenhuma; profundidade por sobreposição, borda e contraste.
@@ -24,8 +24,8 @@
 - Seções densas como páginas de almanaque, com tipografia grande, faixas, índices e colunas.
 - Imagens geradas são direção de arte conceitual e explicitamente identificadas.
 - Ícones SVG próprios, traço 1.8, sem emojis.
-- Motion: entrada por recorte vertical, ticker manualmente pausável, hover por deslocamento de 2px; apenas transform/opacity.
-- Reduced motion remove deslocamentos, ticker e transições.
+- Motion: direção desenvolvida com Claude Code. A logo é construída por guias de escrita normalizados com `stroke-dashoffset`, recebe o preenchimento vetorial, uma sombra curta e a linha ciano final. Títulos editoriais são escritos progressivamente no scroll; em telas estreitas usam máscara contínua para preservar as quebras.
+- Reduced motion remove a construção, deslocamentos, ticker e transições, deixando logo e textos completos imediatamente visíveis.
 - Menu modal opaco com foco preso, Escape, scroll lock e retorno ao gatilho.
 - Avaliações: capítulo editorial com nota 4,7 do Maps e três trechos públicos atribuídos, incluindo origem e antiguidade.
 
