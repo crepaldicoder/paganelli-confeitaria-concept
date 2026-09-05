@@ -63,6 +63,15 @@ document.querySelector('#app').innerHTML=`
  <div class="recipe-note reveal"><span>UMA BOA RECEITA PEDE</span><ul><li><b>01</b> matéria-prima</li><li><b>02</b> repetição e cuidado</li><li><b>03</b> tempo de forno</li><li><b>04</b> gente à mesa</li></ul></div>
 </section>
 <section class="quote-band reveal construct"><p>“Tradição não é ficar parada.<br><em>É saber o que não pode se perder.</em>”</p><span>— conceito editorial desta proposta</span></section>
+<section class="atmosphere construct" id="atmosfera">
+ <div class="chapter reveal"><span>Interlúdio</span><b>Por dentro</b></div>
+ <div class="atmosphere-head reveal"><p class="kicker">Matéria, cor e memória</p><h2>Uma atmosfera<br><em>que também alimenta.</em></h2><p>Direção de arte conceitual baseada em referências públicas do interior e da vitrine. As imagens interpretam luz e materialidade; não documentam o espaço ou o cardápio atual.</p></div>
+ <div class="atmosphere-rail" role="region" aria-label="Galeria conceitual" tabindex="0">
+  <figure class="atmosphere-card image-build"><div class="media-frame"><img src="/images/interior-editorial.png" alt="Interpretação editorial do interior da confeitaria"></div><figcaption><span>01</span><div><b>O salão como cenário</b><small>tratamento conceitual baseado em referências públicas</small></div></figcaption></figure>
+  <figure class="atmosphere-card image-build"><div class="media-frame"><img src="/images/vitrine-editorial.png" alt="Interpretação editorial de uma vitrine de confeitaria"></div><figcaption><span>02</span><div><b>A vitrine como primeiro convite</b><small>itens e disponibilidade devem ser confirmados diretamente</small></div></figcaption></figure>
+ </div>
+ <div class="rail-status" data-rail="atmosphere"><div class="rail-dots"><button class="active" aria-label="Ver imagem 1" aria-selected="true"></button><button aria-label="Ver imagem 2" aria-selected="false"></button></div><p><b>01</b> / 02 <span>O salão como cenário</span></p><small>Arraste para o lado</small></div>
+</section>
 <section class="table-section construct" id="mesa">
  <div class="chapter light reveal"><span>Capítulo 02</span><b>Da vitrine</b></div>
  <div class="table-head reveal"><h2>Do doce ao salgado,<br><em>uma mesa inteira.</em></h2><p>A presença pública descreve a Paganelli como confeitaria. Em vez de publicar um cardápio possivelmente desatualizado, esta proposta convida o cliente a consultar a seleção do dia diretamente.</p></div>
@@ -81,6 +90,7 @@ document.querySelector('#app').innerHTML=`
   <article class="review reveal"><span>★★★★★</span><blockquote>“Os produtos de qualidade e fresquinho… A decoração é muito charmosa.”</blockquote><div class="review-meta"><b>Sabrina Sampaio</b><small>Restaurant Guru · 4 anos atrás</small></div></article>
   <article class="review reveal"><span>★★★★★</span><blockquote>“Bolos e tortas deliciosas em massa folheada.”</blockquote><div class="review-meta"><b>Fernanda Oliveira Brito</b><small>Foursquare · 9 anos atrás</small></div></article>
  </div>
+ <div class="compact-rail-status" data-rail-status="reviews"><b>01</b><span>/ 03</span><i aria-hidden="true"></i><small>Arraste para ver outras avaliações</small></div>
  <div class="reviews-note reveal"><p>Trechos de avaliações públicas reproduzidos parcialmente, com autoria, origem e antiguidade. Comentários antigos não são apresentados como atuais.</p><a class="text-link" href="https://restaurantguru.com.br/Paganelli-Sao-Jose-do-Rio-Preto" target="_blank" rel="noopener">Ver fonte ${svg('arrow')}</a></div>
 </section>
 <section class="before-you-go construct">
@@ -96,6 +106,7 @@ document.querySelector('#app').innerHTML=`
   <article><b>07</b><h3>Precisa de acessibilidade?</h3><p>Consulte previamente as condições de acesso e atendimento. Esta proposta não presume informações estruturais que não foram confirmadas com o estabelecimento.</p></article>
   <article><b>08</b><h3>Encontrou algo diferente?</h3><p>Priorize sempre o contato direto. Endereço, telefone, horários e disponibilidade podem mudar depois da data em que as fontes públicas foram consultadas.</p></article>
  </div>
+ <div class="compact-rail-status light-status" data-rail-status="guide"><b>01</b><span>/ 08</span><i aria-hidden="true"></i><small>Arraste para ver mais informações</small></div>
  <div class="source-note reveal"><span>FONTES CONSULTADAS</span><p>Google Maps e perfil público no Instagram. A alegação “desde 1947” é atribuída ao próprio perfil social da empresa. Informações verificadas para esta proposta em setembro de 2026.</p></div>
 </section>
 <section class="visit construct" id="visita">
@@ -109,7 +120,7 @@ document.querySelector('#app').innerHTML=`
 </main>
 <footer><div class="footer-brand"><img src="/images/logo-paganelli.svg" alt="Paganelli Confeitaria"></div><p>Conceito independente de landing page.<br>Não é o site oficial da Confeitaria Paganelli.</p><a href="#inicio">Voltar ao início ↑</a></footer>`;
 
-const writingTargets=document.querySelectorAll('.manifesto-copy h2,.quote-band p,.table-head h2,.heritage-copy h2,.reviews-head h2,.guide-head h2,.visit-copy h2');
+const writingTargets=document.querySelectorAll('.manifesto-copy h2,.quote-band p,.atmosphere-head h2,.table-head h2,.heritage-copy h2,.reviews-head h2,.guide-head h2,.visit-copy h2');
 const wrapWords=(root)=>{
  let index=0;
  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
@@ -145,5 +156,13 @@ else{
  revealTargets.forEach((el,i)=>{if(el.classList.contains('reveal'))el.style.setProperty('--reveal-delay',`${(i%4)*90}ms`);io.observe(el)});
  const progress=document.querySelector('.scroll-progress');let ticking=false;
  const updateMotion=()=>{const max=document.documentElement.scrollHeight-innerHeight;progress?.style.setProperty('--progress',Math.max(0,Math.min(1,scrollY/(max||1))));document.querySelectorAll('.image-build img').forEach(img=>{const r=img.parentElement.getBoundingClientRect();const d=(r.top+r.height/2-innerHeight/2)/innerHeight;img.style.transform=`translate3d(0,${Math.max(-22,Math.min(22,-d*18))}px,0) scale(1.045)`});ticking=false};
- addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(updateMotion);ticking=true}},{passive:true});updateMotion();
+ const revealPassed=()=>{const nearBottom=scrollY+innerHeight>=document.documentElement.scrollHeight-12;revealTargets.forEach(el=>{const r=el.getBoundingClientRect();if(nearBottom||r.top<innerHeight*1.12){if(el.classList.contains('reveal'))el.classList.add('visible');if(el.classList.contains('construct')||el.classList.contains('image-build'))el.classList.add('built');if(el.classList.contains('construct'))el.querySelectorAll('.image-build').forEach(img=>img.classList.add('built','visible'))}})};
+ addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{updateMotion();revealPassed()});ticking=true}},{passive:true});updateMotion();revealPassed();
 }
+
+document.querySelectorAll('.review').forEach((card,i)=>card.dataset.index=String(i+1).padStart(2,'0'));
+
+const atmosphereRail=document.querySelector('.atmosphere-rail');
+if(atmosphereRail){const cards=[...atmosphereRail.querySelectorAll('.atmosphere-card')],status=document.querySelector('[data-rail="atmosphere"]'),dots=[...status.querySelectorAll('button')],label=status.querySelector('p span'),count=status.querySelector('p b'),names=['O salão como cenário','A vitrine como primeiro convite'];let raf=false,active=0;const setActive=i=>{active=i;dots.forEach((d,n)=>{d.classList.toggle('active',n===i);d.setAttribute('aria-selected',String(n===i))});count.textContent=String(i+1).padStart(2,'0');label.textContent=names[i]};const update=()=>{const c=atmosphereRail.scrollLeft+atmosphereRail.clientWidth/2;let best=0,dist=Infinity;cards.forEach((card,i)=>{const d=Math.abs(card.offsetLeft+card.offsetWidth/2-c);if(d<dist){dist=d;best=i}});if(best!==active)setActive(best);raf=false};atmosphereRail.addEventListener('scroll',()=>{if(!raf){requestAnimationFrame(update);raf=true}},{passive:true});dots.forEach((dot,i)=>dot.addEventListener('click',()=>{atmosphereRail.scrollTo({left:cards[i].offsetLeft-atmosphereRail.offsetLeft,behavior:reduced?'auto':'smooth'});setActive(i)}));setActive(0)}
+
+for(const [selector,key] of [['.reviews-grid','reviews'],['.guide-grid','guide']]){const rail=document.querySelector(selector),status=document.querySelector(`[data-rail-status="${key}"]`);if(!rail||!status)continue;const cards=[...rail.children],number=status.querySelector('b'),bar=status.querySelector('i');let frame=false;const update=()=>{const center=rail.scrollLeft+rail.clientWidth/2;let active=0,distance=Infinity;cards.forEach((card,i)=>{const d=Math.abs(card.offsetLeft+card.offsetWidth/2-center);if(d<distance){distance=d;active=i}});number.textContent=String(active+1).padStart(2,'0');bar.style.setProperty('--rail-progress',`${((active+1)/cards.length)*100}%`);frame=false};rail.addEventListener('scroll',()=>{if(!frame){requestAnimationFrame(update);frame=true}},{passive:true});update()}

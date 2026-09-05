@@ -16,15 +16,17 @@
 - Logo: lettering “Paganelli” reconstruído como SVG vetorial a partir da fotografia pública da fachada fornecida pelo usuário; arquitetura, céu e sombra solar não fazem parte do vetor.
 - Unidade de espaço: 8px.
 - Raios: 0 e 999px. Sem cards arredondados genéricos.
-- Sombra: nenhuma; profundidade por sobreposição, borda e contraste.
-- Signature move: carimbo oval inclinado + linhas de receita/pontilhado recorrentes.
+- Sombra: pontual e direcional apenas em fotografia e marca; profundidade principal por sobreposição, molduras e contraste.
+- Signature move: a página é construída como uma receita — traço caligráfico, linhas de costura, véus de imagem e capítulos encadeados.
 
 ## Layout e craft
 - Hero assimétrico com headline sobre painel de papel e fotografia ocupando a direita.
 - Seções densas como páginas de almanaque, com tipografia grande, faixas, índices e colunas.
 - Imagens geradas são direção de arte conceitual e explicitamente identificadas.
 - Ícones SVG próprios, traço 1.8, sem emojis.
-- Motion: direção desenvolvida com Claude Code. A logo é construída por guias de escrita normalizados com `stroke-dashoffset`, recebe o preenchimento vetorial, uma sombra curta e a linha ciano final. Títulos editoriais são escritos progressivamente no scroll; em telas estreitas usam máscara contínua para preservar as quebras.
+- Motion: intro cinematográfica, desenho progressivo do SVG, preenchimento assentado, títulos construídos com folga para acentos/descendentes, linhas caligráficas, véus sobre imagens, capítulos encadeados, progresso e parallax leve. Mídia estrutural permanece visível se o observer falhar.
+- Imagens editoriais de interior e vitrine foram geradas com GPT Image 2 a partir de referências públicas e aparecem explicitamente como direção de arte conceitual, não documentação do espaço/cardápio atual.
+- Mobile: galeria de atmosfera, avaliações e guia usam trilhos com snap e próxima peça visível; a galeria possui indicador sincronizado com swipe real.
 - Reduced motion remove a construção, deslocamentos, ticker e transições, deixando logo e textos completos imediatamente visíveis.
 - Menu modal opaco com foco preso, Escape, scroll lock e retorno ao gatilho.
 - Avaliações: capítulo editorial com nota 4,7 do Maps e três trechos públicos atribuídos, incluindo origem e antiguidade.
