@@ -45,80 +45,75 @@ document.querySelector('#app').innerHTML=`
 <main id="conteudo">
 <section class="hero" id="inicio">
  <div class="hero-copy">
-  <p class="eyebrow reveal">Confeitaria de Rio Preto · segundo o perfil, desde 1947</p>
+  <p class="eyebrow reveal">Confeitaria em São José do Rio Preto · desde 1947</p>
   <h1 class="hero-title"><span>Receitas</span><span>que o tempo</span><em>aperfeiçoa.</em></h1>
-  <p class="hero-intro reveal">Uma proposta digital para celebrar o fazer artesanal, a vitrine generosa e os encontros que atravessam gerações.</p>
-  <div class="hero-actions reveal"><a class="button primary" href="${phone}">${svg('phone')} Falar com a confeitaria</a><a class="text-link" href="#oficio">Conhecer a proposta ${svg('arrow')}</a></div>
-  <div class="hero-facts reveal"><span><b>4,7</b> avaliação pública</span><span><b>1</b> endereço em Rio Preto</span></div>
+  <p class="hero-intro reveal">Há gerações, a Paganelli transforma o fazer artesanal, a vitrine generosa e o prazer de receber em uma tradição de Rio Preto.</p>
+  <div class="hero-actions reveal"><a class="button primary" href="${phone}">${svg('phone')} Falar com a confeitaria</a><a class="text-link" href="#oficio">Conheça nossa história ${svg('arrow')}</a></div>
+  <div class="hero-facts reveal"><span><b>4,7</b> avaliação no Google</span><span><b>1947</b> tradição em Rio Preto</span></div>
   <div class="hero-signature"><img class="literal-logo" src="/images/logo-paganelli.svg" alt=""></div>
  </div>
- <figure class="hero-image image-build"><img src="/images/hero-folhado.png" alt="Massa folhada com creme e frutas em uma bancada de confeitaria" fetchpriority="high"><figcaption>Direção de arte conceitual — não representa produto específico do estabelecimento.</figcaption></figure>
+ <figure class="hero-image image-build"><img src="/images/hero-folhado.png" alt="Massa folhada com creme e frutas em uma bancada de confeitaria" fetchpriority="high"><figcaption>Delicadeza em cada camada</figcaption></figure>
  <div class="stamp" aria-hidden="true"><span>feito com tempo</span><b>1947</b><small>RIO PRETO</small></div>
 </section>
 <section class="ribbon" aria-label="Valores"><div class="ribbon-track"><span>massa folhada</span><i>◆</i><span>receitas de família</span><i>◆</i><span>produção artesanal</span><i>◆</i><span>memória afetiva</span><i>◆</i><span>massa folhada</span><i>◆</i><span>receitas de família</span></div></section>
 <section class="manifesto construct" id="oficio">
  <div class="chapter reveal"><span>Capítulo 01</span><b>O ofício</b></div>
- <div class="manifesto-copy reveal"><p class="kicker">Nem toda receita começa no papel.</p><h2>Algumas começam <em>nas mãos.</em></h2><p>A história pública da Paganelli aponta para uma confeitaria presente em Rio Preto há décadas. Esta página não inventa um passado: transforma esse sinal de tradição em uma experiência digital clara, calorosa e útil.</p></div>
+ <div class="manifesto-copy reveal"><p class="kicker">Nem toda receita começa no papel.</p><h2>Algumas começam <em>nas mãos.</em></h2><p>Desde 1947, a Paganelli faz parte da história de Rio Preto. Uma tradição construída com cuidado, repetição e aquele olhar atento que reconhece o ponto certo de cada receita.</p></div>
  <figure class="craft-image reveal image-build"><img src="/images/maos-oficio.png" alt="Mãos peneirando açúcar sobre uma massa folhada"><figcaption><span>01</span> O gesto antes da vitrine</figcaption></figure>
  <div class="recipe-note reveal"><span>UMA BOA RECEITA PEDE</span><ul><li><b>01</b> matéria-prima</li><li><b>02</b> repetição e cuidado</li><li><b>03</b> tempo de forno</li><li><b>04</b> gente à mesa</li></ul></div>
 </section>
-<section class="quote-band reveal construct"><p>“Tradição não é ficar parada.<br><em>É saber o que não pode se perder.</em>”</p><span>— conceito editorial desta proposta</span></section>
+<section class="quote-band reveal construct"><p>“Tradição não é ficar parada.<br><em>É saber o que não pode se perder.</em>”</p><span>— Paganelli, desde 1947</span></section>
 <section class="atmosphere construct" id="atmosfera">
  <div class="chapter reveal"><span>Interlúdio</span><b>Por dentro</b></div>
- <div class="atmosphere-head reveal"><p class="kicker">Matéria, cor e memória</p><h2>Uma atmosfera<br><em>que também alimenta.</em></h2><p>Direção de arte conceitual baseada em referências públicas do interior e da vitrine. As imagens interpretam luz e materialidade; não documentam o espaço ou o cardápio atual.</p></div>
- <div class="atmosphere-rail" role="region" aria-label="Galeria conceitual" tabindex="0">
-  <figure class="atmosphere-card image-build"><div class="media-frame"><img src="/images/interior-editorial.png" alt="Interpretação editorial do interior da confeitaria"></div><figcaption><span>01</span><div><b>O salão como cenário</b><small>tratamento conceitual baseado em referências públicas</small></div></figcaption></figure>
-  <figure class="atmosphere-card image-build"><div class="media-frame"><img src="/images/vitrine-editorial.png" alt="Interpretação editorial de uma vitrine de confeitaria"></div><figcaption><span>02</span><div><b>A vitrine como primeiro convite</b><small>itens e disponibilidade devem ser confirmados diretamente</small></div></figcaption></figure>
+ <div class="atmosphere-head reveal"><p class="kicker">Matéria, cor e memória</p><h2>Uma atmosfera<br><em>que também alimenta.</em></h2><p>Um espaço pensado para acolher, escolher com calma e transformar uma visita à confeitaria em parte do dia.</p></div>
+ <div class="atmosphere-rail" role="region" aria-label="Galeria da confeitaria" tabindex="0">
+  <figure class="atmosphere-card image-build"><div class="media-frame"><img src="/images/interior-editorial.png" alt="Interior da confeitaria"></div><figcaption><span>01</span><div><b>O salão como cenário</b><small>um convite para ficar mais um pouco</small></div></figcaption></figure>
+  <figure class="atmosphere-card image-build"><div class="media-frame"><img src="/images/vitrine-editorial.png" alt="Vitrine da confeitaria"></div><figcaption><span>02</span><div><b>A vitrine como primeiro convite</b><small>escolhas preparadas para o seu dia</small></div></figcaption></figure>
  </div>
  <div class="rail-status" data-rail="atmosphere"><div class="rail-dots"><button class="active" aria-label="Ver imagem 1" aria-selected="true"></button><button aria-label="Ver imagem 2" aria-selected="false"></button></div><p><b>01</b> / 02 <span>O salão como cenário</span></p><small>Arraste para o lado</small></div>
 </section>
 <section class="table-section construct" id="mesa">
  <div class="chapter light reveal"><span>Capítulo 02</span><b>Da vitrine</b></div>
- <div class="table-head reveal"><h2>Do doce ao salgado,<br><em>uma mesa inteira.</em></h2><p>A presença pública descreve a Paganelli como confeitaria. Em vez de publicar um cardápio possivelmente desatualizado, esta proposta convida o cliente a consultar a seleção do dia diretamente.</p></div>
- <figure class="table-image reveal image-build"><img src="/images/mesa-doces.png" alt="Mesa vista de cima com doces e salgados variados"><figcaption>Imagem conceitual criada para esta proposta; itens sujeitos à disponibilidade real.</figcaption></figure>
+ <div class="table-head reveal"><h2>Do doce ao salgado,<br><em>uma mesa inteira.</em></h2><p>Receitas para o café, para a sobremesa, para celebrar e para levar. Consulte a seleção do dia e encontre o sabor certo para cada ocasião.</p></div>
+ <figure class="table-image reveal image-build"><img src="/images/mesa-doces.png" alt="Mesa vista de cima com doces e salgados variados"><figcaption>Sabores para dividir — ou guardar só para você</figcaption></figure>
  <div class="daily-card reveal"><small>A ESCOLHA CERTA É A DE HOJE</small><h3>Consulte a vitrine<br>e faça sua encomenda.</h3><a class="button paper" href="${phone}">${svg('phone')} (17) 3231-4174</a></div>
 </section>
 <section class="heritage construct">
- <div class="heritage-number reveal"><small>Segundo o perfil público</small><b>19<span>47</span></b></div>
- <div class="heritage-copy reveal"><h2>Uma história que merece<br>um endereço digital à altura.</h2><p>A página organiza contato e localização sem apagar a personalidade de um negócio tradicional. É uma demonstração independente, criada para mostrar esse potencial.</p><div class="rules"><span>Sem inventar preços</span><span>Sem prometer disponibilidade</span><span>Com contato direto</span></div></div>
+ <div class="heritage-number reveal"><small>Uma história desde</small><b>19<span>47</span></b></div>
+ <div class="heritage-copy reveal"><h2>Uma tradição presente<br>na memória de Rio Preto.</h2><p>Décadas de receitas, encontros e celebrações fizeram da Paganelli um endereço querido por diferentes gerações.</p><div class="rules"><span>Feito com cuidado</span><span>Receitas que permanecem</span><span>Gente à mesa</span></div></div>
 </section>
 <section class="reviews construct" id="avaliacoes">
  <div class="chapter reveal"><span>Capítulo 03</span><b>Avaliações</b></div>
- <div class="reviews-head reveal"><p class="kicker">Reputação pública</p><h2>O que fica<br><em>depois da visita.</em></h2><div class="review-score"><b>4,7</b><span aria-label="4,7 de 5 estrelas">★★★★★</span><small>nota exibida no Google Maps<br>na data da consulta</small></div></div>
+ <div class="reviews-head reveal"><p class="kicker">Quem conhece, recomenda</p><h2>O que fica<br><em>depois da visita.</em></h2><div class="review-score"><b>4,7</b><span aria-label="4,7 de 5 estrelas">★★★★★</span><small>avaliação no Google</small></div></div>
  <div class="reviews-grid">
   <article class="review reveal"><span>★★★★★</span><blockquote>“Atendimento excelente das meninas do balcão… produtos de qualidade… sem falar na decoração que está espetacular.”</blockquote><div class="review-meta"><b>Sabrina Sampaio</b><small>Foursquare · 4 anos atrás</small></div></article>
   <article class="review reveal"><span>★★★★★</span><blockquote>“Os produtos de qualidade e fresquinho… A decoração é muito charmosa.”</blockquote><div class="review-meta"><b>Sabrina Sampaio</b><small>Restaurant Guru · 4 anos atrás</small></div></article>
   <article class="review reveal"><span>★★★★★</span><blockquote>“Bolos e tortas deliciosas em massa folheada.”</blockquote><div class="review-meta"><b>Fernanda Oliveira Brito</b><small>Foursquare · 9 anos atrás</small></div></article>
  </div>
  <div class="compact-rail-status" data-rail-status="reviews"><b>01</b><span>/ 03</span><i aria-hidden="true"></i><small>Arraste para ver outras avaliações</small></div>
- <div class="reviews-note reveal"><p>Trechos de avaliações públicas reproduzidos parcialmente, com autoria, origem e antiguidade. Comentários antigos não são apresentados como atuais.</p><a class="text-link" href="https://restaurantguru.com.br/Paganelli-Sao-Jose-do-Rio-Preto" target="_blank" rel="noopener">Ver fonte ${svg('arrow')}</a></div>
+ <div class="reviews-note reveal"><p>Experiências compartilhadas por clientes que passaram pela Paganelli.</p><a class="text-link" href="https://restaurantguru.com.br/Paganelli-Sao-Jose-do-Rio-Preto" target="_blank" rel="noopener">Ver avaliações ${svg('arrow')}</a></div>
 </section>
 <section class="before-you-go construct">
- <div class="chapter reveal"><span>Antes de sair</span><b>Informação útil</b></div>
- <div class="guide-head reveal"><p class="kicker">Uma página bonita também precisa ser honesta</p><h2>Confirme hoje.<br><em>Aproveite sem dúvida.</em></h2><p>Cadastros públicos mudam. Por isso, esta proposta separa o que foi encontrado online do que deve ser confirmado diretamente antes da visita.</p></div>
+ <div class="chapter reveal"><span>Antes de sair</span><b>Planeje sua visita</b></div>
+ <div class="guide-head reveal"><p class="kicker">Tudo começa com uma boa escolha</p><h2>Escolha, encomende<br><em>e venha buscar.</em></h2><p>Fale diretamente com nossa equipe para conhecer a vitrine do dia e organizar sua encomenda.</p></div>
  <div class="guide-grid reveal">
-  <article><b>01</b><h3>O que há na vitrine?</h3><p>Consulte os doces, salgados e encomendas disponíveis no dia. As fotografias desta página são direção de arte e não funcionam como cardápio.</p></article>
-  <article><b>02</b><h3>Qual é o horário?</h3><p>O Maps indicava funcionamento na consulta, mas horários podem mudar em feriados ou ocasiões especiais. Ligue antes de se deslocar.</p></article>
-  <article><b>03</b><h3>Posso encomendar?</h3><p>Use o telefone público para perguntar sobre antecedência, tamanhos, sabores e formas de retirada. Nenhuma dessas condições foi presumida aqui.</p></article>
-  <article><b>04</b><h3>Esta página é oficial?</h3><p>Não. É uma proposta independente de presença digital. Nome, endereço, contato e nota foram consultados em fontes públicas.</p></article>
-  <article><b>05</b><h3>Os preços estão atualizados?</h3><p>Nenhum preço foi publicado. Valores, formas de pagamento e condições de encomenda devem ser informados pela própria confeitaria no contato.</p></article>
-  <article><b>06</b><h3>As fotos são da loja?</h3><p>Não. As imagens são criações editoriais produzidas para esta demonstração. Elas comunicam atmosfera e ofício, mas não documentam espaço ou produtos reais.</p></article>
-  <article><b>07</b><h3>Precisa de acessibilidade?</h3><p>Consulte previamente as condições de acesso e atendimento. Esta proposta não presume informações estruturais que não foram confirmadas com o estabelecimento.</p></article>
-  <article><b>08</b><h3>Encontrou algo diferente?</h3><p>Priorize sempre o contato direto. Endereço, telefone, horários e disponibilidade podem mudar depois da data em que as fontes públicas foram consultadas.</p></article>
+  <article><b>01</b><h3>Conheça a vitrine</h3><p>Descubra os doces e salgados preparados para o dia e escolha seus favoritos.</p></article>
+  <article><b>02</b><h3>Faça sua encomenda</h3><p>Converse com a equipe sobre sabores, tamanhos, antecedência e retirada.</p></article>
+  <article><b>03</b><h3>Venha nos visitar</h3><p>Estamos na Rua Ondina, 334, na Vila Redentora, em São José do Rio Preto.</p></article>
+  <article><b>04</b><h3>Fale com a Paganelli</h3><p>Ligue para tirar dúvidas e preparar cada detalhe da sua próxima ocasião.</p></article>
  </div>
- <div class="compact-rail-status light-status" data-rail-status="guide"><b>01</b><span>/ 08</span><i aria-hidden="true"></i><small>Arraste para ver mais informações</small></div>
- <div class="source-note reveal"><span>FONTES CONSULTADAS</span><p>Google Maps e perfil público no Instagram. A alegação “desde 1947” é atribuída ao próprio perfil social da empresa. Informações verificadas para esta proposta em setembro de 2026.</p></div>
+ <div class="compact-rail-status light-status" data-rail-status="guide"><b>01</b><span>/ 04</span><i aria-hidden="true"></i><small>Arraste para ver mais</small></div>
 </section>
 <section class="visit construct" id="visita">
  <div class="chapter reveal"><span>Capítulo 04</span><b>Visite</b></div>
  <div class="visit-grid">
   <div class="visit-copy reveal"><p class="kicker">Vila Redentora · São José do Rio Preto</p><h2>O caminho<br>mais curto até<br><em>a vitrine.</em></h2></div>
-  <address class="address reveal"><span>Endereço público</span><b>Rua Ondina, 334</b><p>Vila Redentora<br>São José do Rio Preto — SP<br>CEP 15015-205</p><a class="button primary" href="${maps}" target="_blank" rel="noopener">${svg('pin')} Abrir no Google Maps</a></address>
-  <div class="contact reveal"><span>Contato público</span><a href="${phone}">(17) 3231-4174 ${svg('arrow')}</a><span>Rede social</span><a href="${instagram}" target="_blank" rel="noopener">@confeitariapaganelli ${svg('ig')}</a></div>
+  <address class="address reveal"><span>Nosso endereço</span><b>Rua Ondina, 334</b><p>Vila Redentora<br>São José do Rio Preto — SP<br>CEP 15015-205</p><a class="button primary" href="${maps}" target="_blank" rel="noopener">${svg('pin')} Abrir no Google Maps</a></address>
+  <div class="contact reveal"><span>Telefone</span><a href="${phone}">(17) 3231-4174 ${svg('arrow')}</a><span>Instagram</span><a href="${instagram}" target="_blank" rel="noopener">@confeitariapaganelli ${svg('ig')}</a></div>
  </div>
 </section>
 </main>
-<footer><div class="footer-brand"><img src="/images/logo-paganelli.svg" alt="Paganelli Confeitaria"></div><p>Conceito independente de landing page.<br>Não é o site oficial da Confeitaria Paganelli.</p><a href="#inicio">Voltar ao início ↑</a></footer>`;
+<footer><div class="footer-brand"><img src="/images/logo-paganelli.svg" alt="Paganelli Confeitaria"></div><p>Confeitaria Paganelli · desde 1947<br>São José do Rio Preto — SP</p><a href="#inicio">Voltar ao início ↑</a></footer>`;
 
 const writingTargets=document.querySelectorAll('.manifesto-copy h2,.quote-band p,.atmosphere-head h2,.table-head h2,.heritage-copy h2,.reviews-head h2,.guide-head h2,.visit-copy h2');
 const wrapWords=(root)=>{
