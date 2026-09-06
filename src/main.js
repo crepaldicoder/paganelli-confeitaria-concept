@@ -1,9 +1,11 @@
 import './style.css';
+import './desktop-rework.css';
 
 const phone='tel:+551732314174';
 const maps='https://www.google.com/maps/place/Confeitaria+Paganelli/@-20.8203768,-49.3894545,17z/data=!4m6!3m5!1s0x94bdadbadbd0a8eb:0x25475b3bbd009d45!8m2!3d-20.8203768!4d-49.3894545!16s%2Fg%2F11q40g7yw_';
 const instagram='https://www.instagram.com/confeitariapaganelli/';
-const icon=(name)=>({arrow:'<path d="M5 12h14M14 6l6 6-6 6"/>',phone:'<path d="M7.2 3.5 10 8 8.1 9.9c1.3 2.8 3.2 4.8 6 6.1l2-2 4.5 2.8c.5.3.6.9.4 1.4-.7 1.7-2.4 2.8-4.3 2.7C9.4 20.3 3.7 14.6 3.1 7.3 3 5.4 4 3.8 5.8 3.1c.5-.2 1.1 0 1.4.4Z"/>',pin:'<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',ig:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>'}[name]);
+const whatsapp='https://wa.me/551732314174?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Paganelli.';
+const icon=(name)=>({arrow:'<path d="M5 12h14M14 6l6 6-6 6"/>',phone:'<path d="M7.2 3.5 10 8 8.1 9.9c1.3 2.8 3.2 4.8 6 6.1l2-2 4.5 2.8c.5.3.6.9.4 1.4-.7 1.7-2.4 2.8-4.3 2.7C9.4 20.3 3.7 14.6 3.1 7.3 3 5.4 4 3.8 5.8 3.1c.5-.2 1.1 0 1.4.4Z"/>',pin:'<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',ig:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>',whatsapp:'<path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.5L3 20.4l1.3-4.7A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8.3 7.4c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.8 1.8c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4 0 .7.5 1 1.3 1.8 2.3 2.3.3.2.5.2.7 0l.8-1c.2-.2.4-.3.7-.2l1.8.9c.3.1.4.3.4.5 0 .4-.2 1.3-.7 1.7-.5.5-1.3.8-2.1.7-1.2-.1-2.8-.7-4.6-2.3-2.2-2-3.1-4.3-3.2-5.2 0-.6.2-1 .5-1.3Z"/>',route:'<path d="M5 19c0-3 2-4 4-4s4-1 4-4 2-5 6-5"/><path d="m16 3 3 3-3 3"/><circle cx="5" cy="19" r="2"/>'}[name]);
 const svg=(name)=>`<svg viewBox="0 0 24 24" aria-hidden="true">${icon(name)}</svg>`;
 
 const LOGO_LETTERS=[
@@ -30,7 +32,7 @@ const logoMark=(variant,{decorative}={})=>{
 
 document.querySelector('#app').innerHTML=`
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-<div class="build-intro" aria-hidden="true"><div class="intro-panel intro-panel--left"></div><div class="intro-panel intro-panel--right"></div><div class="intro-stage"><span class="intro-index">SÃO JOSÉ DO RIO PRETO · 1947</span><img src="/images/logo-paganelli.svg" alt=""><svg class="intro-stroke" viewBox="0 0 720 80"><path pathLength="1" d="M12 52 C150 4 250 79 376 37 S586 20 708 46"/></svg><p>uma receita construída<br>camada por camada</p></div></div><div class="scroll-progress" aria-hidden="true"><i></i></div>
+<div class="build-intro" aria-hidden="true"><div class="intro-panel intro-panel--left"></div><div class="intro-panel intro-panel--right"></div><div class="intro-stage"><span class="intro-index">SÃO JOSÉ DO RIO PRETO · 1947</span>${logoMark('intro',{decorative:true})}<p>uma receita construída<br>traço por traço</p></div></div><div class="scroll-progress" aria-hidden="true"><i></i></div>
 <header class="topbar">
   <a class="brand" href="#inicio" aria-label="Paganelli, início"><img class="literal-logo" src="/images/logo-paganelli.svg" alt=""></a>
   <nav class="desktop-nav" aria-label="Principal"><a href="#oficio">O ofício</a><a href="#mesa">Da vitrine</a><a href="#avaliacoes">Avaliações</a><a href="#visita">Visite</a></nav>
@@ -42,6 +44,7 @@ document.querySelector('#app').innerHTML=`
  <nav aria-label="Navegação móvel"><a href="#inicio">01 — Início</a><a href="#oficio">02 — O ofício</a><a href="#mesa">03 — Da vitrine</a><a href="#avaliacoes">04 — Avaliações</a><a href="#visita">05 — Visite</a></nav>
  <p>Rua Ondina, 334<br>Vila Redentora · Rio Preto</p>
 </div>
+<a class="whatsapp-float" href="${whatsapp}" target="_blank" rel="noopener noreferrer" aria-label="Conversar com a Paganelli pelo WhatsApp"><span>Fale no WhatsApp</span>${svg('whatsapp')}</a>
 <main id="conteudo">
 <section class="hero" id="inicio">
  <div class="hero-copy">
@@ -108,8 +111,9 @@ document.querySelector('#app').innerHTML=`
  <div class="chapter reveal"><span>Capítulo 04</span><b>Visite</b></div>
  <div class="visit-grid">
   <div class="visit-copy reveal"><p class="kicker">Vila Redentora · São José do Rio Preto</p><h2>O caminho<br>mais curto até<br><em>a vitrine.</em></h2></div>
-  <address class="address reveal"><span>Nosso endereço</span><b>Rua Ondina, 334</b><p>Vila Redentora<br>São José do Rio Preto — SP<br>CEP 15015-205</p><a class="button primary" href="${maps}" target="_blank" rel="noopener">${svg('pin')} Abrir no Google Maps</a></address>
-  <div class="contact reveal"><span>Telefone</span><a href="${phone}">(17) 3231-4174 ${svg('arrow')}</a><span>Instagram</span><a href="${instagram}" target="_blank" rel="noopener">@confeitariapaganelli ${svg('ig')}</a></div>
+  <address class="address reveal"><span>Nosso endereço</span><b>Rua Ondina, 334</b><p>Vila Redentora<br>São José do Rio Preto — SP<br>CEP 15015-205</p></address>
+  <a class="map-card reveal" href="${maps}" target="_blank" rel="noopener noreferrer" aria-label="Abrir rota até a Confeitaria Paganelli no Google Maps"><span class="map-grid" aria-hidden="true"></span><span class="map-pin">${svg('pin')}</span><span class="map-copy"><small>COMO CHEGAR</small><b>Abra a rota até<br>a Paganelli</b><em>Google Maps ${svg('route')}</em></span></a>
+  <div class="contact reveal"><span>Telefone</span><a href="${phone}">(17) 3231-4174 ${svg('arrow')}</a><span>Instagram</span><a class="instagram-link" href="${instagram}" target="_blank" rel="noopener">@confeitariapaganelli ${svg('ig')}</a></div>
  </div>
 </section>
 </main>
