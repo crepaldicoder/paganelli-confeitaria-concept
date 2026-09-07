@@ -32,7 +32,7 @@ const logoMark=(variant,{decorative}={})=>{
 
 document.querySelector('#app').innerHTML=`
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-<div class="build-intro" aria-hidden="true"><div class="intro-panel intro-panel--left"></div><div class="intro-panel intro-panel--right"></div><div class="intro-stage"><span class="intro-index">SÃO JOSÉ DO RIO PRETO · 1947</span>${logoMark('intro',{decorative:true})}<p>uma receita construída<br>traço por traço</p></div></div><div class="scroll-progress" aria-hidden="true"><i></i></div>
+<div class="build-intro" aria-hidden="true"><div class="intro-panel intro-panel--left"></div><div class="intro-panel intro-panel--right"></div><div class="intro-stage"><span class="intro-index">SÃO JOSÉ DO RIO PRETO · 1947</span><div class="intro-writing">${logoMark('intro',{decorative:true})}<img class="intro-final-logo" src="/images/logo-paganelli-static.svg" alt=""></div><p>uma receita construída<br>traço por traço</p></div></div><div class="scroll-progress" aria-hidden="true"><i></i></div>
 <header class="topbar">
   <a class="brand" href="#inicio" aria-label="Paganelli, início"><img class="literal-logo" src="/images/logo-paganelli.svg" alt=""></a>
   <nav class="desktop-nav" aria-label="Principal"><a href="#oficio">O ofício</a><a href="#mesa">Da vitrine</a><a href="#avaliacoes">Avaliações</a><a href="#visita">Visite</a></nav>
