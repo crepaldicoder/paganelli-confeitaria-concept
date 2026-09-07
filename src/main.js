@@ -62,7 +62,7 @@ document.querySelector('#app').innerHTML=`
 <section class="manifesto construct" id="oficio">
  <div class="chapter reveal"><span>Capítulo 01</span><b>O ofício</b></div>
  <div class="manifesto-copy reveal"><p class="kicker">Nem toda receita começa no papel.</p><h2>Algumas começam <em>nas mãos.</em></h2><p>Desde 1947, a Paganelli faz parte da história de Rio Preto. Uma tradição construída com cuidado, repetição e aquele olhar atento que reconhece o ponto certo de cada receita.</p></div>
- <figure class="craft-image reveal image-build"><img src="/images/maos-oficio.png" alt="Mãos peneirando açúcar sobre uma massa folhada"><figcaption><span>01</span> O gesto antes da vitrine</figcaption></figure>
+ <figure class="craft-image reveal image-build"><img src="/images/maos-oficio.png" alt="Fachada rosa e azul da Confeitaria Paganelli"><figcaption><span>01</span> Um endereço que faz parte da cidade</figcaption></figure>
  <div class="recipe-note reveal"><span>UMA BOA RECEITA PEDE</span><ul><li><b>01</b> matéria-prima</li><li><b>02</b> repetição e cuidado</li><li><b>03</b> tempo de forno</li><li><b>04</b> gente à mesa</li></ul></div>
 </section>
 <section class="quote-band reveal construct"><p>“Tradição não é ficar parada.<br><em>É saber o que não pode se perder.</em>”</p><span>— Paganelli, desde 1947</span></section>
@@ -70,15 +70,15 @@ document.querySelector('#app').innerHTML=`
  <div class="chapter reveal"><span>Interlúdio</span><b>Por dentro</b></div>
  <div class="atmosphere-head reveal"><p class="kicker">Matéria, cor e memória</p><h2>Uma atmosfera<br><em>que também alimenta.</em></h2><p>Um espaço pensado para acolher, escolher com calma e transformar uma visita à confeitaria em parte do dia.</p></div>
  <div class="atmosphere-rail" role="region" aria-label="Galeria da confeitaria" tabindex="0">
-  <figure class="atmosphere-card image-build"><div class="media-frame"><img src="/images/interior-editorial.png" alt="Interior da confeitaria"></div><figcaption><span>01</span><div><b>O salão como cenário</b><small>um convite para ficar mais um pouco</small></div></figcaption></figure>
-  <figure class="atmosphere-card image-build"><div class="media-frame"><img src="/images/vitrine-editorial.png" alt="Vitrine da confeitaria"></div><figcaption><span>02</span><div><b>A vitrine como primeiro convite</b><small>escolhas preparadas para o seu dia</small></div></figcaption></figure>
+  <figure class="atmosphere-card image-build"><div class="media-frame"><img src="/images/interior-editorial.png" alt="Salão rosa da Confeitaria Paganelli"></div><figcaption><span>01</span><div><b>O salão como cenário</b><small>um convite para ficar mais um pouco</small></div></figcaption></figure>
+  <figure class="atmosphere-card image-build"><div class="media-frame"><img src="/images/vitrine-editorial.png" alt="Vitrine real com folhados de limão da Paganelli"></div><figcaption><span>02</span><div><b>A vitrine como primeiro convite</b><small>escolhas preparadas para o seu dia</small></div></figcaption></figure>
  </div>
  <div class="rail-status" data-rail="atmosphere"><div class="rail-dots"><button class="active" aria-label="Ver imagem 1" aria-selected="true"></button><button aria-label="Ver imagem 2" aria-selected="false"></button></div><p><b>01</b> / 02 <span>O salão como cenário</span></p><small>Arraste para o lado</small></div>
 </section>
 <section class="table-section construct" id="mesa">
  <div class="chapter light reveal"><span>Capítulo 02</span><b>Da vitrine</b></div>
  <div class="table-head reveal"><h2>Do doce ao salgado,<br><em>uma mesa inteira.</em></h2><p>Receitas para o café, para a sobremesa, para celebrar e para levar. Consulte a seleção do dia e encontre o sabor certo para cada ocasião.</p></div>
- <figure class="table-image reveal image-build"><img src="/images/mesa-doces.png" alt="Mesa vista de cima com doces e salgados variados"><figcaption>Sabores para dividir — ou guardar só para você</figcaption></figure>
+ <figure class="table-image reveal image-build"><img src="/images/mesa-doces.png" alt="Torta de frutas da Paganelli vista de cima"><figcaption>Sabores para dividir — ou guardar só para você</figcaption></figure>
  <div class="daily-card reveal"><small>A ESCOLHA CERTA É A DE HOJE</small><h3>Consulte a vitrine<br>e faça sua encomenda.</h3><a class="button paper" href="${phone}">${svg('phone')} (17) 3231-4174</a></div>
 </section>
 <section class="heritage construct">
