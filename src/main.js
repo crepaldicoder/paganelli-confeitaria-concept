@@ -10,7 +10,7 @@ const svg=(name)=>`<svg viewBox="0 0 24 24" aria-hidden="true">${icon(name)}</sv
 
 document.querySelector('#app').innerHTML=`
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-<div class="build-intro" aria-hidden="true"><object class="intro-logo-revised" data="/images/paganelli-escrita-revisada.svg" type="image/svg+xml" tabindex="-1"><img src="/images/logo-paganelli-static.svg" alt=""></object></div><div class="scroll-progress" aria-hidden="true"><i></i></div>
+<div class="build-intro" aria-hidden="true"><div class="intro-panel intro-panel--left"></div><div class="intro-panel intro-panel--right"></div><div class="intro-stage"><span class="intro-index">SÃO JOSÉ DO RIO PRETO · 1947</span><div class="intro-writing"><object class="intro-logo-revised" data="/images/paganelli-escrita-revisada.svg" type="image/svg+xml" tabindex="-1"><img src="/images/logo-paganelli-static.svg" alt=""></object></div><p>uma receita construída<br>traço por traço</p></div></div><div class="scroll-progress" aria-hidden="true"><i></i></div>
 <header class="topbar">
   <a class="brand" href="#inicio" aria-label="Paganelli, início"><img class="literal-logo" src="/images/logo-paganelli.svg" alt=""></a>
   <nav class="desktop-nav" aria-label="Principal"><a href="#oficio">O ofício</a><a href="#mesa">Da vitrine</a><a href="#avaliacoes">Avaliações</a><a href="#visita">Visite</a></nav>
@@ -130,7 +130,7 @@ const revealTargets=[...document.querySelectorAll('.reveal,.construct,.image-bui
 if(reduced){document.body.classList.add('site-ready');revealTargets.forEach(el=>el.classList.add(el.classList.contains('reveal')?'visible':'built'))}
 else{
  document.body.classList.add('intro-playing','motion-ready');
- const handoffDelay=6000;
+ const handoffDelay=6250;
  setTimeout(()=>{document.body.classList.add('site-ready');document.body.classList.remove('intro-playing');document.querySelector('.hero-image')?.classList.add('built')},handoffDelay);
  const buildImage=el=>{const rail=el.closest('.atmosphere-rail');if(rail){if(rail.dataset.buildScheduled)return;rail.dataset.buildScheduled='true';rail.querySelectorAll('.image-build').forEach((card,i)=>setTimeout(()=>card.classList.add('built'),i*170))}else el.classList.add('built')};
  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target;if(el.classList.contains('reveal'))el.classList.add('visible');if(el.classList.contains('construct'))el.classList.add('built');if(el.classList.contains('image-build'))buildImage(el);io.unobserve(el)}),{threshold:.1,rootMargin:'0px 0px -10%'});
