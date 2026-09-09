@@ -1,0 +1,555 @@
+{
+  "checked": 29,
+  "available": 22,
+  "missing": 7,
+  "components": [
+    {
+      "id": "magic-ui-marquee",
+      "name": "marquee",
+      "source_site": "Magic UI",
+      "source_url": "https://magicui.design/r/marquee.json",
+      "status": 200,
+      "title": "Marquee",
+      "description": "An infinite scrolling component that can be used to display text, images, or videos.",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "registry/magicui/marquee.tsx",
+          "type": "registry:ui",
+          "bytes": 1658
+        }
+      ],
+      "css_vars": true,
+      "css": true
+    },
+    {
+      "id": "magic-ui-animated-beam",
+      "name": "animated-beam",
+      "source_site": "Magic UI",
+      "source_url": "https://magicui.design/r/animated-beam.json",
+      "status": 200,
+      "title": "Animated Beam",
+      "description": "An animated beam of light which travels along a path. Useful for showcasing the integration features of a website.",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "registry/magicui/animated-beam.tsx",
+          "type": "registry:ui",
+          "bytes": 4986
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "magic-ui-text-reveal",
+      "name": "text-reveal",
+      "source_site": "Magic UI",
+      "source_url": "https://magicui.design/r/text-reveal.json",
+      "status": 200,
+      "title": "Text Reveal",
+      "description": "Fade in text as you scroll down the page.",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "registry/magicui/text-reveal.tsx",
+          "type": "registry:ui",
+          "bytes": 1965
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "magic-ui-border-beam",
+      "name": "border-beam",
+      "source_site": "Magic UI",
+      "source_url": "https://magicui.design/r/border-beam.json",
+      "status": 200,
+      "title": "Border Beam",
+      "description": "An animated beam of light which travels along the border of its container.",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "registry/magicui/border-beam.tsx",
+          "type": "registry:ui",
+          "bytes": 2462
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "magic-ui-animated-list",
+      "name": "animated-list",
+      "source_site": "Magic UI",
+      "source_url": "https://magicui.design/r/animated-list.json",
+      "status": 200,
+      "title": "Animated List",
+      "description": "A list that animates each item in sequence with a delay. Used to showcase notifications or events on your landing page.",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "registry/magicui/animated-list.tsx",
+          "type": "registry:ui",
+          "bytes": 2036
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "magic-ui-shimmer-button",
+      "name": "shimmer-button",
+      "source_site": "Magic UI",
+      "source_url": "https://magicui.design/r/shimmer-button.json",
+      "status": 200,
+      "title": "Shimmer Button",
+      "description": "A button with a shimmering light which travels around the perimeter.",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "registry/magicui/shimmer-button.tsx",
+          "type": "registry:ui",
+          "bytes": 2846
+        }
+      ],
+      "css_vars": true,
+      "css": true
+    },
+    {
+      "id": "magic-ui-dock",
+      "name": "dock",
+      "source_site": "Magic UI",
+      "source_url": "https://magicui.design/r/dock.json",
+      "status": 200,
+      "title": "Dock",
+      "description": "An implementation of the MacOS dock using react + tailwindcss + motion",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "registry/magicui/dock.tsx",
+          "type": "registry:ui",
+          "bytes": 3972
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "magic-ui-scroll-progress",
+      "name": "scroll-progress",
+      "source_site": "Magic UI",
+      "source_url": "https://magicui.design/r/scroll-progress.json",
+      "status": 200,
+      "title": "Scroll Progress",
+      "description": "Animated Scroll Progress for your pages",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "registry/magicui/scroll-progress.tsx",
+          "type": "registry:ui",
+          "bytes": 681
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "magic-ui-blur-fade",
+      "name": "blur-fade",
+      "source_site": "Magic UI",
+      "source_url": "https://magicui.design/r/blur-fade.json",
+      "status": 200,
+      "title": "Blur Fade",
+      "description": "Blur fade in and out animation. Used to smoothly fade in and out content.",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "registry/magicui/blur-fade.tsx",
+          "type": "registry:ui",
+          "bytes": 2220
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "magic-ui-box-reveal",
+      "name": "box-reveal",
+      "source_site": "Magic UI",
+      "source_url": "https://magicui.design/r/box-reveal.json",
+      "status": 404
+    },
+    {
+      "id": "magic-ui-word-rotate",
+      "name": "word-rotate",
+      "source_site": "Magic UI",
+      "source_url": "https://magicui.design/r/word-rotate.json",
+      "status": 200,
+      "title": "Word Rotate",
+      "description": "A vertical rotation of words",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "registry/magicui/word-rotate.tsx",
+          "type": "registry:ui",
+          "bytes": 1140
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "aceternity-ui-parallax-scroll",
+      "name": "parallax-scroll",
+      "source_site": "Aceternity UI",
+      "source_url": "https://ui.aceternity.com/registry/parallax-scroll.json",
+      "status": 200,
+      "title": "Parallax Scroll",
+      "description": "",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "components/ui/parallax-scroll.tsx",
+          "type": "registry:ui",
+          "bytes": 2731
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "aceternity-ui-tracing-beam",
+      "name": "tracing-beam",
+      "source_site": "Aceternity UI",
+      "source_url": "https://ui.aceternity.com/registry/tracing-beam.json",
+      "status": 200,
+      "title": "Tracing Beam",
+      "description": "",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "components/ui/tracing-beam.tsx",
+          "type": "registry:ui",
+          "bytes": 3515
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "aceternity-ui-text-generate-effect",
+      "name": "text-generate-effect",
+      "source_site": "Aceternity UI",
+      "source_url": "https://ui.aceternity.com/registry/text-generate-effect.json",
+      "status": 200,
+      "title": "Text Generate Effect",
+      "description": "",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "components/ui/text-generate-effect.tsx",
+          "type": "registry:ui",
+          "bytes": 1385
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "aceternity-ui-moving-border",
+      "name": "moving-border",
+      "source_site": "Aceternity UI",
+      "source_url": "https://ui.aceternity.com/registry/moving-border.json",
+      "status": 200,
+      "title": "Moving Border",
+      "description": "",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "components/ui/moving-border.tsx",
+          "type": "registry:ui",
+          "bytes": 3085
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "aceternity-ui-sticky-scroll-reveal",
+      "name": "sticky-scroll-reveal",
+      "source_site": "Aceternity UI",
+      "source_url": "https://ui.aceternity.com/registry/sticky-scroll-reveal.json",
+      "status": 200,
+      "title": "Sticky Scroll Reveal",
+      "description": "",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "components/ui/sticky-scroll-reveal.tsx",
+          "type": "registry:ui",
+          "bytes": 3463
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "aceternity-ui-infinite-moving-cards",
+      "name": "infinite-moving-cards",
+      "source_site": "Aceternity UI",
+      "source_url": "https://ui.aceternity.com/registry/infinite-moving-cards.json",
+      "status": 200,
+      "title": "Infinite Moving Cards",
+      "description": "",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "components/ui/infinite-moving-cards.tsx",
+          "type": "registry:ui",
+          "bytes": 3675
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "aceternity-ui-direction-aware-hover",
+      "name": "direction-aware-hover",
+      "source_site": "Aceternity UI",
+      "source_url": "https://ui.aceternity.com/registry/direction-aware-hover.json",
+      "status": 200,
+      "title": "Direction Aware Hover",
+      "description": "",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "components/ui/direction-aware-hover.tsx",
+          "type": "registry:ui",
+          "bytes": 3551
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "aceternity-ui-canvas-reveal-effect",
+      "name": "canvas-reveal-effect",
+      "source_site": "Aceternity UI",
+      "source_url": "https://ui.aceternity.com/registry/canvas-reveal-effect.json",
+      "status": 200,
+      "title": "Canvas Reveal Effect",
+      "description": "",
+      "type": "registry:ui",
+      "dependencies": [
+        "three",
+        "@react-three/fiber"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "components/ui/canvas-reveal-effect.tsx",
+          "type": "registry:ui",
+          "bytes": 8303
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "aceternity-ui-focus-cards",
+      "name": "focus-cards",
+      "source_site": "Aceternity UI",
+      "source_url": "https://ui.aceternity.com/registry/focus-cards.json",
+      "status": 200,
+      "title": "Focus Cards",
+      "description": "",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "components/ui/focus-cards.tsx",
+          "type": "registry:ui",
+          "bytes": 1732
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "aceternity-ui-background-beams",
+      "name": "background-beams",
+      "source_site": "Aceternity UI",
+      "source_url": "https://ui.aceternity.com/registry/background-beams.json",
+      "status": 200,
+      "title": "Background Beams",
+      "description": "",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "components/ui/background-beams.tsx",
+          "type": "registry:ui",
+          "bytes": 9812
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "eldora-ui-marquee",
+      "name": "marquee",
+      "source_site": "Eldora UI",
+      "source_url": "https://eldoraui.site/r/marquee.json",
+      "status": 200,
+      "title": "marquee",
+      "description": "A performant, customizable marquee (scrolling text/content) component.",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registry_dependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/eldoraui/marquee.tsx",
+          "type": "registry:ui",
+          "bytes": 1152
+        }
+      ],
+      "css_vars": true,
+      "css": true
+    },
+    {
+      "id": "eldora-ui-animated-list",
+      "name": "animated-list",
+      "source_site": "Eldora UI",
+      "source_url": "https://eldoraui.site/r/animated-list.json",
+      "status": 200,
+      "title": "animated-list",
+      "description": "An animated list component.",
+      "type": "registry:ui",
+      "dependencies": [
+        "react"
+      ],
+      "registry_dependencies": [],
+      "files": [
+        {
+          "path": "registry/eldoraui/animated-list.tsx",
+          "type": "registry:ui",
+          "bytes": 6130
+        }
+      ],
+      "css_vars": false,
+      "css": false
+    },
+    {
+      "id": "eldora-ui-word-rotate",
+      "name": "word-rotate",
+      "source_site": "Eldora UI",
+      "source_url": "https://eldoraui.site/r/word-rotate.json",
+      "status": 404
+    },
+    {
+      "id": "eldora-ui-text-reveal",
+      "name": "text-reveal",
+      "source_site": "Eldora UI",
+      "source_url": "https://eldoraui.site/r/text-reveal.json",
+      "status": 404
+    },
+    {
+      "id": "eldora-ui-box-reveal",
+      "name": "box-reveal",
+      "source_site": "Eldora UI",
+      "source_url": "https://eldoraui.site/r/box-reveal.json",
+      "status": 404
+    },
+    {
+      "id": "eldora-ui-blur-fade",
+      "name": "blur-fade",
+      "source_site": "Eldora UI",
+      "source_url": "https://eldoraui.site/r/blur-fade.json",
+      "status": 404
+    },
+    {
+      "id": "eldora-ui-border-beam",
+      "name": "border-beam",
+      "source_site": "Eldora UI",
+      "source_url": "https://eldoraui.site/r/border-beam.json",
+      "status": 404
+    },
+    {
+      "id": "eldora-ui-animated-beam",
+      "name": "animated-beam",
+      "source_site": "Eldora UI",
+      "source_url": "https://eldoraui.site/r/animated-beam.json",
+      "status": 404
+    }
+  ]
+}
