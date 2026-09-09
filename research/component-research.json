@@ -1,0 +1,76 @@
+{
+  "research_date": "2026-09-09",
+  "strategy": "API/registry metadata first; local CSS transposition instead of framework-incompatible copy",
+  "selected_patterns": [
+    {
+      "id": "21st-magnetic-button-26725",
+      "name": "Magnetic Button",
+      "source_site": "https://21st.dev",
+      "source_url": "https://21st.dev/@hirael/components/magnetic-button",
+      "category": "button",
+      "framework": "react",
+      "styling": "tailwind",
+      "animation_lib": "motion",
+      "dependencies": ["motion/react"],
+      "files": [],
+      "preview_available": true,
+      "use_in_paganelli": "Translated to dependency-free CSS as a tactile offset/shadow response on the existing rectangular editorial buttons. No magnetic cursor displacement was copied because it conflicts with the restrained 1950s-almanac direction."
+    },
+    {
+      "id": "21st-book-call-button-5801",
+      "name": "Book A Call Button",
+      "source_site": "https://21st.dev",
+      "source_url": "https://21st.dev/@jatin-yadav05/components/book-a-call-button",
+      "category": "contact-action",
+      "framework": "react",
+      "styling": "tailwind",
+      "animation_lib": "framer-motion",
+      "dependencies": ["framer-motion"],
+      "files": [],
+      "preview_available": true,
+      "use_in_paganelli": "Used as interaction reference for the phone CTA: stable label, contained icon and short transform feedback, implemented locally in CSS."
+    },
+    {
+      "id": "21st-scroll-reveal-content-a-19203",
+      "name": "Scroll Reveal Content A",
+      "source_site": "https://21st.dev",
+      "source_url": "https://21st.dev/@abui/components/scroll-reveal-content-a",
+      "category": "scroll-storytelling",
+      "framework": "react",
+      "styling": "tailwind",
+      "animation_lib": "motion",
+      "dependencies": ["motion/react"],
+      "files": [],
+      "preview_available": true,
+      "use_in_paganelli": "Its synchronized number/text/image principle informed the rebuilt pastry scene. Implementation stays in the site's existing IntersectionObserver system and respects reduced motion."
+    },
+    {
+      "id": "21st-scroll-reveal-image-24466",
+      "name": "Scroll Reveal Image",
+      "source_site": "https://21st.dev",
+      "source_url": "https://21st.dev/@unlumen/components/scroll-reveal-image",
+      "category": "image-reveal",
+      "framework": "react",
+      "styling": "tailwind",
+      "animation_lib": "spring-motion",
+      "dependencies": ["motion/react"],
+      "files": [],
+      "preview_available": true,
+      "use_in_paganelli": "Adapted as a rightward cake arrival with settling rotation/scale and drop-shadow depth; no generic rounded-card expansion was imported."
+    },
+    {
+      "id": "21st-floating-action-button-1360",
+      "name": "Floating Action Button",
+      "source_site": "https://21st.dev",
+      "source_url": "https://21st.dev/@serafimcloud/components/floating-action-button",
+      "category": "floating-contact",
+      "framework": "react",
+      "styling": "tailwind",
+      "animation_lib": "motion",
+      "dependencies": [],
+      "files": [],
+      "preview_available": true,
+      "use_in_paganelli": "Used only as a containment reference. The local WhatsApp action now has a white inset brand-glyph disc, restrained elevation, 62px mobile target and no external dependency."
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import './style.css';
 import './desktop-rework.css';
+import './refinement.css';
 
 const phone='tel:+551732314174';
 const maps='https://www.google.com/maps/place/Confeitaria+Paganelli/@-20.8203768,-49.3894545,17z/data=!4m6!3m5!1s0x94bdadbadbd0a8eb:0x25475b3bbd009d45!8m2!3d-20.8203768!4d-49.3894545!16s%2Fg%2F11q40g7yw_';
@@ -58,7 +59,7 @@ document.querySelector('#app').innerHTML=`
 <section class="table-section construct" id="mesa">
  <div class="chapter light reveal"><span>Capítulo 02</span><b>Da vitrine</b></div>
  <div class="table-head reveal"><h2>Do doce ao salgado,<br><em>uma mesa inteira.</em></h2><p>Receitas para o café, para a sobremesa, para celebrar e para levar. Consulte a seleção do dia e encontre o sabor certo para cada ocasião.</p></div>
- <figure class="table-image reveal image-build"><img src="/images/mesa-doces.png" alt="Torta de frutas da Paganelli vista de cima"><figcaption>Sabores para dividir — ou guardar só para você</figcaption></figure>
+ <figure class="table-image reveal image-build"><img src="/images/torta-isolada.png" alt="Torta de frutas da Paganelli vista de cima"></figure>
  <div class="daily-card reveal"><small>A ESCOLHA CERTA É A DE HOJE</small><h3>Consulte a vitrine<br>e faça sua encomenda.</h3><a class="button paper" href="${phone}">${svg('phone')} (17) 3231-4174</a></div>
 </section>
 <section class="heritage construct">

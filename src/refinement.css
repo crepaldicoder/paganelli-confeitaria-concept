@@ -1,0 +1,53 @@
+/* Final evidence-led refinement pass. */
+:root{--table-pink:#e5838c}
+
+/* Remove isolated ornamental rules that do not carry information. */
+.ribbon::after,.recipe-note::after,.quote-band::after,.table-section::after,.source-note::after,.table-head h2::after,.table-head .write-line,.table-image::before,.table-image::after{display:none!important}
+.table-image{border:0!important;outline:0!important}
+
+/* 21st.dev research transposition: tactile editorial button, not a copied React block. */
+.button{border:1px solid currentColor!important;border-radius:0!important;box-shadow:4px 4px 0 color-mix(in oklch,currentColor 42%,transparent);transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .18s var(--ease)!important}
+.button::after{display:none!important}.button svg{transition:transform .18s var(--ease)}
+.button:hover,.button:focus-visible{transform:translate(-2px,-2px);box-shadow:7px 7px 0 color-mix(in oklch,currentColor 42%,transparent)}
+.button:hover svg,.button:focus-visible svg{transform:translateX(3px)}.button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 color-mix(in oklch,currentColor 42%,transparent)}
+
+/* The pastry scene: editorial split composition on the source-photo pink. */
+@media(min-width:901px){
+ .table-section{position:relative;background:var(--table-pink);color:var(--ink);min-height:760px;padding-top:96px;padding-bottom:96px;grid-template-columns:76px minmax(430px,1fr) minmax(390px,520px);grid-template-rows:auto auto;column-gap:clamp(34px,5vw,78px);row-gap:28px;align-items:center;overflow:hidden}
+ .table-section>.chapter{grid-column:1;grid-row:1/3;color:var(--ink)}
+ .table-head{grid-column:2;grid-row:1;display:block;align-self:end;max-width:720px;padding-top:20px}
+ .table-head h2{font-size:clamp(58px,5.2vw,88px);line-height:.93;color:var(--ink)}.table-head h2 em{color:var(--paper)}
+ .table-head p{max-width:560px;margin:30px 0 0;padding-top:20px;border-top:1px solid color-mix(in oklch,var(--ink) 28%,transparent);color:var(--ink);font-size:15px;line-height:1.7}
+ .table-image{grid-column:3;grid-row:1/3;width:100%;height:620px;aspect-ratio:auto;margin:0;align-self:center;overflow:visible!important;clip-path:none!important;display:grid;place-items:center}
+ .table-image::after{display:none!important}.table-image img{width:118%;height:118%;object-fit:contain;filter:drop-shadow(0 34px 26px rgba(70,25,34,.28)) drop-shadow(0 10px 8px rgba(70,25,34,.18));opacity:1;transform:none}
+ .motion-ready .table-image img{opacity:0;transform:translate3d(34%,10%,0) rotate(9deg) scale(.76);transition:opacity .7s var(--ease),transform 1.15s cubic-bezier(.16,1,.3,1),filter .8s var(--ease)}
+ .motion-ready .table-image.built img,.motion-ready .table-image.visible img{opacity:1;transform:translate3d(0,0,0) rotate(0) scale(1)}
+ .daily-card{grid-column:2;grid-row:2;align-self:start;z-index:3;max-width:520px;margin:0;background:color-mix(in oklch,var(--cherry) 82%,var(--table-pink));color:var(--paper);padding:24px 28px;display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px 24px;box-shadow:10px 10px 0 color-mix(in oklch,var(--ink) 18%,transparent)}
+ .daily-card small,.daily-card h3{grid-column:1}.daily-card small{line-height:1.4}.daily-card h3{font-size:29px;margin:8px 0 0}.daily-card .button{grid-column:2;grid-row:1/3;align-self:stretch;white-space:nowrap;min-height:64px}
+}
+
+@media(max-width:900px){
+ .table-section{background:var(--table-pink);color:var(--ink);padding:230px 22px 88px;display:grid;grid-template-columns:44px minmax(0,1fr);grid-template-rows:auto;gap:30px 16px;overflow:hidden}
+ .table-section>.chapter{grid-column:1;grid-row:1/4;color:var(--ink);align-self:start}
+ .table-head{grid-column:2;grid-row:1;display:block}.table-head h2{color:var(--ink);font-size:clamp(43px,11.5vw,68px);line-height:.96}.table-head h2 em{color:var(--paper)}
+ .table-head p{color:var(--ink);max-width:none;margin:24px 0 0;padding-top:18px;border-top:1px solid color-mix(in oklch,var(--ink) 28%,transparent);font-size:14px;line-height:1.65}
+ .daily-card{grid-column:2;grid-row:2;width:100%;max-width:none;margin:0;background:var(--cherry);color:var(--paper);padding:22px;box-shadow:7px 7px 0 color-mix(in oklch,var(--ink) 18%,transparent)}
+ .daily-card h3{font-size:27px;margin:10px 0 18px}.daily-card .button{width:100%;min-height:54px}
+ .table-image{grid-column:1/3;grid-row:3;width:100%;height:min(92vw,510px);margin:2px 0 0;overflow:visible!important;clip-path:none!important}.table-image::after{display:none!important}
+ .table-image img{width:112%;height:112%;margin-left:-6%;object-fit:contain;filter:drop-shadow(0 24px 18px rgba(70,25,34,.28));opacity:1;transform:none}
+ .motion-ready .table-image img{opacity:0;transform:translate3d(28%,8%,0) rotate(8deg) scale(.8);transition:opacity .62s var(--ease),transform 1s cubic-bezier(.16,1,.3,1)}
+ .motion-ready .table-image.built img,.motion-ready .table-image.visible img{opacity:1;transform:none}
+}
+
+/* Stable microcopy lanes: no floating caption may cross another content block. */
+.chapter,.hero-image figcaption,.craft-image figcaption,.atmosphere-card figcaption,.source-note,.rail-status,.compact-rail-status{isolation:isolate;overflow-wrap:anywhere}
+.atmosphere-card figcaption{min-height:68px;align-items:center}.source-note{position:relative;z-index:2;max-width:70ch}.rail-status,.compact-rail-status{position:relative;z-index:3}
+@media(max-width:520px){.chapter{min-width:36px}.atmosphere-card figcaption{min-height:78px}.source-note{max-width:100%}}
+
+/* A clearer WhatsApp mark with a contained brand glyph. */
+.whatsapp-float{border:1px solid rgba(255,255,255,.72);box-shadow:0 14px 34px rgba(12,45,30,.28),0 0 0 4px rgba(22,140,85,.14)}
+.whatsapp-float svg{width:34px;height:34px;padding:7px;border-radius:50%;background:#fff;color:#168c55;stroke-width:1.9;filter:drop-shadow(0 2px 2px rgba(8,55,30,.16))}
+.whatsapp-float:hover svg{transform:rotate(-7deg) scale(1.06)}
+@media(max-width:700px){.whatsapp-float{width:62px;min-width:62px;height:62px}.whatsapp-float svg{width:38px;height:38px}}
+
+@media(prefers-reduced-motion:reduce){.motion-ready .table-image img,.table-image img{opacity:1!important;transform:none!important;transition:none!important}.button,.button svg,.whatsapp-float svg{transition:none!important}}
