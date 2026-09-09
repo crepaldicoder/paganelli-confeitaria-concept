@@ -7,11 +7,22 @@ Selecionar ideias de componentes para evoluir a landing page da Confeitaria Paga
 ## Método executado
 
 1. Leitura de `DESIGN.md` e do briefing de scraping enviado.
-2. Consulta de fontes oficiais antes de agregadores.
-3. Teste de 29 endpoints JSON em Magic UI, Aceternity UI e Eldora UI.
-4. Confirmação de 22 endpoints válidos, com metadados, dependências e arquivos catalogados em `deep-registry-catalog.json`.
-5. Quatro buscas temáticas no 21st.dev, totalizando 80 resultados de descoberta para narrativa, galeria, avaliações, localização e CTAs.
-6. Filtragem por aderência à marca, acessibilidade, custo técnico, performance e compatibilidade com a implementação Vanilla/Vite existente.
+2. Consulta de fontes oficiais, registries e repositórios antes de agregadores.
+3. Raspagem de **1.317 registros/variantes Tier 1**: Magic UI 250; Aceternity UI 111 páginas oficiais; React Bits 684 variantes técnicas; Cult UI 157; Eldora UI 115.
+4. Inventário de **462 blocos Shadcnblocks** nas categorias relevantes: 285 hero, 52 gallery, 39 testimonial, 14 reviews, 30 contact, 38 CTA e 4 process.
+5. Verificação do shadcn/ui Directory e seus schemas; identificação do antigo Origin UI como **COSS UI**, atualmente com 508 primitives.
+6. Raspagem Tier 3: aproximadamente **100 variantes HyperUI em 22 famílias** e inventário oficial Tailkit por sitemap/páginas públicas.
+7. Teste adicional de 29 endpoints JSON em Magic UI, Aceternity UI e Eldora UI, com 22 respostas válidas catalogadas em `deep-registry-catalog.json`.
+8. Quatro buscas temáticas no 21st.dev, totalizando 80 resultados de descoberta para narrativa, galeria, avaliações, localização e CTAs.
+9. Filtragem por aderência à marca, licença/acesso, acessibilidade, custo técnico, performance e compatibilidade com a implementação Vanilla/Vite existente.
+
+### Limitações verificadas
+
+- Cult UI aplicou HTTP 429 no site, mas o registry público oficial do repositório forneceu os dados.
+- Aceternity não possui um registry completo atual equivalente aos demais; as 111 rotas foram verificadas no índice/páginas oficiais.
+- Alguns blocos Shadcnblocks são Pro e exigem licença/assinatura antes de copiar código.
+- Tailkit possui conteúdo comercial; a licença deve ser confirmada antes de incorporar variantes premium.
+- React Bits publica várias combinações JS/TS × CSS/Tailwind; 684 representa variantes técnicas, não 684 conceitos únicos.
 
 ## Shortlist — componentes a aproveitar como referência
 
@@ -80,6 +91,54 @@ Selecionar ideias de componentes para evoluir a landing page da Confeitaria Paga
 - Aplicação: links editoriais “Conheça”, “Abrir rota” e “Falar no WhatsApp”.
 - Adaptação: manter retângulos retos e microinteração de 160–220ms.
 
+#### 11. Materialidade impressa — Magic UI / Aceternity / Cult UI
+- Noise Texture: https://magicui.design/docs/components/noise-texture
+- Noise Background: https://ui.aceternity.com/components/noise-background
+- Background Image Texture: https://cult-ui.com/docs/components/bg-image-texture
+- Ideia útil: papel, retícula e superfície impressa com opacidade de 2–5%.
+- Aplicação: fundos creme, vinho e rosa, sem competir com fotografia ou texto.
+- Adaptação: SVG/CSS estático e `aria-hidden`; evitar canvas se uma textura leve resolver.
+
+#### 12. Selo e faixa de embalagem — React Bits / Eldora
+- Circular Text: https://reactbits.dev/text-animations/circular-text
+- Curved Loop: https://reactbits.dev/text-animations/curved-loop
+- Eldora Marquee: https://eldoraui.site/docs/components/marquee
+- Ideia útil: selo tipográfico e fita de embalagem.
+- Aplicação: uma única peça contínua por viewport, somente com microcopy não essencial.
+- Adaptação: rotação lenta ou estática; pausar e remover em reduced motion.
+
+#### 13. Revelação de impressão — Magic UI / Cult UI
+- Pixel Image: https://magicui.design/docs/components/pixel-image
+- Dither Image: https://cult-ui.com/docs/components/dither-image
+- Ideia útil: fotografia passa de retícula de jornal para imagem nítida.
+- Aplicação: uma única imagem de destaque ou transição de capítulo.
+- Adaptação: executar uma vez, preservar `alt`, limitar resolução e oferecer imagem normal como fallback.
+
+#### 14. Vitrine tátil — React Bits / Cult UI
+- Accordion Gallery: https://reactbits.dev/components/accordion-gallery
+- Cutout Card: https://cult-ui.com/docs/components/cutout-card
+- Ideia útil: painel de vitrine expansível e etiqueta recortada.
+- Aplicação: produtos ou atmosfera somente se hover, foco e toque forem equivalentes.
+- Adaptação: bordas retas, legenda persistente e amplitude pequena; não criar card soup.
+
+#### 15. Blocos editoriais estruturais — Shadcnblocks
+- Process 2: https://www.shadcnblocks.com/block/process2
+- Gallery 41: https://www.shadcnblocks.com/block/gallery41
+- Testimonial 10: https://www.shadcnblocks.com/block/testimonial10
+- Contact 7: https://www.shadcnblocks.com/block/contact7
+- CTA 10: https://www.shadcnblocks.com/block/cta10
+- Ideia útil: estrutura de processo, galeria, citação e contato.
+- Aplicação: usar como blueprint estrutural, não como camada visual pronta.
+- Licença: `testimonial10`, `contact7` e `cta10` foram identificados como gratuitos; `process2` e `gallery41` são Pro e não devem ter código copiado sem acesso autorizado.
+
+#### 16. Estrutura HTML leve — HyperUI
+- Sections: https://hyperui.dev/components/marketing/sections
+- Testimonials: https://hyperui.dev/components/marketing/testimonials
+- Buttons: https://hyperui.dev/components/marketing/buttons
+- Ideia útil: semântica HTML/Tailwind sem runtime obrigatório.
+- Aplicação: primeira referência para estrutura de baixo custo; transpor para CSS existente em vez de introduzir Tailwind.
+- Licença: MIT no repositório oficial.
+
 ### B. Prioridade média
 
 - **Text Reveal — Magic UI:** https://magicui.design/r/text-reveal.json — usar no máximo em um manifesto curto; não aplicar em todos os títulos.
@@ -139,8 +198,16 @@ REFERÊNCIAS APROVADAS
 8. Location Card — https://21st.dev/@lavikatiyar/components/location-card
 9. Book A Call Button — https://21st.dev/@jatin-yadav05/components/book-a-call-button
 10. Section CTA — https://21st.dev/@soralabs/components/section-cta
-11. Text Reveal — https://magicui.design/r/text-reveal.json
-12. Scroll Progress — https://magicui.design/r/scroll-progress.json
+11. Noise Texture — https://magicui.design/docs/components/noise-texture
+12. Circular Text — https://reactbits.dev/text-animations/circular-text
+13. Accordion Gallery — https://reactbits.dev/components/accordion-gallery
+14. Cutout Card — https://cult-ui.com/docs/components/cutout-card
+15. Process 2 — https://www.shadcnblocks.com/block/process2 (estrutura Pro; não copiar sem licença)
+16. Gallery 41 — https://www.shadcnblocks.com/block/gallery41 (estrutura Pro; não copiar sem licença)
+17. Testimonial 10 — https://www.shadcnblocks.com/block/testimonial10
+18. HyperUI Sections — https://hyperui.dev/components/marketing/sections
+19. Text Reveal — https://magicui.design/r/text-reveal.json
+20. Scroll Progress — https://magicui.design/r/scroll-progress.json
 
 ANTES DE EDITAR
 1. Leia DESIGN.md, main.js, style.css, desktop-rework.css e refinement.css.
@@ -287,6 +354,12 @@ Ao terminar, entregue:
 
 ## Arquivos da pesquisa
 
-- `research/deep-registry-catalog.json` — 29 endpoints oficiais testados e 22 válidos.
+- `research/deep-registry-catalog.json` — validação direta de 29 endpoints e 22 respostas JSON válidas.
 - `research/component-research.json` — seleção inicial aplicada ao site.
-- `research/paganelli-component-strategy-prompt.md` — este documento e prompt final.
+- `research/paganelli-component-strategy-prompt.md` — este documento e prompt final consolidado.
+- `research/deep-scrape/tier1-report.md` — curadoria Tier 1 com evidência, dependências e riscos.
+- `research/deep-scrape/tier1-registry-inventory.csv` — inventário de 1.317 registros/variantes.
+- `research/deep-scrape/tier1-extract.py` — extrator reproduzível do Tier 1.
+- `research/deep-scrape/tier2-report.md` — relatório Shadcnblocks, shadcn Directory e COSS/Origin.
+- `research/deep-scrape/tier2-shadcnblocks.tsv` — IDs, títulos e nível de acesso dos blocos.
+- `research/deep-scrape/tier3-report.md` — relatório HyperUI e Tailkit, incluindo licença e limitações.

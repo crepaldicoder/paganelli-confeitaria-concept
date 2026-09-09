@@ -1,0 +1,476 @@
+
+## sb-gallery 52
+gallery27	Team member carousel	pro
+gallery21	Coverflow image slider with gradient masks	pro
+gallery30	Draggable scattered photo collage	pro
+gallery32	Overlapping photo collage with focus blur	pro
+gallery31	Image bento with direction-aware hover	pro
+gallery18	Image stack with name caption	pro
+gallery19	Image stack with overlay details	pro
+gallery7	Auto-scrolling image carousel with text intro	pro
+gallery25	Animated masonry photo grid	pro
+gallery6	Gallery carousel with demo link	free
+gallery26	Blur vignette image grid	pro
+gallery4	Case study carousel with dot indicators	basic
+gallery29	Marquee gallery with featured overlay	pro
+gallery9	Step carousel with clickable section labels	pro
+gallery11	Image card carousel with overlay labels	pro
+gallery8	Resource list with image carousel sidebar	pro
+gallery13	Split carousel with detail panel	pro
+gallery35	Autoplay gallery with pagination	pro
+gallery16	Tab-synced content carousel	pro
+gallery17	Centered image carousel with scale effect	pro
+gallery5	Feature carousel with icon toggle group	pro
+gallery12	Feature cards carousel with centered heading	pro
+gallery1	Expanding case study cards	pro
+gallery34	Gallery grid with hover blur and stat chips	pro
+gallery20	Scattered draggable photo stack	pro
+gallery28	Centered image carousel with overlay controls	pro
+gallery15	Product carousel with hover image swap	pro
+gallery3	Case study card carousel	pro
+gallery24	Horizontal accordion gallery with header	pro
+gallery10	Testimonial carousel with side text	pro
+gallery22	Coverflow team carousel with info card	pro
+gallery14	Carousel with expanding dot navigation	pro
+gallery33	Product card grid with lens zoom	pro
+gallery23	Accordion image stack with text panel	pro
+gallery39	Reveal gallery carousel over hero	pro
+gallery40	Three column image grid	pro
+gallery41	Captioned two column gallery	pro
+gallery42	Masonry column mosaic	pro
+gallery43	Lightbox image grid	pro
+gallery44	Single slide gallery carousel	pro
+gallery45	Asymmetric bento image grid	pro
+gallery46	Filterable category gallery	pro
+gallery47	Hero preview with thumbnail strip	pro
+gallery48	Inverted dark framed gallery	pro
+gallery49	Polaroid collage grid	pro
+gallery50	Before after compare sliders	pro
+gallery51	Horizontal snap photo strip	pro
+gallery52	Caption hover bento grid	pro
+gallery53	Featured image with side thumbs	pro
+gallery54	Filterable masonry photo columns	pro
+gallery55	Hover reveal project grid	pro
+gallery56	Social style photo grid	pro
+
+## sb-testimonial 39
+testimonial25	Photo testimonial carousel with stories link	pro
+testimonial21	Expert quotes with company logos	pro
+testimonial12	Testimonial carousel with stats	pro
+testimonial16	Expandable tweet-style testimonials	pro
+testimonial17	Logo quotes with mobile carousel	pro
+testimonial4	Featured quote with supporting cards	basic
+testimonial18	Featured quote with star rating	pro
+testimonial33	Bento featured testimonial grid	pro
+testimonial27	Quotes with case study metrics	pro
+testimonial3	Centered quote with company wordmark	pro
+testimonial6	Testimonial carousel with arrow controls	pro
+testimonial11	Masonry testimonial grid with ratings	pro
+testimonial10	Single centered quote	free
+testimonial8	Masonry testimonial wall with fade	basic
+testimonial26	Quote carousel with dot indicators	pro
+testimonial28	Dashed-border testimonial carousel	pro
+testimonial30	Auto-rotating accordion testimonials	pro
+testimonial20	Dashed two-column quote pair	pro
+testimonial2	Inline avatar CTA headline	pro
+testimonial1	Staggered column testimonial grid	pro
+testimonial7	Dual auto-scrolling testimonial rows	pro
+testimonial14	Testimonial carousel with dot navigation	pro
+testimonial29	Centered autoplay testimonial slider	pro
+testimonial13	Centered quote with stacked avatars	pro
+testimonial9	Masonry quotes with source icons	free
+testimonial15	Split membership pitch with quote stack	pro
+testimonial24	Masonry star-rated quotes with fade	pro
+testimonial31	Testimonial Carousel with Photo Cards	pro
+testimonial23	Masonry testimonial cards with badge	pro
+testimonial19	Auto-scrolling testimonial card row	pro
+testimonial41	Centered Testimonial Carousel with Faded Edges	pro
+testimonial42	Left Aligned Carousel With Four Columns	pro
+testimonial36	Split Copy And Stacked Case Studies	pro
+testimonial37	Inverted Testimonials And Case Strip	pro
+testimonial38	Divided List And Metric Blocks	pro
+testimonial39	Snap Scroll Quotes And Image Case Rows	pro
+testimonial40	Muted Surface With Portrait Case Cards	pro
+testimonial34	Image Case Studies With Quote Cards	pro
+testimonial35	Logo-First Testimonials And Case List	pro
+
+## sb-hero 285
+hero231	Split hero with coverflow portraits and logo strip	pro
+hero195	Hero with tabbed dashboard preview	basic
+hero18	Integrations hero with orbiting icon tiles and square preview	pro
+hero144	Integration grid hero with blurred side tiles	pro
+hero261	Two-column hero with features list	pro
+hero256	Split hero with grid motif and feature strip	pro
+hero213	Hero with masked gallery and floating preview	pro
+hero219	Hero with animated accent line and vertical logos	pro
+hero228	Centered hero with fan carousel of portraits	pro
+hero230	Centered hero with logo ticker and filmstrip carousel	pro
+hero238	Split hero with aurora backdrop and benefit row	pro
+hero157	Photo hero anchored with architectural headline	pro
+hero11	Centered hero with logo and wide image	pro
+hero10	Centered hero with grid pattern and logo strip	pro
+hero294	Framed Preview Hero With Divided Feature Band	pro
+hero204	Serif hero oval signup with dual-phone tilt	pro
+hero197	Announcement hero dotted grid backdrop	pro
+hero112	Education hero with play button and stat strip	pro
+hero245	Centered recruiting hero with highlight word and download CTAs	pro
+hero83	Centered hero with announcement badge and triptych	pro
+hero70	Subscription hero with carousel proof and portfolio button	pro
+hero141	Fullscreen video hero with gradient headline	pro
+hero57	Centered AI proposal hero with floating proof chips	pro
+hero91	Split hero with pill-framed video	pro
+hero149	Design-service hero with checklist and still	pro
+hero29	Centered hero with blurred gradient field and ratings capsule	pro
+hero103	Dark hero with collage imagery and scrolling logos	pro
+hero234a	Full-height hero with inset scrolling gallery and glass card	pro
+hero90	Split hero with floating quote avatars	pro
+hero190	Wireframe-gated centerpiece hero rail	pro
+hero99	Centered hero with pill link and asymmetric photo grid	pro
+hero174	Full-viewport photo hero with anchored footer ribbon	pro
+hero214	Split hero with masked collage and contact CTA	pro
+hero111	Centered HR hero with email form and logos	pro
+hero167	Split hero with gradient photo frame and inset	pro
+hero248	Split hero with overlapping team avatars in headline	pro
+hero34	Two-column hero on muted panel with bleed image	basic
+hero224	Split hero with copy and draggable image cloud	pro
+hero152	Trust star hero with skewed image trio	pro
+hero7	Centered hero with ratings row under single CTA	free
+hero262	About Hero with Stats Sidebar	pro
+hero2	Split hero with image on the left	pro
+hero146	AI agents hero with grid frame and video teaser	pro
+hero180	Centered hero with gradient sandwich showcase	pro
+hero164	Split hero with primary CTA and inline video teaser	pro
+hero125	Returns-focused hero with product card	pro
+hero49	Centered hero with download pill and handset showcase	pro
+hero234b	Full-height hero with vertical column marquees	pro
+hero171	Split hero with avatars and bento collage	pro
+hero80	Split hero with avatars, ratings, and paired images	pro
+hero163	Team grid hero with testimonial tile	pro
+hero185	Split hero with bento photo grid	pro
+hero237	Split hero with orbiting rings bordered section	pro
+hero159	Split hero with bottom-left inset card	pro
+hero26	Centered hero with pill announcement and inline icons	pro
+hero220	Full-viewport hero with video-filled wordmark	pro
+hero173	Studio hero with triple portraits and promo dialog	pro
+hero194	Dark rounded hero auto-scrolling photo reels	pro
+hero246	Stacked hero with divider CTAs and analytics chart	pro
+hero12	Radial hero with frosted logo chip and tech icon buttons	basic
+hero240	Centered hero with email capture and 3D marquee	pro
+hero101	Centered hero with gradient, video modal, and logos	pro
+hero14	Hero with autoplay framework carousel and CLI banner	pro
+hero5	Split hero with icon button and wide media tile	pro
+hero221	Centered hero with video-filled display type	pro
+hero31	Centered hero with geometric backdrop and floating tiles	pro
+hero223	Centered hero with grid backdrop and shadow word	pro
+hero1	Split hero with image on the right	free
+hero21	Centered hero with promo pill and framed image	pro
+hero160	Award badge hero with gradient title and framed mockup	pro
+hero4	Split hero with image, avatars, and star rating	pro
+hero168	Split hero with muted stage and floating image cards	pro
+hero165	Split hero with tri-image lattice and large headline	pro
+hero178	Support hero with mono label and triple photo stack	pro
+hero202	Split integration hero with orbital panel	pro
+hero76	Split SaaS hero with dot pattern, logo strip, and product preview	pro
+hero13	Left-aligned hero with icon badge and video CTA	pro
+hero27	Split hero with stacked mega headings and sliding CTA	pro
+hero175	Centered promo hero with gradient fade-in	pro
+hero36	Accent hero with badge header and three linked cards	pro
+hero222	Full-height hero with variable type and crosshair	pro
+hero84	Centered hero with fanned phone mockups	pro
+hero51	Centered hero with grid veil and fanned portraits	pro
+hero215	Full-height hero with blurred copy and building photo	pro
+hero134	Centered hero with inline video and logo marquee	pro
+hero75	Split upgrade hero with avatar proof and photography rail	pro
+hero280	Split hero with carousel and stacked features	pro
+hero258	Hero with megaphone badge, logos, and hover-expanding cards	pro
+hero39	Rounded shell hero with overlapping photo collage	pro
+hero25	Centered hero with dual CTAs and inline feature list	pro
+hero145	Hiring hero with rotating role titles	pro
+hero233	Centered hero with rising column veil	pro
+hero64	Split testimonial hero with rating strip and collage cards	pro
+hero8	Centered hero with cutoff image	pro
+hero86	Split hero with muted panel and portrait cutout	pro
+hero53	Impact hero with dense headline and avatar proof	pro
+hero177	Store-rating hero with proof row and split photos	pro
+hero6	Centered hero with mosaic imagery and partner logos	pro
+hero203	Editorial hero with twin dotted magazine lifts	pro
+hero166	Split hero with animated photo grid and demo button	pro
+hero89	Split recruitment hero with curved image	pro
+hero201	Orbiting integration hero center stage	pro
+hero45	Hero with wide image and three feature columns	free
+hero218	Hero with staggered headline and particle veil	pro
+hero68	Dashed-border hero with badge strip and feature row	pro
+hero78	Fullscreen photo hero with serif headline and grain veil	basic
+hero24	Centered hero with logo and icon feature grid	pro
+hero205	Portfolio headline hero widening card unveil	pro
+hero151	Split hero with testimonial row and image mosaic	pro
+hero279	Carousel-first hero with centered feature grid	pro
+hero210	Centered hero with coverflow image carousel	pro
+hero226	Edge-to-edge slideshow hero with image tiles	pro
+hero115	Centered hero with ring backdrop	free
+hero241	Tall hero with gradient beams and stat footer	pro
+hero242	Split hero with growth checklist and bar chart	pro
+hero123	Two-column hero with inset image panel	pro
+hero127	Split hero with news chip and social proof stats	pro
+hero60	Impact hero with grid veil and highlighted closing word	pro
+hero243	Hero with flip-word accent and dashed frame	basic
+hero196	Hero with tabbed features and email form	pro
+hero158	Vision hero with bento image trio	pro
+hero244	Split hero with draggable photo cards	pro
+hero200	Serif hero with rising phone mockup	pro
+hero239	Centered hero with 3D image marquee	pro
+hero82	Stacked headline hero with wide image band	pro
+hero212	Hero with crossfading portrait and marquee band	pro
+hero247	Animated portfolio hero with avatar and twin CTAs	pro
+hero129	Split hero with phone stack and social avatars	pro
+hero162	Mental wellness hero with masonry media	pro
+hero179	Inbox hero with layered wide-and-tall frames	pro
+hero136	Centered hero with spark icon and wide gallery bleed	pro
+hero55	Full-viewport centered hero with changelog link	pro
+hero108	Fintech-education hero with checklist and handset	pro
+hero35	Split hero with lattice collage and paired CTAs	pro
+hero227	Centered hero with icon row, vertical reveal type, and phone mock	pro
+hero20	Two-column hero with synced accordion and fading carousel	pro
+hero232	Full-viewport centered hero with side arcs	pro
+hero32	Split integrations hero with staggered logo masonry	pro
+hero206	Centered hero with logo row and browser mockup	basic
+hero186	Rounded shell hero with feature list and wide image	pro
+hero259	Split hero with stacked chrome and animated grain panel	pro
+hero30	Split hero with plus pattern and stacked photos	pro
+hero229	Near full-screen hero with corner wire illustrations	pro
+hero47	Split hero with handset frame and split headline line	free
+hero85	Split hero with dual auto-scroll galleries	pro
+hero67	Calendar-focused hero with avatar proof strip	basic
+hero37	Centered hero with spiral motif and triple handset stack	pro
+hero192	Centered hero with medium image and announcement	pro
+hero104	Two-column hero with bento product preview	pro
+hero50	Centered hero with survey banner and layered screenshots	pro
+hero116	Centered hero with overlapping photos and video dialog	pro
+hero33	Split hero with pricing panel and full-height photograph	pro
+hero225	Centered hero with orbiting integration logos	pro
+hero170	Centered hero with GitHub star, integrations, and product shot	pro
+hero38	Split hero with dotted spiral art and framed photos	pro
+hero74	Business OS hero with email capture and layered photography	pro
+hero216	Centered hero with meteors and globe	pro
+hero100	Two-column hero with offset image panel	pro
+hero16	Centered hero with gradient-masked image	pro
+hero28	Centered integrations hero with masked diagram field	pro
+hero58	Split hero with illustration and faded square grid	pro
+hero172	Hero with email signup and overlapping tri-images	pro
+hero183	Centered premium hero with framed trio and mobile carousel	pro
+hero59	Fullscreen video hero with beta enrollment CTAs	pro
+hero79	Full-viewport photo hero with headline band	pro
+hero3	Split hero with review strip and tall photography	free
+hero135	Customer stories hero with video and dialog	pro
+hero143	Download hero with cinematic backdrop and waitlist chip	pro
+hero15	Centered hero with changelog badge and store ratings	pro
+hero87	Split hero with grid masked illustration	pro
+hero234	Full-height hero with scrolling filmstrips and glass card	pro
+hero71	Gradient hero with client headline and dual CTAs	pro
+hero211	Hero with creative card carousel and bottom marquee	pro
+hero107	Portfolio hero with animated halo CTA	pro
+hero9	Gradient hero with badge, dual CTAs, and floating code strip	pro
+hero187	Split hero with feature grid and autoplay carousel	pro
+hero40	Split hero with checklist, preview, and integration marquee	pro
+hero236	Split hero with copy and 3D logo cloud	pro
+hero118	Coming Soon Hero With Logo Strip	pro
+hero154	Spend Control Hero with Email	pro
+hero286	Marquee Features Hero With Masked Edges	pro
+hero288	Compact Hero With Feature Pills Above Preview	pro
+hero290	Logo-Led Hero With Four-Up Feature Strip	pro
+hero291	Three-Pillar Comparison Hero With Shared Image	pro
+hero292	Segmented Six-Cell Hero Below Single Preview	pro
+hero295	Hero Card With Flip Accent and Feature Grid	pro
+hero301	Panoramic Hero With Border-Rail Features	pro
+hero304	Sticky Narrative Hero With Offset Cards	pro
+hero306	Split hero with muted copy panel and bordered preview	pro
+hero305	Editorial Split Headline Hero With Mosaic Grid	pro
+hero302	Sidebar Rail Hero With Lead Frame	pro
+hero281	Hero with feature grid and bottom carousel	pro
+hero277	Split hero with media column and hover feature slides	pro
+hero278	Split hero with copy first and hover feature slides	pro
+hero275	Split hero with hover slides beside feature list	pro
+hero276	Hero with feature row above image and slide dots	pro
+hero274	Hero with contained image and hover feature slides	pro
+hero263	Centered hero with large image below	pro
+hero273	Centered Hero With 3D Image Carousel	pro
+hero272	Split Hero With Rotating Photo Grid	pro
+hero271	Right-bleed inset hero with dot grid	pro
+hero267	Inset-image hero with left-bleed panel	pro
+hero268	Contained inset-image hero with media left	pro
+hero269	Contained inset-image hero with copy left	pro
+hero270	Inset hero with landscape frame and trust line	pro
+hero207	Badge hero with three staggered portrait cards	pro
+hero235	Full-height hero with soft blurs and feature columns	pro
+hero249	Globe Hero with Logo Marquee	pro
+hero88	Gradient Statement Hero	pro
+hero264	Centered cutout-mask hero with filmstrip picker	pro
+hero265	Split hero with masked portrait and copy stack	pro
+hero266	Hero with asymmetric mask, overlays, and mobile thumbs	pro
+hero142	Product-planning hero with skewed canvas	pro
+hero138	Dark hero with wide media rail and tinted blur bed	pro
+hero139	Full-height insights hero with tech wordmarks	pro
+hero140	Photo-shell hero with new badge and partner marks	pro
+hero193	Centered fullscreen hero with serif headline	pro
+hero198	Left-aligned fullscreen hero with serif headline	pro
+hero199	Right-aligned fullscreen hero with serif headline	pro
+hero95	Centered hero with staggered portrait trio	pro
+hero96	Split uptime hero with skewed product screenshot	pro
+hero105	Split hero with stacked headline and product image	pro
+hero117	Split hero with funding row and photo grid	pro
+hero252	Dashboard hero with reviews and skewed product preview	pro
+hero253	Announcement hero with dashboard preview and tool marquee	pro
+hero254	Full-height hero with grid veil and motion headline	pro
+hero296	Split hero with editorial rating rail	pro
+hero297	Split hero with reviews proof column	pro
+hero298	Centered hero with quote and review strip	pro
+hero299	Centered hero with users and avatars	pro
+hero300	Centered hero with download proof pill	pro
+hero303	Split hero with community stat column	pro
+hero307	Fullscreen Hero With 3D Dashboard Preview	pro
+hero308	Grid hero with click-to-play video preview	pro
+hero309	Centered hero with dual metrics and avatars	pro
+hero310	Centered hero with teams adoption card	pro
+hero311	Accent hero with badge header and three linked cards	pro
+hero315	Split inset-image hero with outside bottom-left inset	pro
+hero316	Inset hero with byline and gradient accent	pro
+hero317	Kicker inset-image hero with top-right inset	pro
+hero318	Gradient frame inset hero with media left	pro
+hero319	Left-bleed inset hero with dot grid on copy	pro
+hero320	Rotated inset-image hero with outside detail	pro
+hero321	Overlap column inset hero with blur accent	pro
+hero322	Ring accent inset hero with floating byline	pro
+hero323	Pattern background inset hero with framed media	pro
+hero324	Left-bleed gradient inset hero with dot grid	pro
+hero48	Centered hero with auto-moving logo carousel	pro
+hero61	Folio hero with hanging copy plate	pro
+hero63	Centered payroll hero with illustration and floating chips	pro
+hero65	Gradient hero with inverted span headline and bordered preview	pro
+hero66	Centered Consultation Hero	pro
+hero72	Centered hero with icon tooltips and split imagery	pro
+hero77	Centered hero with dual CTAs and looping video	pro
+hero92	Centered hero with bordered stage and flyer image	pro
+hero93	Centered hero with serif bridge and overlapping avatars	pro
+hero94	Centered platform hero with highlight bar	pro
+hero97	Creator waitlist hero with fanned dashboards	pro
+hero102	Announcement hero with desktop frame and handset overlay	pro
+hero109	Fintech hero with handset and floating card	pro
+hero110	Split hero with avatars, ratings, and layered photos	pro
+hero113	Roadmap hero with scribble highlight and icon row	pro
+hero114	Hero with demo dialog and logo carousel	pro
+hero126	Screening hero with credits dock	pro
+hero132	Split hero with overlapping photo collage	pro
+hero133	Split hero with subscribe window	pro
+hero137	Full-height split hero with edge image	pro
+hero148	Uppercase hero with layered photo crowns	pro
+hero150	Insights hero with staggered image board	pro
+hero191	Tabbed banking hero with wide preview canvases	pro
+hero255	Oversized wordmark hero with services list and contact card	pro
+hero257	Visitor analytics hero with angled backdrop and logo belt	pro
+hero260	Tabbed hero with cursor badge and swap imagery	pro
+hero325	Fullscreen Screening Hero	pro
+hero326	Full Bleed Screening Hero	pro
+hero333	Story progress hero with tour clips	pro
+hero334	Right filmstrip hero with labeled clips	pro
+hero335	Bottom filmstrip hero with labeled clips	pro
+hero336	Step card hero with clip thumbs	pro
+hero331	Split hero with large portrait video	pro
+hero332	Centered hero with portrait video	pro
+hero327	Device-framed hero with looping demo	pro
+hero328	Split hero with portrait video	pro
+hero329	Chaptered hero with tour clips	pro
+hero330	Poster hero with inline video	pro
+
+## sb-reviews 14
+reviews1	Customer review list with average rating	free
+reviews2	Reviews with rating distribution sidebar	pro
+reviews3	Photo reviews with helpful votes	pro
+reviews4	Reviews with star-rating filters	pro
+reviews5	Sortable review list with rating bars	pro
+reviews6	Review carousel with product cards	pro
+reviews8	Mixed text and photo review carousel	pro
+reviews9	Product review carousel with images	pro
+reviews14	Reviews with write-review form	pro
+reviews16	Filterable reviews with Q&A	pro
+reviews18	Reviews with image gallery and sorting	pro
+reviews19	Product reviews modal with filters	pro
+reviews22	Product review cards carousel	pro
+reviews23	Product review carousel with buyer cards	pro
+
+## sb-contact 30
+contact31	Split card contact	pro
+contact5	Centered contact form	pro
+contact2	Two-column layout with contact links	basic
+contact11	Two-column layout with social links	pro
+contact1	Demo booking with social proof	pro
+contact9	Form beside contact method grid	pro
+contact17	Lead form with social proof	pro
+contact14	Card with avatar and quick form	pro
+contact6	Contact channels, form, and office hours	pro
+contact7	Grid of contact method cards	free
+contact3	Contact directory with global offices	pro
+contact8	Split media with framed contact cards	pro
+contact4	Department cards with fading map carousel	pro
+contact16	Dark theme with underline inputs	pro
+contact20	Borderless grid form	pro
+contact19	Split screen with full-height image	pro
+contact18	Support features with decorative corners	pro
+contact10	Gradient header with social links	pro
+contact21	Team message with underline form	pro
+contact22	Multi-location map contact	pro
+contact23	Store locator	pro
+contact24	Global offices grid	pro
+contact25	FAQ with contact form	pro
+contact28	Multi-step contact form	pro
+contact29	Service selection contact	pro
+contact30	Full-height hero contact	pro
+contact32	Split contact with full-height image	pro
+contact33	Two-column contact with rounded photo	pro
+contact34	Asymmetric contact with overlay details card	pro
+contact35	Centered form over background image	pro
+
+## sb-cta 38
+cta26	Photo banner call to action with link cards	pro
+cta4	Muted card with feature checklist	basic
+cta18	Split call to action with angled imagery	pro
+cta10	Banded call-to-action with dual buttons	free
+cta28	Dark enterprise split with layered photos	pro
+cta31	Centered call to action with logo arc	pro
+cta15	Split CTA with gradient panel and photo	pro
+cta7	Features checklist call to action	pro
+cta23	Newsletter band with badge and benefit row	pro
+cta22	App download panel with newsletter aside	pro
+cta19	Call to action with resource links column	pro
+cta17	Centered call to action with circle pattern	pro
+cta21	Contained image CTA with text shadow	pro
+cta20	Minimal call to action with line separators	pro
+cta16	Contained image CTA with flat overlay	pro
+cta13	Left-aligned accent CTA with dual buttons	basic
+cta3	Call to action with link cards	pro
+cta11	Bordered CTA with icon label and single action	free
+cta40	Gradient split pricing call to action	pro
+cta14	Contained image CTA with gradient overlay	pro
+cta32	Two-column call to action with pattern panel and icon links	pro
+cta12	Centered accent CTA with stacked actions	pro
+cta5	Call to action with side image	pro
+cta1	Card CTA with icon heading and trailing arrow	pro
+cta30	Overlapping avatars team call to action	pro
+cta6	Call to action with stacked panels	pro
+cta43	Full-width image CTA with gradient overlay	pro
+cta44	Full-width image CTA with flat overlay	pro
+cta45	Full-width image CTA with text shadow	pro
+cta46	Full-width image CTA with radial vignette	pro
+cta41	Full-width dotted panel call to action	pro
+cta42	Contained image CTA with radial vignette	pro
+cta34	Call to action with top border separator	free
+cta35	Call to action with left border stripe	free
+cta36	Inline split call to action	free
+cta37	Bordered grid split call to action	free
+cta38	Inverted card call to action	free
+cta39	Dashed outline card call to action	free
+
+## sb-process 4
+process1	Sticky sidebar four-step process	free
+process2	Scroll-driven process with image transitions	pro
+process3	Stacked color-band process steps	pro
+process4	Hover-activated process cards with image popup	pro
