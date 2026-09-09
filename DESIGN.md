@@ -1,45 +1,45 @@
 # DESIGN — Confeitaria Paganelli
 
-## Estratégia
-- Artefato: landing page de prospecção, não oficial.
-- Público: moradores de Rio Preto, famílias e compradores de encomendas.
-- Ação primária: conversar pelo WhatsApp, telefonar ou abrir rota.
-- Adjetivos: tradicional, generosa, artesanal, direta, afetiva.
-- Essência: **receita de tempo**.
+## Direção
+- Artefato: site institucional e de conversão local.
+- Conceito: **A cidade pela vitrine**.
+- Público: moradores de São José do Rio Preto, famílias e clientes de encomendas.
+- Ação primária: abrir rota, ligar ou consultar a vitrine pelo WhatsApp.
+- Adjetivos: gráfica, direta, generosa, urbana, afetiva.
+- Essência: **escolha com os olhos**.
 
-## Sistema
-- Estética: almanaque de confeitaria brasileira dos anos 1950 reinterpretado com fotografia editorial contemporânea.
-- Display: Fraunces, alto contraste e personalidade histórica.
-- Corpo: Manrope, legibilidade contemporânea.
-- Escala: 1.25; base 16px.
-- Cores ajustadas às referências públicas do espaço: papel-creme, ameixa escura, rosa-framboesa e ciano da fachada. A estrutura editorial original foi preservada.
-- Logo: lettering “Paganelli” reconstruído como SVG vetorial a partir da fotografia pública da fachada fornecida pelo usuário; arquitetura, céu e sombra solar não fazem parte do vetor.
-- Unidade de espaço: 8px.
-- Raios: 0 e 999px. Sem cards arredondados genéricos.
-- Sombra: pontual e direcional apenas em fotografia e marca; profundidade principal por sobreposição, molduras e contraste.
-- Signature move: a página é construída como uma receita — traço caligráfico, linhas de costura, véus de imagem e capítulos encadeados.
-- Desktop: composição editorial explícita em grid, com larguras mínimas por coluna, densidade preservada e bloco de visita em quatro atos — título, endereço, rota visual e contato.
+## Sistema visual
+- Display: Archivo 800–900, geométrica e arquitetônica.
+- Corpo: Manrope 400–700.
+- Logo: exclusivamente o SVG oficial; a animação revisada enviada pelo usuário aparece no bloco histórico.
+- Paleta: porcelana `#F5F2F3`, ameixa `#24141F`, rosa `#E95687`, rosa claro `#F5B7CA`, azul-fachada `#08A9D4`.
+- Geometria: cantos retos, linhas e divisões inspiradas nos caixilhos azuis da fachada.
+- Signature move: **moldura de vitrine** — uma grade azul que enquadra imagens e conduz a aproximação do visitante.
+- Sem textura global, serifas nostálgicas, capítulos numerados, selos ou cards genéricos.
 
-## Layout e craft
-- Hero assimétrico com headline sobre painel de papel e fotografia ocupando a direita.
-- Seções densas como páginas de almanaque, com tipografia grande, faixas, índices e colunas.
-- Imagens geradas são direção de arte conceitual e explicitamente identificadas.
-- Ícones SVG próprios, traço 1.8, sem emojis.
-- CTA de localização: card cartográfico com perspectiva e rota desenhada, transposto do padrão Expanded Map pesquisado no 21st.dev para CSS/SVG local, sem dependência externa.
-- WhatsApp: ação flutuante persistente com rótulo no desktop, alvo mínimo de 58px no mobile e movimento de entrada único.
-- Motion: intro cinematográfica, desenho progressivo do SVG, preenchimento assentado, títulos construídos com folga para acentos/descendentes, linhas caligráficas, véus sobre imagens, capítulos encadeados, progresso e parallax leve. Mídia estrutural permanece visível se o observer falhar.
-- Imagens editoriais de interior e vitrine foram geradas com GPT Image 2 a partir de referências públicas e aparecem explicitamente como direção de arte conceitual, não documentação do espaço/cardápio atual.
-- Mobile: galeria de atmosfera, avaliações e guia usam trilhos com snap e próxima peça visível; a galeria possui indicador sincronizado com swipe real.
-- Reduced motion remove a construção, deslocamentos, ticker e transições, deixando logo e textos completos imediatamente visíveis.
-- Menu modal opaco com foco preso, Escape, scroll lock e retorno ao gatilho.
-- Avaliações: capítulo editorial com nota 4,7 do Maps e três trechos públicos atribuídos, incluindo origem e antiguidade.
+## Composição
+- Hero: macro do folhado em tela inteira, headline condensada e janela sobreposta com a fachada real.
+- Vitrine: duas fotografias assimétricas, legenda editorial e CTA para consultar a seleção do dia.
+- Aproximação: única cena sticky no desktop; moldura azul revela a vitrine em três detalhes.
+- Espaço: mosaico desigual no desktop; trilho touch com próxima imagem visível e indicador sincronizado no mobile.
+- História: `1947` monumental, texto factual curto e animação SVG revisada fornecida pelo usuário.
+- Visita: fachada e painel de endereço/ações em contraste alto.
+- Mobile: header fixo sólido, menu de tela inteira, controles de 44px+, fluxo vertical e CTA persistente compacto.
 
-## Honestidade
-- Página declarada como conceito independente.
-- Não afirmar cardápio, preços, história detalhada ou entrega sem fonte; avaliações reproduzidas apenas com autoria, origem e antiguidade explícitas.
-- Informações públicas usadas: nome, categoria, endereço, telefone, nota e alegação pública “desde 1947” do perfil social, esta última atribuída.
+## Motion
+- Chegada imediata, sem tela de espera.
+- Hero resolve em 450–900ms: fotografia, linhas, headline e janela.
+- Reveals por `IntersectionObserver`; imagens falham abertas e nunca dependem do observer para existir.
+- Uma única seção sticky; nada de listener global recalculando imagens.
+- Reduced motion entrega o estado final completo.
+
+## Conteúdo e origem
+- Fatos utilizados: nome, endereço Rua Ondina 334, telefone (17) 3231-4174, Instagram, São José do Rio Preto e “desde 1947”.
+- Não há preços, cardápio permanente, horários ou promessas de serviço sem fonte.
+- Fotos reais são identificadas como registro real; imagens editoriais como direção de arte inspirada no espaço.
 
 ## Slop audit
-- Sem gradiente roxo, glass, cards idênticos, emoji, texto gradiente ou hero SaaS.
-- Identidade, imagem e motion presentes.
-- Densidade-alvo <= 2 px/caractere.
+- Sem gradientes decorativos, glassmorphism, emoji, texto em gradiente ou hero SaaS.
+- A identidade depende da combinação incomum entre rosa, azul, fachada, logo oficial e textura dos produtos.
+- Layouts variam por função; não há sequência de três cards iguais.
+- Motion comunica aproximação e abertura da vitrine, não decoração aleatória.
