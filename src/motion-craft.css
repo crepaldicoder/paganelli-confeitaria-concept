@@ -1,0 +1,38 @@
+/* Motion registry translation — paper, print and tactile feedback. */
+
+/* 21st Paper Texture translated without WebGL: the existing grain follows
+   reading progress instead of looping autonomously. */
+body::after{inset:-14px!important;opacity:.04!important;transform:translate3d(var(--paper-x,0px),var(--paper-y,0px),0) scale(1.035);transform-origin:center;will-change:transform}
+
+/* A restrained registration layer links the three color chapters. */
+.quote-band,.heritage-number,.before-you-go{position:relative;isolation:isolate;overflow:clip}
+.quote-band::after,.heritage-number::after,.before-you-go::after{content:"";position:absolute;z-index:0;inset:-8% -4%;pointer-events:none;opacity:.075;background:repeating-linear-gradient(0deg,transparent 0 11px,currentColor 11px 12px);transform:translate3d(var(--scene-shift-x,0px),var(--scene-shift-y,0px),0) rotate(-1.2deg);transform-origin:center;mix-blend-mode:soft-light;will-change:transform}
+.quote-band>*,.heritage-number>*,.before-you-go>*{position:relative;z-index:1}
+
+/* 21st Scroll Reveal Image translated into the incumbent rectangular frames:
+   depth resolves as the photograph crosses the viewport, never by rounding it. */
+.image-build.built img,.image-build.visible img{transform:translate3d(var(--parallax-x,0px),var(--parallax-y,0px),0) scale(var(--parallax-scale,1.045))}
+
+/* Chapter changes are state transitions, not looping decoration. */
+.recipe-progress__label{transform-origin:center;will-change:transform,opacity}
+
+/* Magnetic Button translated to a restrained fine-pointer response. */
+@media(hover:hover) and (pointer:fine){
+ .button.primary,.top-cta{--mag-x:0px;--mag-y:0px;transform:translate3d(var(--mag-x),var(--mag-y),0);transition:transform .22s var(--ease),background .2s,color .2s}
+ .button.primary:hover{transform:translate3d(var(--mag-x),calc(var(--mag-y) - 2px),0)}
+ .button.primary:active{transform:translate3d(var(--mag-x),var(--mag-y),0) scale(.97)}
+ .top-cta:hover{transform:translate3d(var(--mag-x),var(--mag-y),0)}
+}
+
+@media(max-width:900px){
+ body::after{opacity:.026!important;transform:none!important;will-change:auto}
+ .quote-band::after,.heritage-number::after,.before-you-go::after{opacity:.045;transform:none!important;will-change:auto}
+ .image-build.built img,.image-build.visible img{--parallax-x:0px;--parallax-scale:1.045}
+}
+
+@media(prefers-reduced-motion:reduce){
+ body::after,.quote-band::after,.heritage-number::after,.before-you-go::after{transform:none!important;will-change:auto!important}
+ .image-build.built img,.image-build.visible img{transform:none!important}
+ .button.primary,.top-cta{transform:none!important;will-change:auto!important}
+ .recipe-progress__label{will-change:auto!important}
+}
