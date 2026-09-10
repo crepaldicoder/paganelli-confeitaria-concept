@@ -23,6 +23,7 @@ main::after{content:"";position:absolute;z-index:20;inset:0;pointer-events:none;
 .menu-close>i{position:relative;width:24px;height:24px;display:block}.menu-close>i::before,.menu-close>i::after{content:"";position:absolute;left:3px;top:11px;width:18px;height:1.5px;background:currentColor}.menu-close>i::before{transform:rotate(45deg)}.menu-close>i::after{transform:rotate(-45deg)}
 .rating-stars{display:inline-flex!important;align-items:center;gap:3px;color:var(--cherry)}.rating-stars svg{width:15px;height:15px;fill:currentColor;stroke:none}.review>.rating-stars{margin-bottom:20px}.review-score>.rating-stars{grid-column:2}.review-score>small{grid-column:2}
 footer>a svg{width:18px;height:18px;transform:rotate(-90deg);transition:transform .18s var(--ease)}footer>a:hover svg,footer>a:focus-visible svg{transform:rotate(-90deg) translateX(3px)}
+@media(min-width:901px){.desktop-nav a,.top-cta{min-height:44px;display:inline-flex;align-items:center}}.text-link{min-height:44px}
 
 /* Pixel/dither reveal translated into a one-shot print veil. */
 .atmosphere-card .media-frame{position:relative;isolation:isolate}
