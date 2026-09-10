@@ -2,12 +2,16 @@
 
 /* 21st Paper Texture translated without WebGL: the existing grain follows
    reading progress instead of looping autonomously. */
-body::after{inset:-14px!important;opacity:.04!important;transform:translate3d(var(--paper-x,0px),var(--paper-y,0px),0) scale(1.035);transform-origin:center;will-change:transform}
+body::after{inset:-18px!important;opacity:.065!important;transform:translate3d(var(--paper-x,0px),var(--paper-y,0px),0) scale(1.055);transform-origin:center;will-change:transform}
 
-/* A restrained registration layer links the three color chapters. */
-.quote-band,.heritage-number,.before-you-go{position:relative;isolation:isolate;overflow:clip}
-.quote-band::after,.heritage-number::after,.before-you-go::after{content:"";position:absolute;z-index:0;inset:-8% -4%;pointer-events:none;opacity:.075;background:repeating-linear-gradient(0deg,transparent 0 11px,currentColor 11px 12px);transform:translate3d(var(--scene-shift-x,0px),var(--scene-shift-y,0px),0) rotate(-1.2deg);transform-origin:center;mix-blend-mode:soft-light;will-change:transform}
-.quote-band>*,.heritage-number>*,.before-you-go>*{position:relative;z-index:1}
+/* Independent print fields preserve the incumbent section ornaments. */
+.motion-scene{position:relative;isolation:isolate;overflow:clip}
+.print-motion-field{position:absolute;z-index:0;inset:-12% -6%;pointer-events:none;opacity:.16;transform:translate3d(var(--scene-shift-x,0px),var(--scene-shift-y,0px),0) rotate(-1.5deg);transform-origin:center;will-change:transform;background:repeating-linear-gradient(0deg,transparent 0 13px,currentColor 13px 14px);mix-blend-mode:soft-light}
+.motion-scene>*:not(.print-motion-field){position:relative;z-index:1}
+.table-section .print-motion-field{opacity:.22;color:var(--cherry-dark);background-image:radial-gradient(circle,currentColor 0 1.4px,transparent 1.6px);background-size:12px 12px;mix-blend-mode:multiply;mask-image:linear-gradient(90deg,transparent 0,#000 34%,#000 100%)}
+.table-section .print-motion-field::after{content:"";position:absolute;right:8%;top:-10%;width:32%;height:120%;border-inline:1px solid currentColor;opacity:.38;transform:skewX(-8deg)}
+.quote-band .print-motion-field,.before-you-go .print-motion-field{color:var(--pastry)}
+.heritage-number .print-motion-field{color:var(--cherry-dark);opacity:.13}
 
 /* 21st Scroll Reveal Image translated into the incumbent rectangular frames:
    depth resolves as the photograph crosses the viewport, never by rounding it. */
@@ -18,20 +22,21 @@ body::after{inset:-14px!important;opacity:.04!important;transform:translate3d(va
 
 /* Magnetic Button translated to a restrained fine-pointer response. */
 @media(hover:hover) and (pointer:fine){
- .button.primary,.top-cta{--mag-x:0px;--mag-y:0px;transform:translate3d(var(--mag-x),var(--mag-y),0);transition:transform .22s var(--ease),background .2s,color .2s}
+ .button.primary,.top-cta{--mag-x:0px;--mag-y:0px;transform:translate3d(var(--mag-x),var(--mag-y),0);transition:transform .18s var(--ease),background .2s,color .2s}
  .button.primary:hover{transform:translate3d(var(--mag-x),calc(var(--mag-y) - 2px),0)}
  .button.primary:active{transform:translate3d(var(--mag-x),var(--mag-y),0) scale(.97)}
  .top-cta:hover{transform:translate3d(var(--mag-x),var(--mag-y),0)}
 }
 
 @media(max-width:900px){
- body::after{opacity:.026!important;transform:none!important;will-change:auto}
- .quote-band::after,.heritage-number::after,.before-you-go::after{opacity:.045;transform:none!important;will-change:auto}
+ body::after{opacity:.038!important;transform:none!important;will-change:auto}
+ .print-motion-field{opacity:.09;transform:none!important;will-change:auto}
+ .table-section .print-motion-field{opacity:.13;mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 100%)}
  .image-build.built img,.image-build.visible img{--parallax-x:0px;--parallax-scale:1.045}
 }
 
 @media(prefers-reduced-motion:reduce){
- body::after,.quote-band::after,.heritage-number::after,.before-you-go::after{transform:none!important;will-change:auto!important}
+ body::after,.print-motion-field{transform:none!important;will-change:auto!important}
  .image-build.built img,.image-build.visible img{transform:none!important}
  .button.primary,.top-cta{transform:none!important;will-change:auto!important}
  .recipe-progress__label{will-change:auto!important}
