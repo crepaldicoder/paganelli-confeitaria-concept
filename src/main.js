@@ -186,6 +186,18 @@ else{
  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target;if(el.classList.contains('reveal'))el.classList.add('visible');if(el.classList.contains('construct'))el.classList.add('built');if(el.classList.contains('image-build'))buildImage(el);io.unobserve(el)}),{threshold:.1,rootMargin:'0px 0px -10%'});
  revealTargets.forEach((el,i)=>{if(el.classList.contains('reveal'))el.style.setProperty('--reveal-delay',`${(i%4)*90}ms`);io.observe(el)});
  const topProgress=document.querySelector('.topbar-progress'),navLinks=[...document.querySelectorAll('.desktop-nav a')],chapterStops=[['inicio','Início'],['oficio','O ofício'],['mesa','Da vitrine'],['avaliacoes','Avaliações'],['visita','Visite']].map(([id,label])=>({el:document.getElementById(id),label})),scenePanels=[...document.querySelectorAll('.motion-scene')],parallaxFrames=[...document.querySelectorAll('.image-build')],panelSections=[...document.querySelectorAll('[data-panel]')];let ticking=false,lastChapter=-1,mobileParallaxSettled=false;
+ // O parallax so importa perto da tela, mas antes lia/escrevia os 6 quadros em todo
+ // frame de scroll — inclusive durante o scroll inteiro do hero, bem antes de
+ // qualquer um deles existir na tela. Um IntersectionObserver com margem generosa
+ // mantem um conjunto pequeno de "quem vale a pena medir agora"; fora dele o loop
+ // nem chega a rodar.
+ const parallaxIndex=new Map(parallaxFrames.map((f,i)=>[f,i])),activeParallax=new Set();
+ if(parallaxFrames.length){
+  const parallaxObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+   if(entry.isIntersecting)activeParallax.add(entry.target);else activeParallax.delete(entry.target)
+  }),{rootMargin:'35% 0px'});
+  parallaxFrames.forEach(f=>parallaxObserver.observe(f));
+ }
  // Atribuir currentTime a cada evento de scroll empilha seeks que se atropelam e
  // engasgam o decoder. Aqui so existe um seek em voo por vez: o alvo mais recente
  // fica guardado e e perseguido assim que o anterior termina. Sem fila, sem atraso
@@ -201,9 +213,13 @@ else{
   thresholdVideo.currentTime=seekTarget;
  };
  thresholdVideo?.addEventListener('seeked',()=>{clearTimeout(seekGuard);seekBusy=false;flushSeek()});
- const updateThreshold=()=>{
+ // Aceita medidas ja lidas por quem chamou, para o updateMotion poder agrupar todas
+ // as leituras de layout antes de qualquer escrita (uma reflow por frame, nao varias).
+ const updateThreshold=(preRead)=>{
   if(!thresholdEl)return;
-  const span=thresholdEl.offsetHeight-innerHeight,p=Math.max(0,Math.min(1,-thresholdEl.getBoundingClientRect().top/(span||1)));
+  const rectTop=preRead?preRead.top:thresholdEl.getBoundingClientRect().top;
+  const boxH=preRead?preRead.boxH:thresholdEl.offsetHeight;
+  const span=boxH-innerHeight,p=Math.max(0,Math.min(1,-rectTop/(span||1)));
   thresholdEl.style.setProperty('--t',p.toFixed(4));
   // Cada camada sai na sua propria janela, com smoothstep. Antes era tudo linear e
   // comprimido no primeiro terco: sobravam 48% do percurso sem nada acontecer e o
@@ -228,15 +244,45 @@ else{
  };
  updateThresholdRef=updateThreshold;
 
- const updateMotion=()=>{updateThreshold();const max=document.documentElement.scrollHeight-innerHeight,p=Math.max(0,Math.min(1,scrollY/(max||1)));topProgress?.style.setProperty('--progress',p);document.documentElement.style.setProperty('--paper-x',`${Math.sin(scrollY/520)*12}px`);document.documentElement.style.setProperty('--paper-y',`${Math.sin(scrollY/360)*8}px`);let active=0;chapterStops.forEach((stop,i)=>{if(stop.el&&stop.el.getBoundingClientRect().top<=innerHeight*.45)active=i});if(active!==lastChapter){/* chapterStops[0] e o hero, que nao tem link no topo */navLinks.forEach((a,i)=>a.classList.toggle('is-active',i===active-1));lastChapter=active}scenePanels.forEach(panel=>{const r=panel.getBoundingClientRect(),local=Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight));panel.style.setProperty('--scene-shift-x',`${local*28}px`);panel.style.setProperty('--scene-shift-y',`${local*-12}px`)});if(innerWidth<=900){if(!mobileParallaxSettled){parallaxFrames.forEach(frame=>{frame.style.setProperty('--parallax-y','0px');frame.style.setProperty('--parallax-x','0px');frame.style.setProperty('--parallax-scale','1.045')});mobileParallaxSettled=true}}else{mobileParallaxSettled=false;parallaxFrames.forEach((frame,index)=>{const r=frame.getBoundingClientRect(),d=(r.top+r.height/2-innerHeight/2)/innerHeight,depth=.72+(index%3)*.14;frame.style.setProperty('--parallax-y',`${Math.max(-34,Math.min(34,-d*27*depth))}px`);frame.style.setProperty('--parallax-x',`${Math.max(-9,Math.min(9,d*(index%2?6:-6)))}px`);frame.style.setProperty('--parallax-scale',String(1.04+Math.min(.035,Math.abs(d)*.025)))})}};
+ const updateMotion=()=>{
+  const wide=innerWidth>900;
+  // ---- FASE DE LEITURA: tudo que consulta layout, agrupado, antes de escrever ----
+  const thresholdRead=thresholdEl?{top:thresholdEl.getBoundingClientRect().top,boxH:thresholdEl.offsetHeight}:null;
+  const max=document.documentElement.scrollHeight-innerHeight;
+  let active=0;
+  chapterStops.forEach((stop,i)=>{if(stop.el&&stop.el.getBoundingClientRect().top<=innerHeight*.45)active=i});
+  const parallaxRead=[];
+  if(wide)activeParallax.forEach(frame=>{const r=frame.getBoundingClientRect();parallaxRead.push([frame,(r.top+r.height/2-innerHeight/2)/innerHeight])});
+  const sceneRead=scenePanels.map(panel=>{const r=panel.getBoundingClientRect();return [panel,Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight))]});
+  // ---- FASE DE ESCRITA: daqui pra baixo nada le layout, entao nao forca reflow ----
+  updateThreshold(thresholdRead);
+  const p=Math.max(0,Math.min(1,scrollY/(max||1)));
+  topProgress?.style.setProperty('--progress',p);
+  document.documentElement.style.setProperty('--paper-x',`${Math.sin(scrollY/520)*12}px`);
+  document.documentElement.style.setProperty('--paper-y',`${Math.sin(scrollY/360)*8}px`);
+  if(active!==lastChapter){/* chapterStops[0] e o hero, que nao tem link no topo */navLinks.forEach((a,i)=>a.classList.toggle('is-active',i===active-1));lastChapter=active}
+  sceneRead.forEach(([panel,local])=>{panel.style.setProperty('--scene-shift-x',`${local*28}px`);panel.style.setProperty('--scene-shift-y',`${local*-12}px`)});
+  if(!wide){if(!mobileParallaxSettled){parallaxFrames.forEach(frame=>{frame.style.setProperty('--parallax-y','0px');frame.style.setProperty('--parallax-x','0px');frame.style.setProperty('--parallax-scale','1.045')});mobileParallaxSettled=true}}
+  else{mobileParallaxSettled=false;parallaxRead.forEach(([frame,d])=>{const index=parallaxIndex.get(frame),depth=.72+(index%3)*.14;frame.style.setProperty('--parallax-y',`${Math.max(-34,Math.min(34,-d*27*depth))}px`);frame.style.setProperty('--parallax-x',`${Math.max(-9,Math.min(9,d*(index%2?6:-6)))}px`);frame.style.setProperty('--parallax-scale',String(1.04+Math.min(.035,Math.abs(d)*.025)))})}
+ };
  let pendingReveal=[...revealTargets];
- const revealPassed=()=>{if(!pendingReveal.length)return;const nearBottom=scrollY+innerHeight>=document.documentElement.scrollHeight-12;pendingReveal=pendingReveal.filter(el=>{const r=el.getBoundingClientRect(),isImage=el.classList.contains('image-build'),skipped=r.bottom<=0,inZone=isImage?(r.top<innerHeight*.88&&r.bottom>0):r.top<innerHeight*1.08;if(!(nearBottom||skipped||inZone))return true;if(el.classList.contains('reveal'))el.classList.add('visible');if(el.classList.contains('construct'))el.classList.add('built');if(isImage)buildImage(el);return false})};
+ // Fallback: o IntersectionObserver (io, abaixo) e quem revela na pratica. Isso aqui
+ // so existe para o caso do observer falhar, entao nao precisa reler layout de quem
+ // ja foi revelado (corta a lista rapido) nem rodar em todo frame de scroll (throttle
+ // em runUpdate) — antes isso sozinho respondia por ~38 das 54 leituras de layout
+ // por frame, no pior caso bem no topo da pagina, durante o scroll do hero.
+ const revealPassed=()=>{if(!pendingReveal.length)return;const nearBottom=scrollY+innerHeight>=document.documentElement.scrollHeight-12;pendingReveal=pendingReveal.filter(el=>{if(el.classList.contains('visible')||el.classList.contains('built'))return false;const r=el.getBoundingClientRect(),isImage=el.classList.contains('image-build'),skipped=r.bottom<=0,inZone=isImage?(r.top<innerHeight*.88&&r.bottom>0):r.top<innerHeight*1.08;if(!(nearBottom||skipped||inZone))return true;if(el.classList.contains('reveal'))el.classList.add('visible');if(el.classList.contains('construct'))el.classList.add('built');if(isImage)buildImage(el);return false})};
  // O guard antigo so liberava no fim de updateMotion: se o rAF nao disparasse
  // (inercia de scroll no iOS, aba em segundo plano) ou se algo lancasse, o handler
  // morria para sempre e o video parava de acompanhar o scroll. Agora libera no inicio
  // do callback e tem um timer de seguranca caso o frame nunca venha.
  let tickTimer=0;
- const runUpdate=()=>{ticking=false;clearTimeout(tickTimer);updateMotion();revealPassed()};
+ const runUpdate=()=>{ticking=false;clearTimeout(tickTimer);updateMotion()};
+ // O fallback sai do caminho do scroll: vira um timer de baixa frequencia que se
+ // desliga sozinho quando a lista zera. Assim nenhum frame de scroll paga por ele.
+ // O IntersectionObserver continua sendo quem revela de fato, na hora certa.
+ const revealSweep=()=>{revealPassed();if(pendingReveal.length)setTimeout(revealSweep,400)};
+ setTimeout(revealSweep,400);
  addEventListener('scroll',()=>{
   if(ticking)return;
   ticking=true;
