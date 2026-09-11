@@ -147,6 +147,7 @@ document.addEventListener('keydown',e=>{if(!menu.classList.contains('open'))retu
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let updateThresholdRef=null;
 const thresholdEl=document.querySelector('.threshold'),thresholdVideo=document.querySelector('.threshold-video'),portraitStage=matchMedia('(max-width:900px)').matches,stageVariant=portraitStage?'9x16':'16x9';
+const thresholdCopyEl=document.querySelector('.threshold .hero-copy'),thresholdVeilEl=document.querySelector('.threshold-veil'),thresholdStampEl=document.querySelector('.threshold .stamp'),thresholdExitEl=document.querySelector('.threshold-exit');
 if(thresholdVideo){
  thresholdVideo.poster=`/images/fachada-poster-${stageVariant}.webp`;
  if(!reduced){
@@ -204,17 +205,20 @@ else{
   if(!thresholdEl)return;
   const span=thresholdEl.offsetHeight-innerHeight,p=Math.max(0,Math.min(1,-thresholdEl.getBoundingClientRect().top/(span||1)));
   thresholdEl.style.setProperty('--t',p.toFixed(4));
-  // o vídeo já floresce no creme; a saída só casa os últimos pontos de tom com o papel
   // Cada camada sai na sua propria janela, com smoothstep. Antes era tudo linear e
   // comprimido no primeiro terco: sobravam 48% do percurso sem nada acontecer e o
   // creme entrava de supetao nos ultimos 12%.
   const ramp=(v,a,b)=>{const x=Math.max(0,Math.min(1,(v-a)/(b-a)));return x*x*(3-2*x)};
-  const out=(a,b)=>(1-ramp(p,a,b)).toFixed(4);
-  thresholdEl.style.setProperty('--fade-stamp',out(.02,.34));
-  thresholdEl.style.setProperty('--fade-copy',out(.04,.42));
-  thresholdEl.style.setProperty('--fade-veil',out(0,.52));
-  thresholdEl.style.setProperty('--rise',ramp(p,.04,.42).toFixed(4));
-  thresholdEl.style.setProperty('--exit',ramp(p,.76,1).toFixed(4));
+  const out=(a,b)=>1-ramp(p,a,b);
+  // Grava opacity/transform direto no elemento em vez de var(--x) lido via CSS: no
+  // Safari mobile, opacity dependente de custom property as vezes fica com o repaint
+  // atrasado num flick rapido (o video, que tem seu proprio caminho de decodificacao,
+  // segue liso enquanto o texto "fantasma" no valor antigo). Escrita direta e o
+  // caminho de composicao que o Safari trata com prioridade.
+  if(thresholdStampEl)thresholdStampEl.style.opacity=out(.02,.34);
+  if(thresholdCopyEl){const rise=ramp(p,.04,.42);thresholdCopyEl.style.opacity=out(.04,.42);thresholdCopyEl.style.transform=`translateY(${(rise*-46).toFixed(2)}px)`}
+  if(thresholdVeilEl)thresholdVeilEl.style.opacity=out(0,.52);
+  if(thresholdExitEl)thresholdExitEl.style.opacity=ramp(p,.76,1);
   // scrub nos dois formatos: o 9:16 agora tem keyframes densos, entao aceita seek.
   // Seek nao exige gesto do usuario, o que tira a politica de autoplay do caminho.
   if(thresholdVideo&&thresholdVideo.readyState>=2&&thresholdVideo.duration){
