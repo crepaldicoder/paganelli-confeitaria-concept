@@ -50,8 +50,8 @@ document.querySelector('#app').innerHTML=`
    <p class="hero-intro">Há gerações, a Paganelli transforma o fazer artesanal, a vitrine generosa e o prazer de receber em uma tradição de Rio Preto.</p>
    <div class="hero-actions"><a class="button primary" href="${phone}">${svg('phone')} Falar com a confeitaria</a><a class="text-link" href="#oficio">Conheça nossa história ${svg('arrow')}</a></div>
    <div class="hero-facts"><span><b>4,7</b>${ratingStars(4.7,true)}<small>avaliação no Google</small></span></div>
+   <div class="stamp" aria-hidden="true"><i class="stamp-glare"><i class="stamp-glare-spin"></i></i><span>feito com tempo</span><b>1947</b><small>RIO PRETO</small></div>
   </div>
-  <div class="stamp" aria-hidden="true"><i class="stamp-glare"><i class="stamp-glare-spin"></i></i><span>feito com tempo</span><b>1947</b><small>RIO PRETO</small></div>
   <div class="threshold-exit" aria-hidden="true"></div>
  </div>
 </section>
