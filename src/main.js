@@ -203,9 +203,12 @@ else{
  // fica guardado e e perseguido assim que o anterior termina. Sem fila, sem atraso
  // artificial, e sem depender da cadencia de rAF (que o iOS estrangula no scroll).
  let seekTarget=0,seekBusy=false,seekGuard=0;
+ const scrubFrameRate=120,scrubFrameStep=1/scrubFrameRate;
  const flushSeek=()=>{
   if(seekBusy||!thresholdVideo||!thresholdVideo.duration)return;
-  if(Math.abs(seekTarget-thresholdVideo.currentTime)<.05)return; // ~1 quadro: evita ping-pong de arredondamento
+  // O master de 120 fps permite passos muito menores que o antigo encode de 24 fps.
+  // Ignora apenas diferenças inferiores a um quadro para não criar seeks redundantes.
+  if(Math.abs(seekTarget-thresholdVideo.currentTime)<scrubFrameStep*.9)return;
   seekBusy=true;
   clearTimeout(seekGuard);
   // se o 'seeked' nunca vier (midia em buffer, aba oculta), nao trava para sempre
