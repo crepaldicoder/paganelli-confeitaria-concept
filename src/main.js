@@ -1,3 +1,5 @@
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
 import './style.css';
 import './desktop-rework.css';
 import './refinement.css';
@@ -33,7 +35,7 @@ document.querySelector('#app').innerHTML=`
   <button class="menu-trigger" aria-expanded="false" aria-controls="menu"><span>Menu</span><i></i><i></i></button>
   <i class="topbar-progress" aria-hidden="true"></i>
 </header>
-<div class="mobile-menu" id="menu" aria-hidden="true">
+<div class="mobile-menu" id="menu" aria-hidden="true" data-lenis-prevent>
  <button class="menu-close" aria-label="Fechar menu"><span>Fechar</span><i aria-hidden="true"></i></button>
  <nav aria-label="Navegação móvel"><a href="#inicio">01 — Início</a><a href="#oficio">02 — O ofício</a><a href="#mesa">03 — Da vitrine</a><a href="#avaliacoes">04 — Avaliações</a><a href="#visita">05 — Visite</a></nav>
  <p>Rua Ondina, 334<br>Vila Redentora · Rio Preto</p>
@@ -140,11 +142,16 @@ writingTargets.forEach(wrapWords);
 const trigger=document.querySelector('.menu-trigger'), menu=document.querySelector('.mobile-menu'), close=document.querySelector('.menu-close');
 menu.inert=true;
 const focusables=()=>[close,...menu.querySelectorAll('a')];
-function openMenu(){menu.inert=false;menu.classList.add('open');menu.setAttribute('aria-hidden','false');trigger.setAttribute('aria-expanded','true');document.body.classList.add('menu-open');setTimeout(()=>close.focus(),120)}
-function closeMenu(){menu.classList.remove('open');menu.setAttribute('aria-hidden','true');menu.inert=true;trigger.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open');trigger.focus()}
+function openMenu(){menu.inert=false;menu.classList.add('open');menu.setAttribute('aria-hidden','false');trigger.setAttribute('aria-expanded','true');document.body.classList.add('menu-open');lenis?.stop();setTimeout(()=>close.focus(),120)}
+function closeMenu(){menu.classList.remove('open');menu.setAttribute('aria-hidden','true');menu.inert=true;trigger.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open');lenis?.start();trigger.focus()}
 trigger.addEventListener('click',openMenu);close.addEventListener('click',closeMenu);menu.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',closeMenu));
 document.addEventListener('keydown',e=>{if(!menu.classList.contains('open'))return;if(e.key==='Escape')closeMenu();if(e.key==='Tab'){const f=focusables(),first=f[0],last=f.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Lenis suaviza a entrada da roda/trackpad: sem ele cada "tick" da roda pula ~100px
+// de uma vez e o scrub do video salta junto. Com ele o scroll anda um pouco a cada
+// frame e o video acompanha continuo. No toque fica o scroll nativo (syncTouch off):
+// a inercia do iOS ja e suave e emula-la em JS piora a sensacao.
+const lenis=reduced?null:new Lenis({autoRaf:true,lerp:.09,anchors:true,stopInertiaOnNavigate:true});
 let updateThresholdRef=null;
 const thresholdEl=document.querySelector('.threshold'),thresholdVideo=document.querySelector('.threshold-video'),portraitStage=matchMedia('(max-width:900px)').matches,stageVariant=portraitStage?'9x16':'16x9';
 const thresholdCopyEl=document.querySelector('.threshold .hero-copy'),thresholdVeilEl=document.querySelector('.threshold-veil'),thresholdStampEl=document.querySelector('.threshold .stamp'),thresholdExitEl=document.querySelector('.threshold-exit');
@@ -179,8 +186,9 @@ else{
  if(introSeen){document.querySelector('.build-intro')?.remove();document.body.classList.add('site-ready');document.querySelector('.hero-image')?.classList.add('built')}
  else{
   document.body.classList.add('intro-playing');
+  lenis?.stop();
   try{sessionStorage.setItem('pg-intro','1')}catch{}
-  setTimeout(()=>{document.body.classList.add('site-ready');document.body.classList.remove('intro-playing');document.querySelector('.hero-image')?.classList.add('built')},1200);
+  setTimeout(()=>{document.body.classList.add('site-ready');document.body.classList.remove('intro-playing');lenis?.start();document.querySelector('.hero-image')?.classList.add('built')},1200);
  }
  const buildImage=el=>{const rail=el.closest('.atmosphere-rail');if(rail){if(rail.dataset.buildScheduled)return;rail.dataset.buildScheduled='true';rail.querySelectorAll('.image-build').forEach((card,i)=>setTimeout(()=>card.classList.add('built'),i*170))}else el.classList.add('built')};
  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target;if(el.classList.contains('reveal'))el.classList.add('visible');if(el.classList.contains('construct'))el.classList.add('built');if(el.classList.contains('image-build'))buildImage(el);io.unobserve(el)}),{threshold:.1,rootMargin:'0px 0px -10%'});
@@ -289,7 +297,10 @@ else{
  // O IntersectionObserver continua sendo quem revela de fato, na hora certa.
  const revealSweep=()=>{revealPassed();if(pendingReveal.length)setTimeout(revealSweep,400)};
  setTimeout(revealSweep,400);
- addEventListener('scroll',()=>{
+ // Com Lenis, o update roda dentro do proprio frame dele (mesmo quadro em que o
+ // scroll mudou). O evento nativo agendava outro rAF: um quadro de atraso no video.
+ if(lenis)lenis.on('scroll',runUpdate);
+ else addEventListener('scroll',()=>{
   if(ticking)return;
   ticking=true;
   requestAnimationFrame(runUpdate);
