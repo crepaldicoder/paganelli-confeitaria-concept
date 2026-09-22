@@ -268,13 +268,17 @@ else{
   chapterStops.forEach((stop,i)=>{if(stop.el&&stop.el.getBoundingClientRect().top<=innerHeight*.45)active=i});
   const parallaxRead=[];
   if(wide)activeParallax.forEach(frame=>{const r=frame.getBoundingClientRect();parallaxRead.push([frame,(r.top+r.height/2-innerHeight/2)/innerHeight])});
-  const sceneRead=scenePanels.map(panel=>{const r=panel.getBoundingClientRect();return [panel,Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight))]});
+  // So no desktop: abaixo de 900px o CSS zera esse transform (transform:none!important),
+  // entao medir e escrever ali era trabalho jogado fora a cada frame de scroll.
+  const sceneRead=wide?scenePanels.map(panel=>{const r=panel.getBoundingClientRect();return [panel,Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight))]}):[];
   // ---- FASE DE ESCRITA: daqui pra baixo nada le layout, entao nao forca reflow ----
   updateThreshold(thresholdRead);
   const p=Math.max(0,Math.min(1,scrollY/(max||1)));
   topProgress?.style.setProperty('--progress',p);
   if(active!==lastChapter){/* chapterStops[0] e o hero, que nao tem link no topo */navLinks.forEach((a,i)=>a.classList.toggle('is-active',i===active-1));lastChapter=active}
-  sceneRead.forEach(([panel,local])=>{panel.style.setProperty('--scene-shift-x',`${local*28}px`);panel.style.setProperty('--scene-shift-y',`${local*-12}px`)});
+  // transform direto no <span> decorativo: --scene-shift-* na secao herdava para todo o
+  // conteudo dela e custava ~7 ms de recalculo de estilo por frame.
+  sceneRead.forEach(([panel,local])=>{const field=panel.firstElementChild;if(field?.classList.contains('print-motion-field'))field.style.transform=`translate3d(${(local*28).toFixed(1)}px,${(local*-12).toFixed(1)}px,0) rotate(-1.5deg)`});
   if(!wide){if(!mobileParallaxSettled){parallaxFrames.forEach(frame=>{frame.style.setProperty('--parallax-y','0px');frame.style.setProperty('--parallax-x','0px');frame.style.setProperty('--parallax-scale','1.045')});mobileParallaxSettled=true}}
   else{mobileParallaxSettled=false;parallaxRead.forEach(([frame,d])=>{const index=parallaxIndex.get(frame),depth=.72+(index%3)*.14;frame.style.setProperty('--parallax-y',`${Math.max(-34,Math.min(34,-d*27*depth))}px`);frame.style.setProperty('--parallax-x',`${Math.max(-9,Math.min(9,d*(index%2?6:-6)))}px`);frame.style.setProperty('--parallax-scale',String(1.04+Math.min(.035,Math.abs(d)*.025)))})}
  };

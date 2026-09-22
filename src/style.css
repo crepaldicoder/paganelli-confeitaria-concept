@@ -79,7 +79,10 @@ section[id]{scroll-margin-top:88px}
 .threshold .hero-title span,.threshold .hero-title em{text-shadow:0 0 22px color-mix(in oklch,currentColor 60%,transparent),0 0 52px color-mix(in oklch,currentColor 35%,transparent)}
 .threshold .stamp{z-index:3;will-change:opacity}
 .threshold-exit{position:absolute;inset:0;z-index:4;pointer-events:none;background:var(--paper);opacity:0;will-change:opacity}
-@media(max-width:900px){.threshold{height:240vh;height:240dvh}.threshold .hero-copy{max-width:none;justify-self:stretch;padding-inline:20px}}
+/* Altura do hero em svh (fixa), palco sticky em dvh (acompanha a tela). Com 240dvh o
+   hero mudava ~2,4x a altura da barra do Safari sempre que ela aparecia/sumia, e a
+   pagina inteira abaixo dele pulava ~200px no meio do scroll. */
+@media(max-width:900px){.threshold{height:240vh;height:240svh}.threshold .hero-copy{max-width:none;justify-self:stretch;padding-inline:20px}}
 @media(prefers-reduced-motion:reduce){
  .threshold{height:auto}
  .threshold-stage{position:static;height:auto;min-height:0;padding:150px 0 70px}
