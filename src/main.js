@@ -234,7 +234,9 @@ else{
   const rectTop=preRead?preRead.top:thresholdEl.getBoundingClientRect().top;
   const boxH=preRead?preRead.boxH:thresholdEl.offsetHeight;
   const span=boxH-innerHeight,p=Math.max(0,Math.min(1,-rectTop/(span||1)));
-  thresholdEl.style.setProperty('--t',p.toFixed(4));
+  // transform direto no video: --t no .threshold herdava para todo o hero e custava
+  // ~8 ms de recalculo de estilo por frame so para escalar uma camada.
+  if(thresholdVideo)thresholdVideo.style.transform=`scale(${(1+p*.07).toFixed(4)})`;
   // Cada camada sai na sua propria janela, com smoothstep. Antes era tudo linear e
   // comprimido no primeiro terco: sobravam 48% do percurso sem nada acontecer e o
   // creme entrava de supetao nos ultimos 12%.
@@ -272,8 +274,6 @@ else{
   updateThreshold(thresholdRead);
   const p=Math.max(0,Math.min(1,scrollY/(max||1)));
   topProgress?.style.setProperty('--progress',p);
-  document.documentElement.style.setProperty('--paper-x',`${Math.sin(scrollY/520)*12}px`);
-  document.documentElement.style.setProperty('--paper-y',`${Math.sin(scrollY/360)*8}px`);
   if(active!==lastChapter){/* chapterStops[0] e o hero, que nao tem link no topo */navLinks.forEach((a,i)=>a.classList.toggle('is-active',i===active-1));lastChapter=active}
   sceneRead.forEach(([panel,local])=>{panel.style.setProperty('--scene-shift-x',`${local*28}px`);panel.style.setProperty('--scene-shift-y',`${local*-12}px`)});
   if(!wide){if(!mobileParallaxSettled){parallaxFrames.forEach(frame=>{frame.style.setProperty('--parallax-y','0px');frame.style.setProperty('--parallax-x','0px');frame.style.setProperty('--parallax-scale','1.045')});mobileParallaxSettled=true}}
