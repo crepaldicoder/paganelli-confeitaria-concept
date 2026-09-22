@@ -211,10 +211,9 @@ else{
  // fica guardado e e perseguido assim que o anterior termina. Sem fila, sem atraso
  // artificial, e sem depender da cadencia de rAF (que o iOS estrangula no scroll).
  let seekTarget=0,seekBusy=false,seekGuard=0;
- // O master interpolado e de 120 fps, mas o arquivo servido e 60 fps com keyframe a
- // cada 4 quadros: no scrub o que manda e o custo de cada seek (decodificar a partir
- // do keyframe anterior), nao a taxa nominal. GOP 30 a 120 fps media 56-80 ms por
- // seek; GOP 4 a 60 fps fica em 17-19 ms com a mesma qualidade visual.
+ // Interpolacao RIFE do master 1080p, servida a 60 fps em resolucao cheia no desktop
+ // (antes era reduzida para 1440x810 a metade do bitrate), keyframe a cada 4 quadros
+ // para o seek continuar barato.
  const scrubFrameRate=60,scrubFrameStep=1/scrubFrameRate;
  const flushSeek=()=>{
   if(seekBusy||!thresholdVideo||!thresholdVideo.duration)return;
