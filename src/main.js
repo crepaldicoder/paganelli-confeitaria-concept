@@ -173,8 +173,6 @@ if(thresholdVideo){
    });
   };
   'requestIdleCallback' in window?requestIdleCallback(warm,{timeout:2000}):setTimeout(warm,700);
-  // assim que houver quadro decodificado, casa com a posicao atual do scroll
-  thresholdVideo.addEventListener('loadeddata',()=>updateThresholdRef&&updateThresholdRef(),{once:true});
  }
 }
 document.querySelectorAll('.quote-band,.table-section,.heritage-number,.before-you-go').forEach(section=>{section.classList.add('motion-scene');const field=document.createElement('span');field.className='print-motion-field';field.setAttribute('aria-hidden','true');section.prepend(field)});
@@ -252,12 +250,41 @@ else{
   if(thresholdExitEl)thresholdExitEl.style.opacity=ramp(p,.76,1);
   // scrub nos dois formatos: o 9:16 agora tem keyframes densos, entao aceita seek.
   // Seek nao exige gesto do usuario, o que tira a politica de autoplay do caminho.
-  if(thresholdVideo&&thresholdVideo.readyState>=2&&thresholdVideo.duration){
+  // Basta a duracao (metadata). Exigir readyState>=2 travava o video para sempre quando
+  // o Safari descartava os dados de um video parado fora da tela: o alvo parava de ser
+  // atualizado e a tela ficava congelada no ultimo quadro (o creme). Um seek com
+  // readyState 1 e justamente o que faz o navegador buscar e decodificar de novo.
+  if(thresholdVideo&&thresholdVideo.duration){
    seekTarget=Math.min(thresholdVideo.duration-.05,p*thresholdVideo.duration);
    flushSeek();
   }
  };
  updateThresholdRef=updateThreshold;
+ // Recuperacao quando o hero volta a aparecer. O iOS libera o decodificador de um video
+ // parado fora da tela (ou ao trocar de app) sem avisar: currentTime muda, 'seeked'
+ // dispara, mas nenhum quadro novo e pintado ate o video tocar de novo. Entao, ao
+ // voltar depois de um tempo longe, repete o play/pause mudo do carregamento inicial e
+ // ressincroniza com o scroll. Se os dados foram descartados por completo, recarrega.
+ if(thresholdVideo&&thresholdEl&&thresholdVideo.getAttribute('src')){
+  let heroAwaySince=0;
+  const resync=()=>{clearTimeout(seekGuard);seekBusy=false;updateThreshold()};
+  const revive=()=>{
+   if(thresholdVideo.readyState===0)thresholdVideo.load();
+   const pr=thresholdVideo.play();
+   if(pr&&pr.then)pr.then(()=>{thresholdVideo.pause();resync()}).catch(resync);else resync();
+  };
+  new IntersectionObserver(entries=>{
+   const entry=entries[entries.length-1];
+   if(!entry.isIntersecting){heroAwaySince=performance.now();return}
+   if(heroAwaySince&&performance.now()-heroAwaySince>2500)revive();else resync();
+   heroAwaySince=0;
+  }).observe(thresholdEl);
+  addEventListener('pageshow',e=>{if(e.persisted)revive()});
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&thresholdEl.getBoundingClientRect().bottom>0)revive()});
+  // quando os dados voltam (carga inicial ou recarga), casa com a posicao atual
+  // ('canplay' nao: pode disparar depois de cada seek e liberaria um seek sobreposto)
+  thresholdVideo.addEventListener('loadeddata',resync);
+ }
 
  const updateMotion=()=>{
   const wide=innerWidth>900;
