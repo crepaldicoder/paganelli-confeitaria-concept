@@ -28,14 +28,17 @@ const ratingStars=(value,decorative=false)=>{
 // lido por leitor de tela.
 const ribbonWords=['massa folhada','receitas de família','produção artesanal','memória afetiva'];
 const ribbonItems=Array.from({length:8},(_,k)=>ribbonWords.map(w=>`<span${k?' aria-hidden="true"':''}>${w}</span><i aria-hidden="true"></i>`).join('')).join('');
+// Um so logo animado (intro, topo e rodape): mesma URL = mesma imagem, entao a animacao
+// e uma so. O ?v= muda quando o arquivo muda (as imagens ficam 1 dia em cache).
+const LOGO='/images/logo-paganelli-abertura.svg?v=2';
 const photoSize={'hero-folhado':[1122,1402],'interior-editorial':[1086,1448],'sala-rosa-editorial':[1023,1537],'ambiente-luzes-editorial':[1333,1180],'vitrine-editorial':[1453,1082],'torta-isolada':[809,810]};
 const photo=(name,alt,eager=false)=>{const [w,h]=photoSize[name];const load=eager?'fetchpriority="high"':'loading="lazy" decoding="async"';return `<picture><source srcset="/images/${name}.avif" type="image/avif"><img src="/images/${name}.webp" alt="${alt}" width="${w}" height="${h}" ${load}></picture>`};
 
 document.querySelector('#app').innerHTML=`
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-<div class="build-intro" aria-hidden="true"><div class="intro-panel intro-panel--left"></div><div class="intro-panel intro-panel--right"></div><div class="intro-stage"><span class="intro-index">SÃO JOSÉ DO RIO PRETO · 1947</span><div class="intro-writing"><img class="intro-logo-revised" src="/images/logo-paganelli-abertura.svg" alt="" width="1876" height="462"></div><p>uma receita construída<br>traço por traço</p></div></div>
+<div class="build-intro" aria-hidden="true"><div class="intro-panel intro-panel--left"></div><div class="intro-panel intro-panel--right"></div><div class="intro-stage"><span class="intro-index">SÃO JOSÉ DO RIO PRETO · 1947</span><div class="intro-writing"><img class="intro-logo-revised" src="${LOGO}" alt="" width="1876" height="462"></div><p>uma receita construída<br>traço por traço</p></div></div>
 <header class="topbar">
-  <a class="brand" href="#inicio" aria-label="Paganelli, início"><img class="literal-logo" src="/images/logo-paganelli.svg" alt="" width="1876" height="462"></a>
+  <a class="brand" href="#inicio" aria-label="Paganelli, início"><img class="literal-logo" src="${LOGO}" alt="" width="1876" height="462"></a>
   <nav class="desktop-nav" aria-label="Principal"><a href="#oficio">O ofício</a><a href="#mesa">Da vitrine</a><a href="#avaliacoes">Avaliações</a><a href="#visita">Visite</a></nav>
   <a class="top-cta" href="${phone}">${svg('phone')} Ligar agora</a>
   <button class="menu-trigger" aria-expanded="false" aria-controls="menu"><span>Menu</span><i></i><i></i></button>
@@ -124,7 +127,7 @@ document.querySelector('#app').innerHTML=`
  </div>
 </section>
 </main>
-<footer data-panel="pink"><div class="footer-brand"><img src="/images/logo-paganelli.svg" alt="Paganelli Confeitaria" width="1876" height="462"></div><p>Confeitaria Paganelli · desde 1947<br>São José do Rio&nbsp;Preto — SP</p><a href="#inicio">Voltar ao início ${svg('arrow')}</a></footer>`;
+<footer data-panel="pink"><div class="footer-brand"><img src="${LOGO}" alt="Paganelli Confeitaria" width="1876" height="462"></div><p>Confeitaria Paganelli · desde 1947<br>São José do Rio&nbsp;Preto — SP</p><a href="#inicio">Voltar ao início ${svg('arrow')}</a></footer>`;
 
 const writingTargets=document.querySelectorAll('.manifesto-copy h2,.quote-band p,.atmosphere-head h2,.table-head h2,.heritage-copy h2,.reviews-head h2,.guide-head h2,.visit-copy h2');
 const wrapWords=(root)=>{

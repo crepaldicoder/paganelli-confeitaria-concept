@@ -41,6 +41,9 @@
  </linearGradient>
  <clipPath id="pg-shape"><use xlink:href="#pg-p" href="#pg-p"/><use xlink:href="#pg-letters" href="#pg-letters"/><use xlink:href="#pg-dot" href="#pg-dot"/></clipPath>
 </defs>
+<!-- O lettering original sobe ~1,2 graus para a direita (topo das letras vai de y 188 a 168,
+     base de 303 a 273 ao longo da palavra) e parecia torto. Gira de volta e recentraliza. -->
+<g transform="translate(0 9) rotate(1.2 938 231)">
 <use class="p-trace" xlink:href="#pg-p" href="#pg-p" pathLength="1"/>
 <use class="fill p-ink" xlink:href="#pg-p" href="#pg-p"/>
 <g class="letters" mask="url(#pg-write)"><use class="fill" xlink:href="#pg-letters" href="#pg-letters"/></g>
@@ -55,4 +58,5 @@
 </g>
 <!-- posicao no <g>: o transform animado (CSS) do path substituiria um transform proprio -->
 <g transform="translate(588 52) scale(30)"><path class="spark s1" d="M0-1C.1-.1.1-.1 1 0 .1.1.1.1 0 1-.1.1-.1.1-1 0-.1-.1-.1-.1 0-1Z"/></g><g transform="translate(1702 30) scale(24)"><path class="spark s2" d="M0-1C.1-.1.1-.1 1 0 .1.1.1.1 0 1-.1.1-.1.1-1 0-.1-.1-.1-.1 0-1Z"/></g><g transform="translate(1856 198) scale(20)"><path class="spark s3" d="M0-1C.1-.1.1-.1 1 0 .1.1.1.1 0 1-.1.1-.1.1-1 0-.1-.1-.1-.1 0-1Z"/></g>
+</g>
 </svg>
