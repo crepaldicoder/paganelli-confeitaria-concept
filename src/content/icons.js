@@ -1,0 +1,13 @@
+// Icones em SVG inline e estrelas de avaliacao.
+const icon=(name)=>({arrow:'<path d="M5 12h14M14 6l6 6-6 6"/>',phone:'<path d="M7.2 3.5 10 8 8.1 9.9c1.3 2.8 3.2 4.8 6 6.1l2-2 4.5 2.8c.5.3.6.9.4 1.4-.7 1.7-2.4 2.8-4.3 2.7C9.4 20.3 3.7 14.6 3.1 7.3 3 5.4 4 3.8 5.8 3.1c.5-.2 1.1 0 1.4.4Z"/>',pin:'<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',ig:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>',whatsapp:'<path fill="currentColor" stroke="none" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>',route:'<path d="M5 19c0-3 2-4 4-4s4-1 4-4 2-5 6-5"/><path d="m16 3 3 3-3 3"/><circle cx="5" cy="19" r="2"/>'}[name]);
+export const svg=(name)=>`<svg viewBox="0 0 24 24" aria-hidden="true">${icon(name)}</svg>`;
+const starPath='m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z';
+// Cada estrela carrega sua própria fração, então o preenchimento não depende do gap nem do tamanho.
+export const ratingStars=(value,decorative=false)=>{
+ const stars=Array.from({length:5},(_,i)=>{
+  const p=+(Math.max(0,Math.min(1,value-i))*100).toFixed(2);
+  return `<span class="star" style="--p:${p}%;--i:${i}"><svg class="star-o" viewBox="0 0 24 24" aria-hidden="true"><path d="${starPath}"/></svg><svg class="star-f" viewBox="0 0 24 24" aria-hidden="true"><path d="${starPath}"/></svg></span>`;
+ }).join('');
+ const a11y=decorative?'aria-hidden="true"':`role="img" aria-label="${String(value).replace('.',',')} de 5 estrelas"`;
+ return `<span class="rating-stars" ${a11y}>${stars}</span>`;
+};
