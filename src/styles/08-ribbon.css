@@ -1,0 +1,65 @@
+.ribbon {
+  background: var(--pastry);
+  color: var(--cherry-dark);
+  overflow: hidden;
+  border-block: 1px solid var(--ink);
+  padding: 12px 0;
+}
+
+.ribbon-track {
+  display: flex;
+  width: max-content;
+  gap: 28px;
+  align-items: center;
+  text-transform: uppercase;
+  font: 700 11px var(--body);
+  letter-spacing: .16em;
+  padding-right: 28px;
+  animation: marquee 162.5s linear infinite;
+}
+
+.ribbon i {
+  font-size: 7px;
+}
+
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+@media (prefers-reduced-motion:reduce) {
+  .ribbon-track {
+    animation: none !important;
+  }
+}
+
+@media (min-width:901px) {
+  .ribbon {
+    position: relative;
+    z-index: 5;
+  }
+
+  .ribbon::after {
+    content: "";
+    position: absolute;
+    right: 8%;
+    top: 100%;
+    width: 26%;
+    height: 70px;
+    border-right: 2px solid var(--pastry);
+    border-bottom: 2px solid var(--pastry);
+    opacity: .7;
+  }
+}
+
+/* Faixa fora da tela: pausa (a classe vem de um IntersectionObserver no main.js). */
+.ribbon.is-offscreen .ribbon-track {
+  animation-play-state: paused;
+}
+
+/* The ribbon now uses a CSS print mark instead of a font glyph. */
+.ribbon-track>i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  background: currentColor;
+  transform: rotate(45deg);
+}

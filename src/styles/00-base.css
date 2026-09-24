@@ -1,0 +1,210 @@
+/* Final evidence-led refinement pass. */
+:root {
+  --paper: oklch(97% .025 72);
+  --ink: oklch(23% .035 350);
+  --cherry: oklch(59% .2 357);
+  --cherry-dark: oklch(29% .09 350);
+  --pastry: oklch(75% .14 214);
+  --leaf: oklch(50% .08 165);
+  --white: oklch(99% .01 72);
+  --display: 'Fraunces',serif;
+  --body: 'Manrope',sans-serif;
+  --ease: cubic-bezier(.22,1,.36,1);
+  --logo-pink: oklch(90% .045 350);
+  --logo-shadow: oklch(28% .05 350 / .38);
+  --table-pink: #e5838c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html.lenis {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  overflow-x: clip;
+}
+
+a {
+  color: inherit;
+}
+
+picture {
+  display: contents;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+svg {
+  width: 1.15em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Corrective layout pass — desktop composition rebuilt from rendered evidence */
+.skip {
+  position: fixed;
+  z-index: 200;
+  left: 1rem;
+  background: var(--ink);
+  color: var(--white);
+  padding: .8rem 1rem;
+  top: 0;
+  transform: translateY(-140%);
+  transition: transform .18s var(--ease);
+}
+
+.skip:focus {
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 3px solid var(--pastry);
+  outline-offset: 4px;
+}
+
+figcaption {
+  font-size: 9px;
+  letter-spacing: .05em;
+}
+
+@media (prefers-reduced-motion:reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  body {
+    overflow-x: clip !important;
+  }
+}
+
+/* Cinematic detail pass — material, stitching and mobile rails */
+/* Motion registry translation — paper, print and tactile feedback. */
+/* 21st Paper Texture translated without WebGL: the existing grain follows
+   reading progress instead of looping autonomously. */
+/* Deriva do grao de papel ligada ao scroll pelo proprio CSS (scroll-driven animation): roda no compositor, sem JS. Antes o JS gravava --paper-x/--paper-y no :root a cada frame, e qualquer custom property no :root recalcula o estilo da pagina inteira (45-85 ms por escrita medidos) - era isso que derrubava o scroll para ~8 fps. */
+body::after {
+  content: "";
+  position: fixed;
+  z-index: 160;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+  inset: -18px !important;
+  opacity: .075 !important;
+  transform: scale(1.055);
+  transform-origin: center;
+}
+
+/* Image entrance choreography + microtype collision repair */
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+.skip:focus,
+.skip:focus-visible {
+  top: 0;
+  transform: translateY(0);
+}
+
+@media (max-width:900px) {
+  .skip {
+    top: 0;
+    visibility: hidden;
+    clip-path: inset(100%);
+    transform: translateY(calc(-100% - 24px));
+  }
+
+  .skip:focus,
+  .skip:focus-visible {
+    top: 12px;
+    visibility: visible;
+    clip-path: none;
+    transform: none;
+  }
+}
+
+/* Components translated from the research into Paganelli's own system. */
+/* Materiality: uma única camada de grão, fixa e do tamanho da viewport (body::after).
+   O grão duplicado sobre <main> custava uma camada de blend com a altura do documento. */
+main {
+  position: relative;
+  isolation: isolate;
+}
+
+.skip:not(:focus) {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.skip:focus-visible {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (max-width:900px) {
+  main>section[id] {
+    scroll-margin-top: 72px;
+  }
+}
+
+@media (max-width:520px) {
+  #oficio,
+  #atmosfera,
+  #avaliacoes,
+  #visita {
+    padding-top: 112px !important;
+  }
+
+  #atmosfera {
+    padding-top: 136px !important;
+  }
+}
+
+@supports (animation-timeline:scroll()) {
+  body::after {
+    animation: paper-drift linear both;
+    animation-timeline: scroll(root);
+    will-change: transform;
+  }
+}
+
+@media (max-width:900px) {
+  /* Correcoes especificas de celular real (nao reproduzem em emulador de desktop):
+     - o grao usa mix-blend-mode sobre o <video>; no iOS isso faz o video piscar/ficar preto
+     - min-height maior que a viewport faz o sticky pular quando a barra de URL recolhe */
+  body::after {
+    display: none !important;
+    opacity: .045 !important;
+    transform: none !important;
+    will-change: auto;
+  }
+}
+
+@supports (-webkit-touch-callout:none) {
+  /* iPad (largura > 900px) ainda recebia o grao com mix-blend sobre o <video>, o mesmo que
+     faz o video piscar/ficar preto no iPhone. Some em todo WebKit de iOS/iPadOS. */
+  body::after {
+    display: none !important;
+  }
+}

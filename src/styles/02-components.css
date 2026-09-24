@@ -1,0 +1,340 @@
+/* 21st.dev research transposition: tactile editorial button, not a copied React block. */
+.button {
+  min-height: 52px;
+  padding: 0 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: 11px;
+  font-weight: 800;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid currentColor !important;
+  border-radius: 0 !important;
+  box-shadow: 4px 4px 0 color-mix(in oklch,currentColor 42%,transparent);
+  transition: transform .18s var(--ease),box-shadow .18s var(--ease),background .18s var(--ease) !important;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button.primary {
+  background: var(--pastry);
+  color: var(--cherry-dark);
+}
+
+.text-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.text-link svg {
+  transition: transform .2s;
+}
+
+.text-link:hover svg {
+  transform: translateX(4px);
+}
+
+.chapter {
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: 9px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.chapter:before {
+  content: "";
+  width: 1px;
+  height: 80px;
+  background: currentColor;
+}
+
+.chapter b {
+  font-size: 13px;
+}
+
+.button.paper {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.rules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.rules span {
+  border: 1px solid var(--ink);
+  padding: 9px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  font-size: 8px;
+  letter-spacing: .1em;
+}
+
+.reveal.visible .chapter:before,
+.chapter.reveal.visible:before {
+  animation: chapterRule .8s cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes chapterRule{from{transform:scaleY(0);transform-origin:top}to{transform:scaleY(1);transform-origin:top}}
+
+@media (max-width:520px) {
+  .chapter {
+    font-size: 8px;
+    min-width: 36px;
+  }
+}
+
+.chapter:after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  transform: scale(0);
+  transition: transform .45s var(--ease) .65s;
+}
+
+.chapter.visible:after {
+  transform: scale(1);
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(110deg,transparent 28%,rgba(255,255,255,.34) 48%,transparent 68%);
+  transform: translateX(-125%);
+  transition: transform .65s var(--ease);
+  display: none !important;
+}
+
+.button:hover::after {
+  transform: translateX(125%);
+}
+
+.button:active {
+  transform: scale(.97);
+}
+
+.compact-rail-status {
+  display: none;
+}
+
+@media (max-width:900px) {
+  .text-link,
+  footer>a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .compact-rail-status {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .compact-rail-status b {
+    font: 700 24px var(--display);
+    color: var(--cherry);
+  }
+
+  .compact-rail-status span {
+    font-size: 10px;
+  }
+
+  .compact-rail-status i {
+    position: relative;
+    height: 2px;
+    background: color-mix(in oklch,var(--ink) 18%,transparent);
+    overflow: hidden;
+  }
+
+  .compact-rail-status i::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--cherry);
+    transform: scaleX(var(--rail-progress,.333));
+    transform-origin: left;
+    transition: transform .25s var(--ease);
+  }
+
+  .compact-rail-status small {
+    grid-column: 1/-1;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-size: 9px;
+  }
+
+  .light-status b {
+    color: var(--pastry);
+  }
+
+  .light-status i {
+    background: color-mix(in oklch,var(--paper) 24%,transparent);
+  }
+
+  .light-status i::after {
+    background: var(--pastry);
+  }
+}
+
+@media (max-width:520px) {
+  .compact-rail-status {
+    margin-inline: 0;
+  }
+
+  .text-link {
+    padding-block: 10px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .compact-rail-status i::after {
+    transition: none;
+  }
+}
+
+@media (max-width:900px) {
+  /* contador "01 / 04, arraste" some quando o trilho nao rola de verdade */
+  .compact-rail-status.rail-static,
+  .rail-status.rail-static {
+    display: none !important;
+  }
+}
+
+.button svg {
+  transition: transform .18s var(--ease);
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translate(-2px,-2px);
+  box-shadow: 7px 7px 0 color-mix(in oklch,currentColor 42%,transparent);
+}
+
+.button:hover svg,
+.button:focus-visible svg {
+  transform: translateX(3px);
+}
+
+.button:active {
+  transform: translate(2px,2px);
+  box-shadow: 1px 1px 0 color-mix(in oklch,currentColor 42%,transparent);
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .button,
+  .button svg,
+  .whatsapp-float svg {
+    transition: none !important;
+  }
+}
+
+.rating-stars {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 3px;
+}
+
+.star {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+}
+
+.star svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.star-o {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  opacity: .42;
+}
+
+.star-f {
+  fill: currentColor;
+  stroke: none;
+  clip-path: inset(0 100% 0 0);
+}
+
+/* a tinta assenta ate a nota real, na mesma gramatica do lettering da marca */
+.visible .star-f {
+  animation: starInk .85s cubic-bezier(.16,1,.3,1) forwards;
+  animation-delay: calc(var(--i,0)*95ms + 220ms);
+}
+
+@keyframes starInk{to{clip-path:inset(0 calc(100% - var(--p)) 0 0)}}
+
+.text-link {
+  min-height: 44px;
+}
+
+@media (max-width:900px) {
+  .star {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .star-f {
+    clip-path: inset(0 calc(100% - var(--p)) 0 0) !important;
+    animation: none !important;
+  }
+}
+
+@media (hover:hover) and (pointer:fine) {
+  /* Magnetic Button translated to a restrained fine-pointer response. */
+  .button.primary,
+  .top-cta {
+    --mag-x: 0px;
+    --mag-y: 0px;
+    transform: translate3d(var(--mag-x),var(--mag-y),0);
+    transition: transform .18s var(--ease),background .2s,color .2s;
+  }
+
+  .button.primary:hover {
+    transform: translate3d(var(--mag-x),calc(var(--mag-y) - 2px),0);
+  }
+
+  .button.primary:active {
+    transform: translate3d(var(--mag-x),var(--mag-y),0) scale(.97);
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .button.primary,
+  .top-cta {
+    transform: none !important;
+    will-change: auto !important;
+  }
+}

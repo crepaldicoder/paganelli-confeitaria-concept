@@ -1,0 +1,118 @@
+.manifesto-copy h2,
+.table-head h2,
+.visit h2,
+.heritage-copy h2 {
+  font: 500 clamp(46px,5.5vw,84px)/.9 var(--display);
+  letter-spacing: -.045em;
+  margin: 20px 0 30px;
+}
+
+.manifesto-copy h2 em,
+.table-head h2 em,
+.visit h2 em {
+  color: var(--cherry);
+  font-weight: 300;
+}
+
+body.intro-playing .topbar,
+body.intro-playing .hero-image,
+body.intro-playing .hero-copy>* {
+  opacity: 0 !important;
+}
+
+body.site-ready .topbar,
+body.site-ready .hero-image {
+  animation: sceneSettle .72s var(--ease) forwards;
+}
+
+.craft-image,
+.table-image {
+  outline: 1px solid color-mix(in oklch,currentColor 36%,transparent);
+  outline-offset: 8px;
+}
+
+@media (max-width:520px) {
+  .craft-image,
+  .table-image {
+    outline-offset: 5px;
+  }
+}
+
+.atmosphere-card figcaption small,
+.compact-rail-status small,
+.hero-image figcaption {
+  line-height: 1.45;
+}
+
+/* Titulos de secao: equilibra as linhas (sem palavra sozinha no fim, como "mãos." ou "Preto."). */
+.manifesto-copy h2,
+.atmosphere-head h2,
+.table-head h2,
+.heritage-copy h2,
+.reviews-head h2,
+.guide-head h2,
+.visit-copy h2,
+.quote-band p {
+  text-wrap: balance;
+}
+
+/* Remove isolated ornamental rules that do not carry information. */
+.ribbon::after,
+.recipe-note::after,
+.quote-band::after,
+.table-section::after,
+.source-note::after,
+.table-head h2::after,
+.table-head .write-line,
+.table-image::before,
+.table-image::after {
+  display: none !important;
+}
+
+/* Stable microcopy lanes: no floating caption may cross another content block. */
+.chapter,
+.hero-image figcaption,
+.craft-image figcaption,
+.atmosphere-card figcaption,
+.source-note,
+.rail-status,
+.compact-rail-status {
+  isolation: isolate;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width:900px) {
+  .manifesto>.chapter,
+  .reviews>.chapter,
+  .before-you-go>.chapter,
+  .atmosphere>.chapter {
+    grid-column: 1/-1;
+    grid-row: auto;
+    writing-mode: horizontal-tb;
+    align-self: start;
+    margin-bottom: 10px;
+  }
+
+  .manifesto>.chapter:before,
+  .reviews>.chapter:before,
+  .before-you-go>.chapter:before,
+  .atmosphere>.chapter:before {
+    width: 54px;
+    height: 1px;
+  }
+}
+
+@media (hover:hover) and (pointer:fine) {
+  /* CTA motion is scoped to fine pointers; touch receives stable pressed feedback. */
+  .button,
+  .top-cta,
+  .text-link,
+  .map-card {
+    will-change: transform;
+  }
+}
+
+.quote-band .print-motion-field,
+.before-you-go .print-motion-field {
+  color: var(--pastry);
+}

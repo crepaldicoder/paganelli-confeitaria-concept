@@ -1,0 +1,413 @@
+.atmosphere {
+  position: relative;
+  padding: 120px clamp(24px,6vw,92px);
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 50px;
+  background: color-mix(in oklch,var(--paper) 91%,var(--pastry));
+  overflow: hidden;
+}
+
+.atmosphere::after {
+  content: "P";
+  position: absolute;
+  right: -.08em;
+  top: -.2em;
+  font: 900 44vw/.8 var(--display);
+  color: color-mix(in oklch,var(--cherry) 6%,transparent);
+  pointer-events: none;
+}
+
+.atmosphere-head {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  align-items: end;
+  gap: 40px;
+}
+
+.atmosphere-head .kicker {
+  grid-column: 1/-1;
+}
+
+.atmosphere-head h2 {
+  font: 500 clamp(48px,5.7vw,88px)/.88 var(--display);
+  letter-spacing: -.05em;
+  margin: 14px 0 0;
+}
+
+.atmosphere-head h2 em {
+  color: var(--cherry);
+  font-weight: 300;
+}
+
+.atmosphere-head>p:last-child {
+  max-width: 510px;
+  font-size: 13px;
+  line-height: 1.8;
+  border-left: 1px solid var(--cherry);
+  padding-left: 20px;
+}
+
+.atmosphere-rail {
+  position: relative;
+  z-index: 2;
+  grid-column: 2;
+  gap: 26px;
+}
+
+.atmosphere-card {
+  margin: 0;
+  position: relative;
+}
+
+.media-frame {
+  border: 1px solid var(--ink);
+  padding: 10px;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.media-frame::before,
+.media-frame::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  border-color: var(--pastry);
+  pointer-events: none;
+}
+
+.media-frame::before {
+  border-left: 2px solid var(--pastry);
+  border-top: 2px solid var(--pastry);
+}
+
+.media-frame::after {
+  right: 18px;
+  bottom: 18px;
+  border-right: 2px solid var(--pastry);
+  border-bottom: 2px solid var(--pastry);
+}
+
+.atmosphere-card:hover .media-frame img {
+  transform: scale(1.075) !important;
+}
+
+.atmosphere-card figcaption {
+  display: flex;
+  gap: 18px;
+  padding-top: 14px;
+  text-transform: uppercase;
+  min-height: 68px;
+  align-items: center;
+}
+
+.atmosphere-card figcaption>span {
+  font: 700 24px var(--display);
+  color: var(--cherry);
+}
+
+.atmosphere-card figcaption div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.atmosphere-card figcaption b {
+  font: 700 11px var(--body);
+  letter-spacing: .12em;
+}
+
+.atmosphere-card figcaption small {
+  font-size: 8px;
+  letter-spacing: .08em;
+  opacity: .68;
+}
+
+.rail-status {
+  display: none;
+}
+
+@media (max-width:900px) {
+  .atmosphere {
+    padding: 90px 24px;
+  }
+
+  .atmosphere-head,
+  .atmosphere-rail,
+  .rail-status {
+    grid-column: 2;
+  }
+
+  .atmosphere-head {
+    grid-template-columns: 1fr;
+  }
+
+  .atmosphere-head .kicker {
+    grid-column: auto;
+  }
+}
+
+@media (max-width:520px) {
+  .atmosphere {
+    display: block;
+    padding: 66px 0 58px;
+  }
+
+  .atmosphere>.chapter,
+  .atmosphere-head {
+    margin-inline: 20px;
+  }
+
+  .atmosphere-head h2 {
+    font-size: 48px;
+  }
+
+  .atmosphere-head>p:last-child {
+    font-size: 12px;
+  }
+
+  .atmosphere-rail {
+    gap: 14px;
+    width: 100%;
+    padding: 10px 20px 20px;
+    scroll-padding-inline: 20px;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    padding-right: 34px;
+  }
+
+  .atmosphere-card {
+    min-width: clamp(270px,82vw,340px);
+    scroll-snap-stop: always;
+    transform: none !important;
+  }
+
+  .rail-status {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    margin: 6px 20px 0;
+  }
+
+  .rail-dots {
+    grid-column: 1/-1;
+    display: flex;
+  }
+
+  .rail-dots button {
+    position: relative;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    width: 44px;
+  }
+
+  .rail-dots button::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 6px;
+    top: 20px;
+    height: 2px;
+    background: color-mix(in oklch,var(--ink) 22%,transparent);
+    transform-origin: left;
+    transition: transform .25s,background .25s;
+  }
+
+  .rail-dots button.active::before {
+    background: var(--cherry);
+    transform: scaleY(2);
+  }
+
+  .rail-status p {
+    margin: 0;
+    font: 500 12px var(--body);
+  }
+
+  .rail-status p b {
+    font: 700 20px var(--display);
+    color: var(--cherry);
+  }
+
+  .rail-status p span {
+    margin-left: 9px;
+  }
+
+  .rail-status>small {
+    align-self: center;
+    text-transform: uppercase;
+    font-size: 8px;
+    letter-spacing: .12em;
+    font-weight: 700;
+    color: var(--cherry);
+  }
+}
+
+.atmosphere-card.image-build.built img {
+  filter: saturate(.94) contrast(1.04) brightness(1);
+}
+
+@media (max-width:520px) {
+  .atmosphere-card figcaption small {
+    font-size: 9px;
+  }
+}
+
+@media (max-width:900px) {
+  /* barra de rolagem nativa aparecia sob os cards em janelas sem toque */
+  .atmosphere-rail {
+    scrollbar-width: none;
+    display: flex;
+    grid-template-columns: none;
+    align-items: stretch;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .atmosphere-rail::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (min-width:1100px) {
+  .atmosphere {
+    padding-top: 96px;
+    padding-bottom: 104px;
+    grid-template-columns: 76px minmax(0,1fr);
+  }
+
+  .atmosphere-head {
+    grid-template-columns: minmax(530px,1.15fr) minmax(300px,.6fr);
+  }
+}
+
+@media (min-width:901px) {
+  /* Expanded real-environment gallery */
+  .atmosphere-rail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .atmosphere-card,
+  .atmosphere-card:first-child,
+  .atmosphere-card:nth-child(3),
+  .atmosphere-card:nth-child(4) {
+    transform: none;
+    margin: 0;
+  }
+
+  .atmosphere-card .media-frame,
+  .atmosphere-card:first-child .media-frame,
+  .atmosphere-card:nth-child(2) .media-frame,
+  .atmosphere-card:nth-child(3) .media-frame,
+  .atmosphere-card:nth-child(4) .media-frame {
+    height: auto;
+    aspect-ratio: 4/3;
+    margin: 0;
+  }
+
+  .rail-status {
+    display: none;
+  }
+}
+
+@media (max-width:900px) {
+  .atmosphere-card,
+  .atmosphere-card:first-child,
+  .atmosphere-card:nth-child(2),
+  .atmosphere-card:nth-child(3),
+  .atmosphere-card:nth-child(4) {
+    transform: none;
+    flex: 0 0 min(82vw,620px);
+    width: min(82vw,620px);
+    scroll-snap-align: start;
+  }
+
+  .atmosphere-card .media-frame,
+  .atmosphere-card:first-child .media-frame,
+  .atmosphere-card:nth-child(2) .media-frame,
+  .atmosphere-card:nth-child(3) .media-frame,
+  .atmosphere-card:nth-child(4) .media-frame {
+    height: auto;
+    aspect-ratio: 4/5;
+    margin: 0;
+  }
+}
+
+@media (max-width:520px) {
+  .atmosphere-card .media-frame,
+  .atmosphere-card:first-child .media-frame,
+  .atmosphere-card:nth-child(2) .media-frame,
+  .atmosphere-card:nth-child(3) .media-frame,
+  .atmosphere-card:nth-child(4) .media-frame {
+    height: auto;
+    aspect-ratio: 4/5;
+    margin: 0;
+  }
+}
+
+.rail-status,
+.compact-rail-status {
+  position: relative;
+  z-index: 3;
+}
+
+@media (max-width:520px) {
+  .atmosphere-card figcaption {
+    min-height: 78px;
+  }
+}
+
+/* Pixel/dither reveal translated into a one-shot print veil. */
+.atmosphere-card .media-frame {
+  position: relative;
+  isolation: isolate;
+}
+
+.atmosphere-card .media-frame::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  pointer-events: none;
+  background-color: var(--pastry);
+  background-image: radial-gradient(circle,currentColor 0 1px,transparent 1.3px);
+  background-size: 7px 7px;
+  color: color-mix(in oklch,var(--cherry) 54%,transparent);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.motion-ready .atmosphere-card:not(.built) .media-frame::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.motion-ready .atmosphere-card.built .media-frame::before {
+  animation: printVeil .78s .08s var(--ease) both;
+}
+
+@media (max-width:900px) {
+  .atmosphere-card .media-frame::before {
+    display: none;
+  }
+
+  .rail-status,
+  .compact-rail-status {
+    padding-right: 72px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .atmosphere-card .media-frame::before {
+    display: none !important;
+    animation: none !important;
+  }
+}

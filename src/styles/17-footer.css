@@ -1,0 +1,90 @@
+footer {
+  background: var(--cherry-dark);
+  color: var(--paper);
+  padding: 60px clamp(24px,6vw,92px);
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: end;
+  gap: 30px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-brand img {
+  width: 190px;
+  height: auto;
+  object-fit: contain;
+}
+
+footer p {
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+footer>a {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+@media (max-width:900px) {
+  footer {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  footer>a {
+    grid-column: 2;
+  }
+}
+
+@media (max-width:520px) {
+  footer {
+    grid-template-columns: 1fr;
+    padding: 50px 20px;
+  }
+
+  footer>a {
+    grid-column: auto;
+    padding-block: 14px;
+  }
+
+  .footer-brand img {
+    width: 170px;
+  }
+}
+
+@media (min-width:1100px) {
+  footer {
+    padding-top: 44px;
+  }
+}
+
+@media (min-width:901px) {
+  /* botao do WhatsApp (fixo, canto inferior direito) cobria "Voltar ao inicio" no fim da
+     pagina, onde nao da mais para rolar: o rodape reserva a altura dele */
+  footer {
+    padding-bottom: 114px;
+  }
+}
+
+footer>a svg {
+  width: 18px;
+  height: 18px;
+  transform: rotate(-90deg);
+  transition: transform .18s var(--ease);
+}
+
+footer>a:hover svg,
+footer>a:focus-visible svg {
+  transform: rotate(-90deg) translateX(3px);
+}
+
+@media (prefers-reduced-motion:reduce) {
+  footer>a svg {
+    transition: none !important;
+  }
+}

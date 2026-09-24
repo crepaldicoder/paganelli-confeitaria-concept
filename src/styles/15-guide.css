@@ -1,0 +1,184 @@
+.before-you-go {
+  background: var(--cherry);
+  color: var(--paper);
+  padding: 100px clamp(24px,6vw,92px);
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 50px;
+}
+
+@media (min-width:1100px) {
+  /* Seria de layout, mas fica aqui: a cascata exige que venha depois de regras deste arquivo (mesma especificidade, mesma propriedade). */
+  .reviews,
+  .before-you-go {
+    padding-top: 92px;
+    padding-bottom: 92px;
+    grid-template-columns: 76px minmax(0,1fr);
+    gap: 42px;
+  }
+}
+
+.guide-head {
+  max-width: 930px;
+}
+
+.guide-head h2 {
+  font: 500 clamp(48px,5.5vw,82px)/.9 var(--display);
+  letter-spacing: -.045em;
+  margin: 20px 0;
+}
+
+.guide-head h2 em {
+  color: var(--pastry);
+  font-weight: 300;
+}
+
+.guide-head>p:last-child {
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+.guide-grid {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  border-top: 1px solid color-mix(in oklch,var(--paper) 45%,transparent);
+  margin-top: 20px;
+}
+
+.guide-grid article {
+  padding: 24px 24px 10px 0;
+  border-right: 1px solid color-mix(in oklch,var(--paper) 28%,transparent);
+  min-width: 0;
+  position: relative;
+  transition: background .3s var(--ease),transform .3s var(--ease);
+}
+
+.guide-grid article+article {
+  padding-left: 24px;
+}
+
+.guide-grid article:last-child {
+  border: 0;
+}
+
+.guide-grid article>b {
+  font: 700 12px var(--body);
+  color: var(--pastry);
+}
+
+.guide-grid h3 {
+  font: 600 24px/1.1 var(--display);
+  margin: 18px 0;
+}
+
+.guide-grid p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: color-mix(in oklch,var(--paper) 86%,transparent);
+}
+
+@media (max-width:900px) {
+  .before-you-go {
+    padding: 80px 24px;
+  }
+
+  .guide-head,
+  .guide-grid,
+  .source-note {
+    grid-column: 2;
+  }
+
+  .guide-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .guide-grid article:nth-child(2) {
+    border-right: 0;
+  }
+}
+
+@media (max-width:520px) {
+  .before-you-go {
+    gap: 16px;
+    padding: 50px 18px;
+  }
+}
+
+@media (max-width:900px) {
+  /* Seria de layout, mas fica aqui: a cascata exige que venha depois de regras deste arquivo (mesma especificidade, mesma propriedade). */
+  /* Sem o trilho lateral, o gutter vertical do capitulo so tirava largura no celular.
+     Zeramos a coluna do gutter e soltamos o capitulo na horizontal, sem reposicionar
+     os demais filhos (que seguem em grid-column:2) — assim a coluna 2 pega a tela toda.
+     .table-section fica de fora: tem layout proprio de 2 colunas com a torta sangrando. */
+  .manifesto,
+  .reviews,
+  .before-you-go,
+  .atmosphere {
+    grid-template-columns: 0 minmax(0,1fr);
+    column-gap: 0;
+  }
+}
+
+@media (max-width:520px) {
+  .guide-head h2 {
+    font-size: 45px;
+  }
+
+  .guide-grid {
+    grid-template-columns: 1fr;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0;
+    scrollbar-width: none;
+  }
+
+  .guide-grid h3 {
+    margin: 10px 0;
+    font-size: 22px;
+  }
+
+  .guide-grid p {
+    line-height: 1.55;
+  }
+}
+
+.guide-grid article:hover {
+  background: color-mix(in oklch,var(--paper) 8%,transparent);
+  transform: translateY(-5px);
+}
+
+@media (max-width:520px) {
+  .guide-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .guide-grid article,
+  .guide-grid article+article {
+    flex: 0 0 78vw;
+    padding: 22px;
+    border: 1px solid color-mix(in oklch,var(--paper) 38%,transparent);
+    scroll-snap-align: start;
+    flex-basis: calc(100vw - 68px);
+    min-width: calc(100vw - 68px);
+  }
+
+  .before-you-go .compact-rail-status {
+    grid-column: 2;
+  }
+}
+
+@media (min-width:521px) and (max-width:900px) {
+  /* grade 2x2 de guias: o recuo de "article+article" pegava o 3o card (1a coluna) */
+  .guide-grid article:nth-child(odd) {
+    padding-left: 0;
+  }
+}
+
+@media (min-width:1100px) {
+  .guide-grid h3 {
+    font-size: 21px;
+  }
+}

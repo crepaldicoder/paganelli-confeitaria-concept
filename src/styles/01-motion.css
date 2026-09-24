@@ -1,0 +1,336 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .7s var(--ease),transform .7s var(--ease);
+  transition-delay: var(--reveal-delay,0ms);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.scribe-word {
+  display: inline-block;
+  transform: translateY(.12em);
+  filter: blur(3px);
+  opacity: .35;
+  padding: .16em .035em .22em;
+  margin: -.16em -.035em -.22em;
+  clip-path: inset(-.2em 110% -.28em -.14em);
+}
+
+.visible .scribe-word,
+.scribe-title.visible .scribe-word {
+  animation: scribeWord .62s cubic-bezier(.16,1,.3,1) both;
+  animation-delay: calc(var(--word) * 42ms);
+  animation-name: scribeWordSafe;
+}
+
+.scribe-title em {
+  position: relative;
+}
+
+.scribe-title em:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -.06em;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.visible .scribe-title em:after,
+.scribe-title.visible em:after {
+  animation: scribeRule .7s cubic-bezier(.16,1,.3,1) .4s forwards;
+}
+
+@keyframes scribeWord{to{clip-path:inset(0 0 0 0);transform:none;filter:blur(0);opacity:1}}
+
+@keyframes scribeRule{to{transform:scaleX(1)}}
+
+@media (max-width:520px) {
+  .scribe-word {
+    animation: none !important;
+  }
+
+  @keyframes scribeMobile{to{clip-path:inset(0 0 0 0)}}
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .scribe-word {
+    animation: none !important;
+    clip-path: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+
+  .scribe-title em:after {
+    animation: none !important;
+    transform: scaleX(1) !important;
+  }
+}
+
+@keyframes sceneSettle{from{opacity:0}to{opacity:1}}
+
+.construct {
+  position: relative;
+}
+
+.construct::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: .32;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.35s var(--ease);
+}
+
+.construct.built::before {
+  transform: scaleX(1);
+}
+
+.image-build {
+  overflow: hidden;
+  clip-path: none !important;
+  position: relative;
+}
+
+.image-build::after {
+  content: "";
+  position: absolute;
+  z-index: 6;
+  inset: 0;
+  background: var(--paper);
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: transform 1.25s var(--ease);
+  pointer-events: none;
+  display: none !important;
+}
+
+.image-build.built::after,
+.image-build.visible::after {
+  transform: scaleX(0);
+}
+
+.scribe-title .write-line {
+  width: min(100%,620px);
+  height: 38px;
+  margin-top: -.12em;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.visible .scribe-title .write-line,
+.scribe-title.visible .write-line {
+  animation: titleLine 1.1s cubic-bezier(.45,0,.2,1) .55s forwards;
+}
+
+@media (max-width:900px) {
+  .image-build::after {
+    transform-origin: bottom;
+    transform: scaleY(1);
+  }
+
+  .image-build.built::after,
+  .image-build.visible::after {
+    transform: scaleY(0);
+  }
+}
+
+@media (max-width:520px) {
+  .image-build {
+    transition-duration: .85s !important;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .image-build {
+    clip-path: none !important;
+  }
+
+  .construct::before {
+    transform: scaleX(1) !important;
+  }
+
+  .scribe-title .write-line {
+    stroke-dashoffset: 0 !important;
+  }
+
+  .image-build img {
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+.scribe-title {
+  overflow: visible;
+  padding: .16em .08em .22em;
+}
+
+@keyframes scribeWordSafe{to{clip-path:inset(-.2em -.14em -.28em -.14em);transform:none;filter:blur(0);opacity:1}}
+
+@media (max-width:520px) {
+  .scribe-title {
+    clip-path: none !important;
+    padding: .16em .06em .24em;
+  }
+
+  .scribe-word {
+    display: inline;
+    clip-path: none !important;
+    padding: 0;
+    margin: 0;
+    filter: none;
+    transform: none;
+    opacity: 1;
+  }
+
+  .reveal.visible .scribe-title,
+  .scribe-title.visible {
+    animation: none !important;
+  }
+
+  .scribe-title .write-line {
+    height: 26px;
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .scribe-word {
+    clip-path: none !important;
+    opacity: 1 !important;
+  }
+}
+
+@media (min-width:901px) {
+  @keyframes sceneRule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+}
+
+.image-build img {
+  transition: clip-path 1.12s cubic-bezier(.16,1,.3,1),transform 1.45s cubic-bezier(.16,1,.3,1),filter 1.05s ease-out,opacity .72s ease-out;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.motion-ready .image-build:not(.built) img {
+  opacity: .58;
+  clip-path: inset(0 100% 0 0);
+  transform: translate3d(0,calc(var(--parallax-y,0px) + 26px),0) scale(1.13);
+  filter: saturate(.5) contrast(.9) brightness(.72);
+}
+
+/* 21st Scroll Reveal Image translated into the incumbent rectangular frames:
+   depth resolves as the photograph crosses the viewport, never by rounding it. */
+.image-build.built img,
+.image-build.visible img {
+  opacity: 1;
+  clip-path: inset(0);
+  filter: saturate(.9) contrast(1.04) brightness(1);
+  transform: translate3d(var(--parallax-x,0px),var(--parallax-y,0px),0) scale(var(--parallax-scale,1.045));
+}
+
+@media (max-width:900px) {
+  .motion-ready .image-build:not(.built) img {
+    clip-path: inset(100% 0 0 0);
+    transform: translate3d(0,calc(var(--parallax-y,0px) + 18px),0) scale(1.105);
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .image-build img,
+  .image-build.built img,
+  .image-build.visible img {
+    opacity: 1 !important;
+    clip-path: inset(0) !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* The chapter marker replaces disconnected decorative writing rules. */
+.write-line,
+.construct::before {
+  display: none !important;
+}
+
+@keyframes printVeil{0%{opacity:1;transform:scaleX(1);transform-origin:right}100%{opacity:0;transform:scaleX(0);transform-origin:right}}
+
+@keyframes paper-drift{0.0%{transform:translate3d(0.0px,0.0px,0) scale(1.055)}4.17%{transform:translate3d(7.3px,6.5px,0) scale(1.055)}8.33%{transform:translate3d(11.6px,7.6px,0) scale(1.055)}12.5%{transform:translate3d(11.1px,2.3px,0) scale(1.055)}16.67%{transform:translate3d(5.9px,-4.9px,0) scale(1.055)}20.83%{transform:translate3d(-1.7px,-8.0px,0) scale(1.055)}25.0%{transform:translate3d(-8.6px,-4.4px,0) scale(1.055)}29.17%{transform:translate3d(-11.9px,2.8px,0) scale(1.055)}33.33%{transform:translate3d(-10.3px,7.7px,0) scale(1.055)}37.5%{transform:translate3d(-4.3px,6.2px,0) scale(1.055)}41.67%{transform:translate3d(3.4px,-0.5px,0) scale(1.055)}45.83%{transform:translate3d(9.7px,-6.8px,0) scale(1.055)}50.0%{transform:translate3d(12.0px,-7.4px,0) scale(1.055)}54.17%{transform:translate3d(9.3px,-1.8px,0) scale(1.055)}58.33%{transform:translate3d(2.7px,5.3px,0) scale(1.055)}62.5%{transform:translate3d(-5.0px,8.0px,0) scale(1.055)}66.67%{transform:translate3d(-10.6px,4.0px,0) scale(1.055)}70.83%{transform:translate3d(-11.8px,-3.3px,0) scale(1.055)}75.0%{transform:translate3d(-8.1px,-7.8px,0) scale(1.055)}79.17%{transform:translate3d(-1.0px,-5.8px,0) scale(1.055)}83.33%{transform:translate3d(6.5px,1.1px,0) scale(1.055)}87.5%{transform:translate3d(11.3px,7.1px,0) scale(1.055)}91.67%{transform:translate3d(11.4px,7.2px,0) scale(1.055)}95.83%{transform:translate3d(6.7px,1.3px,0) scale(1.055)}100.0%{transform:translate3d(-0.7px,-5.7px,0) scale(1.055)}}
+
+/* Independent print fields preserve the incumbent section ornaments. */
+.motion-scene {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+.print-motion-field {
+  position: absolute;
+  z-index: 0;
+  inset: -12% -6%;
+  pointer-events: none;
+  opacity: .16;
+  transform: translate3d(var(--scene-shift-x,0px),var(--scene-shift-y,0px),0) rotate(-1.5deg);
+  transform-origin: center;
+  will-change: transform;
+  background: repeating-linear-gradient(0deg,transparent 0 13px,currentColor 13px 14px);
+  mix-blend-mode: soft-light;
+}
+
+.motion-scene>*:not(.print-motion-field) {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width:900px) {
+  .print-motion-field {
+    opacity: .09;
+    transform: none !important;
+    will-change: auto;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  /* Seria de base, mas fica aqui: a cascata exige que venha depois de regras deste arquivo (mesma especificidade, mesma propriedade). */
+  body::after,
+  .print-motion-field {
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+@media (max-width:900px) {
+  .image-build.built img,
+  .image-build.visible img {
+    --parallax-x: 0px;
+    --parallax-scale: 1.045;
+  }
+
+  .image-build img {
+    will-change: auto;
+  }
+}

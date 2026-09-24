@@ -1,0 +1,94 @@
+body.menu-open {
+  overflow: hidden;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width:900px) {
+  .mobile-menu {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    background: var(--cherry-dark);
+    color: var(--paper);
+    z-index: 100;
+    flex-direction: column;
+    padding: 22px;
+    opacity: 0;
+    visibility: hidden;
+    transition: .15s var(--ease);
+    transform: none;
+  }
+
+  .mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .menu-close {
+    align-self: flex-end;
+    background: none;
+    color: inherit;
+    border: 1px solid currentColor;
+    min-width: 96px;
+    min-height: 48px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-transform: uppercase;
+    font: 700 10px var(--body);
+    letter-spacing: .12em;
+  }
+
+  .menu-close i {
+    font: 300 28px var(--display);
+  }
+
+  .mobile-menu nav {
+    display: flex;
+    flex-direction: column;
+    margin: auto 0;
+  }
+
+  .mobile-menu nav a {
+    font: 500 clamp(38px,10vw,68px)/1.25 var(--display);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in oklch,var(--paper) 25%,transparent);
+    padding: 12px 0;
+  }
+
+  .mobile-menu p {
+    font-size: 11px;
+    line-height: 1.7;
+  }
+}
+
+/* Consistent SVG-only close and rating icon system. */
+.menu-close>i {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.menu-close>i::before,
+.menu-close>i::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 11px;
+  width: 18px;
+  height: 1.5px;
+  background: currentColor;
+}
+
+.menu-close>i::before {
+  transform: rotate(45deg);
+}
+
+.menu-close>i::after {
+  transform: rotate(-45deg);
+}

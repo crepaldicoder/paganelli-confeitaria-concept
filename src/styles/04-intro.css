@@ -1,0 +1,122 @@
+/* Lady Le-inspired cinematic construction system */
+body.intro-playing {
+  overflow: hidden;
+}
+
+.intro-stage img {
+  opacity: 0;
+  animation: introLogoSettle .9s .18s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.intro-index {
+  font-size: 9px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: introText .6s .18s var(--ease) forwards;
+}
+
+.intro-stage p {
+  font: 500 11px/1.6 var(--body);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: introText .65s 2.25s var(--ease) forwards;
+  animation-delay: .55s;
+}
+
+@keyframes introDraw{to{stroke-dashoffset:0}}
+
+@keyframes introLogoSettle{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+
+@keyframes introLogo{0%{opacity:0;clip-path:inset(0 100% 0 0);transform:translateY(8px)}35%{opacity:.35}100%{opacity:1;clip-path:inset(0 0 0 0);transform:none}}
+
+@keyframes introText{to{opacity:1;transform:none}}
+
+@keyframes introStageAway{to{opacity:0;transform:translateY(-22px)}}
+
+@keyframes introOpen{to{transform:scaleX(0)}}
+
+@keyframes introGone{to{visibility:hidden}}
+
+@media (max-width:520px) {
+  .intro-stage p {
+    font-size: 8px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .build-intro {
+    display: none !important;
+  }
+}
+
+/* Intro — fonte única de timing. A escrita do wordmark termina em ~1,16s;
+   a cortina abre em seguida. main.js libera o scroll em 1,2s e só exibe uma vez por sessão. */
+.build-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 180;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: transparent;
+  pointer-events: none;
+  visibility: visible;
+  opacity: 1;
+  animation: introGone .01s 2.24s forwards;
+}
+
+.intro-panel {
+  position: relative;
+  inset: auto;
+  display: block;
+  background: var(--cherry-dark);
+  transform: scaleX(1);
+  opacity: 1;
+  animation: introOpen .55s 1.64s var(--ease) forwards;
+}
+
+.intro-panel--left {
+  transform-origin: left;
+}
+
+.intro-panel--right {
+  display: block;
+  transform-origin: right;
+}
+
+.intro-stage {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  color: var(--paper);
+  animation: introStageAway .38s 1.6s var(--ease) forwards;
+}
+
+.intro-writing {
+  position: relative;
+  width: min(76vw,920px);
+  height: auto;
+}
+
+.intro-writing .intro-logo-revised {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1876/462;
+  border: 0;
+  margin: 0;
+  filter: none;
+  pointer-events: none;
+}
+
+@media (max-width:900px) {
+  .intro-writing {
+    width: min(94vw,660px);
+  }
+}

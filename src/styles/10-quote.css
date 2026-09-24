@@ -1,0 +1,54 @@
+.quote-band {
+  background: var(--cherry);
+  color: var(--paper);
+  padding: 75px 8vw;
+  text-align: center;
+}
+
+.quote-band p {
+  font: 500 clamp(32px,4.4vw,66px)/1.05 var(--display);
+  margin: 0;
+}
+
+.quote-band em {
+  color: var(--pastry);
+  font-weight: 300;
+}
+
+.quote-band>span {
+  display: block;
+  margin-top: 22px;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  font-size: 9px;
+}
+
+@media (max-width:520px) {
+  .quote-band {
+    padding: 48px 20px;
+  }
+}
+
+@media (min-width:901px) {
+  .quote-band::after {
+    content: "";
+    position: absolute;
+    left: 8%;
+    bottom: -54px;
+    width: 34%;
+    height: 54px;
+    border-left: 1px solid var(--pastry);
+    border-bottom: 1px solid var(--pastry);
+    z-index: 5;
+  }
+}
+
+@media (min-width:1100px) {
+  .quote-band {
+    padding: 64px 8vw;
+  }
+
+  .quote-band p {
+    font-size: clamp(44px,4vw,64px);
+  }
+}

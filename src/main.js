@@ -1,10 +1,26 @@
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
-import './style.css';
-import './desktop-rework.css';
-import './refinement.css';
-import './component-integration.css';
-import './motion-craft.css';
+// Um arquivo por componente, na ordem da cascata (generico -> especifico, depois as
+// secoes na ordem da pagina). A ordem dos imports importa: nao reordene.
+import './styles/00-base.css';
+import './styles/01-motion.css';
+import './styles/02-components.css';
+import './styles/03-layout.css';
+import './styles/04-intro.css';
+import './styles/05-topbar.css';
+import './styles/06-menu.css';
+import './styles/07-hero.css';
+import './styles/08-ribbon.css';
+import './styles/09-manifesto.css';
+import './styles/10-quote.css';
+import './styles/11-atmosphere.css';
+import './styles/12-table.css';
+import './styles/13-heritage.css';
+import './styles/14-reviews.css';
+import './styles/15-guide.css';
+import './styles/16-visit.css';
+import './styles/17-footer.css';
+import './styles/18-whatsapp.css';
 
 const phone='tel:+551732314174';
 const maps='https://www.google.com/maps/place/Confeitaria+Paganelli/@-20.8203768,-49.3894545,17z/data=!4m6!3m5!1s0x94bdadbadbd0a8eb:0x25475b3bbd009d45!8m2!3d-20.8203768!4d-49.3894545!16s%2Fg%2F11q40g7yw_';
