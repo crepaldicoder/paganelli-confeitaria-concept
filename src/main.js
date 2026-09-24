@@ -44,7 +44,7 @@ document.querySelector('#app').innerHTML=`
 <main id="conteudo">
 <section class="threshold" id="inicio" data-panel="pink">
  <div class="threshold-stage">
-  <video class="threshold-video" muted playsinline webkit-playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
+  <video class="threshold-video" muted playsinline webkit-playsinline preload="metadata" tabindex="-1" aria-hidden="true"></video>
   <div class="threshold-veil" aria-hidden="true"></div>
   <div class="hero-copy threshold-copy">
    <p class="eyebrow">Confeitaria em São José do Rio Preto</p>
@@ -152,27 +152,49 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 // frame e o video acompanha continuo. No toque fica o scroll nativo (syncTouch off):
 // a inercia do iOS ja e suave e emula-la em JS piora a sensacao.
 const lenis=reduced?null:new Lenis({autoRaf:true,lerp:.09,anchors:true,stopInertiaOnNavigate:true});
-let updateThresholdRef=null;
+let updateThresholdRef=null,primeVideoRef=null,lastVideoPaint=0;
 const thresholdEl=document.querySelector('.threshold'),thresholdVideo=document.querySelector('.threshold-video'),portraitStage=matchMedia('(max-width:900px)').matches,stageVariant=portraitStage?'9x16':'16x9';
 const thresholdCopyEl=document.querySelector('.threshold .hero-copy'),thresholdVeilEl=document.querySelector('.threshold-veil'),thresholdStampEl=document.querySelector('.threshold .stamp'),thresholdExitEl=document.querySelector('.threshold-exit');
 if(thresholdVideo){
  thresholdVideo.poster=`/images/fachada-poster-${stageVariant}.webp`;
  if(!reduced){
   thresholdVideo.src=`/images/fachada-entrada-${stageVariant}.mp4`;
-  // o vídeo só desce depois que a página está interativa; o poster segura o hero até lá
-  const warm=()=>{
-   thresholdVideo.preload='auto';thresholdVideo.load();
-   // iOS costuma nao decodificar um video que nunca tocou: um play/pause mudo acorda
-   // o decodificador para que o seek passe a renderizar quadro.
-   thresholdVideo.muted=true;thresholdVideo.playsInline=true;
-   const prime=thresholdVideo.play();
-   if(prime&&prime.then)prime.then(()=>thresholdVideo.pause()).catch(()=>{
-    // bloqueado sem gesto: tenta de novo no primeiro toque
-    const go=()=>{thresholdVideo.play().then(()=>thresholdVideo.pause()).catch(()=>{});removeEventListener('touchstart',go);removeEventListener('pointerdown',go)};
-    addEventListener('touchstart',go,{passive:true});addEventListener('pointerdown',go);
+  thresholdVideo.muted=true;thresholdVideo.playsInline=true;
+  // Aquecer o video tem que ser teimoso: o Chrome do Android corta preload em rede movel
+  // ou economia de dados, e se a duracao nunca fica conhecida o scrub nunca comeca — o
+  // que se ve e so o poster recebendo o zoom. Um play/pause mudo tambem e o que faz o
+  // decodificador entregar quadro no seek (iOS e alguns Androids).
+  let gestureHook=null;
+  const primeVideo=()=>{
+   thresholdVideo.preload='auto';
+   if(thresholdVideo.readyState===0)thresholdVideo.load();
+   const started=thresholdVideo.play();
+   if(started&&started.then)started.then(()=>thresholdVideo.pause()).catch(()=>{
+    // autoplay bloqueado (economia de bateria, ajuste do usuario): tenta no proximo toque
+    if(gestureHook)return;
+    const retry=()=>{gestureHook=null;removeEventListener('touchstart',retry);removeEventListener('pointerdown',retry);primeVideo()};
+    gestureHook=retry;
+    addEventListener('touchstart',retry,{passive:true,once:true});addEventListener('pointerdown',retry,{once:true});
    });
   };
-  'requestIdleCallback' in window?requestIdleCallback(warm,{timeout:2000}):setTimeout(warm,700);
+  primeVideoRef=primeVideo;
+  'requestIdleCallback' in window?requestIdleCallback(primeVideo,{timeout:2000}):setTimeout(primeVideo,700);
+  // o primeiro gesto tambem aquece, caso o idle callback tenha pegado a rede cortada
+  const firstGesture=()=>{removeEventListener('touchstart',firstGesture);removeEventListener('pointerdown',firstGesture);primeVideo()};
+  addEventListener('touchstart',firstGesture,{passive:true,once:true});addEventListener('pointerdown',firstGesture,{once:true});
+  // insiste enquanto o hero estiver na tela e nao houver nenhum quadro decodificado
+  let tries=0;
+  const watchdog=setInterval(()=>{
+   if(thresholdVideo.readyState>=2||++tries>10){clearInterval(watchdog);return}
+   const box=thresholdEl?.getBoundingClientRect();
+   if(box&&box.bottom>0&&box.top<innerHeight)primeVideo();
+  },1500);
+  // 'requestVideoFrameCallback' avisa a cada quadro realmente pintado: e assim que da
+  // para notar que os seeks terminam mas a tela continua parada (decodificador solto).
+  if('requestVideoFrameCallback' in HTMLVideoElement.prototype){
+   const onPaint=()=>{lastVideoPaint=performance.now();thresholdVideo.requestVideoFrameCallback(onPaint)};
+   thresholdVideo.requestVideoFrameCallback(onPaint);
+  }
  }
 }
 document.querySelectorAll('.quote-band,.table-section,.heritage-number,.before-you-go').forEach(section=>{section.classList.add('motion-scene');const field=document.createElement('span');field.className='print-motion-field';field.setAttribute('aria-hidden','true');section.prepend(field)});
@@ -268,11 +290,13 @@ else{
  if(thresholdVideo&&thresholdEl&&thresholdVideo.getAttribute('src')){
   let heroAwaySince=0;
   const resync=()=>{clearTimeout(seekGuard);seekBusy=false;updateThreshold()};
-  const revive=()=>{
-   if(thresholdVideo.readyState===0)thresholdVideo.load();
-   const pr=thresholdVideo.play();
-   if(pr&&pr.then)pr.then(()=>{thresholdVideo.pause();resync()}).catch(resync);else resync();
-  };
+  const revive=()=>{primeVideoRef&&primeVideoRef();resync()};
+  // seeks terminando sem nenhum quadro novo pintado = decodificador solto; reacorda.
+  thresholdVideo.addEventListener('seeked',()=>{
+   if(!lastVideoPaint||performance.now()-lastVideoPaint<1200)return;
+   const box=thresholdEl.getBoundingClientRect();
+   if(box.bottom>0&&box.top<innerHeight)primeVideoRef&&primeVideoRef();
+  });
   new IntersectionObserver(entries=>{
    const entry=entries[entries.length-1];
    if(!entry.isIntersecting){heroAwaySince=performance.now();return}
@@ -351,3 +375,26 @@ const atmosphereRail=document.querySelector('.atmosphere-rail');
 if(atmosphereRail){const cards=[...atmosphereRail.querySelectorAll('.atmosphere-card')],status=document.querySelector('[data-rail="atmosphere"]'),dots=[...status.querySelectorAll('button')],label=status.querySelector('p span'),count=status.querySelector('p b'),names=['O salão como cenário','Rosa em todos os detalhes','Luzes sobre o jardim','A vitrine como primeiro convite'];let raf=false,active=0;const setActive=i=>{active=i;dots.forEach((d,n)=>{d.classList.toggle('active',n===i);d.setAttribute('aria-selected',String(n===i))});count.textContent=String(i+1).padStart(2,'0');label.textContent=names[i]};const update=()=>{const c=atmosphereRail.scrollLeft+atmosphereRail.clientWidth/2;let best=0,dist=Infinity;cards.forEach((card,i)=>{const d=Math.abs(card.offsetLeft+card.offsetWidth/2-c);if(d<dist){dist=d;best=i}});if(best!==active)setActive(best);raf=false};atmosphereRail.addEventListener('scroll',()=>{if(!raf){requestAnimationFrame(update);raf=true}},{passive:true});dots.forEach((dot,i)=>dot.addEventListener('click',()=>{atmosphereRail.scrollTo({left:cards[i].offsetLeft-atmosphereRail.offsetLeft,behavior:reduced?'auto':'smooth'});setActive(i)}));setActive(0)}
 
 for(const [selector,key] of [['.reviews-grid','reviews'],['.guide-grid','guide']]){const rail=document.querySelector(selector),status=document.querySelector(`[data-rail-status="${key}"]`);if(!rail||!status)continue;const cards=[...rail.children],number=status.querySelector('b'),bar=status.querySelector('i');let frame=false;const update=()=>{const center=rail.scrollLeft+rail.clientWidth/2;let active=0,distance=Infinity;cards.forEach((card,i)=>{const d=Math.abs(card.offsetLeft+card.offsetWidth/2-center);if(d<distance){distance=d;active=i}});number.textContent=String(active+1).padStart(2,'0');bar.style.setProperty('--rail-progress',`${((active+1)/cards.length)*100}%`);frame=false};rail.addEventListener('scroll',()=>{if(!frame){requestAnimationFrame(update);frame=true}},{passive:true});update()}
+
+// Diagnostico sob demanda (so com ?diag=1 na URL): mostra na tela o estado real do video
+// no aparelho, que e a unica forma de ver o que acontece num Android/iPhone de verdade.
+if(thresholdVideo&&location.search.includes('diag')){
+ const box=document.createElement('pre');
+ box.style.cssText='position:fixed;left:8px;top:80px;z-index:9999;margin:0;padding:8px 10px;background:rgba(0,0,0,.82);color:#7CFF9B;font:11px/1.45 ui-monospace,monospace;white-space:pre;border-radius:6px;pointer-events:none;max-width:92vw';
+ document.body.appendChild(box);
+ const estados=['0 vazio','1 metadata','2 quadro atual','3 dados a frente','4 completo'];
+ setInterval(()=>{
+  const v=thresholdVideo,e=v.error,paint=lastVideoPaint?Math.round(performance.now()-lastVideoPaint)+'ms':'NUNCA';
+  box.textContent=[
+   'arquivo   '+(v.currentSrc||v.src||'(sem src)').split('/').pop(),
+   'readyState '+(estados[v.readyState]||v.readyState),
+   'network   '+['vazio','ocioso','carregando','sem fonte'][v.networkState],
+   'duracao   '+(v.duration||'?'),
+   'tempo     '+v.currentTime.toFixed(2)+(v.paused?' (pausado)':' (tocando)'),
+   'quadro ha '+paint,
+   'buffer    '+(v.buffered.length?v.buffered.end(v.buffered.length-1).toFixed(1)+'s':'0'),
+   'erro      '+(e?e.code+' '+(e.message||''):'nenhum'),
+   'tela      '+innerWidth+'x'+innerHeight
+  ].join('\n');
+ },250);
+}
