@@ -33,7 +33,7 @@ const photo=(name,alt,eager=false)=>{const [w,h]=photoSize[name];const load=eage
 
 document.querySelector('#app').innerHTML=`
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-<div class="build-intro" aria-hidden="true"><div class="intro-panel intro-panel--left"></div><div class="intro-panel intro-panel--right"></div><div class="intro-stage"><span class="intro-index">SÃO JOSÉ DO RIO PRETO · 1947</span><div class="intro-writing"><img class="intro-logo-revised" src="/images/logo-paganelli-intro.svg" alt="" width="1876" height="462"></div><p>uma receita construída<br>traço por traço</p></div></div>
+<div class="build-intro" aria-hidden="true"><div class="intro-panel intro-panel--left"></div><div class="intro-panel intro-panel--right"></div><div class="intro-stage"><span class="intro-index">SÃO JOSÉ DO RIO PRETO · 1947</span><div class="intro-writing"><img class="intro-logo-revised" src="/images/logo-paganelli-abertura.svg" alt="" width="1876" height="462"></div><p>uma receita construída<br>traço por traço</p></div></div>
 <header class="topbar">
   <a class="brand" href="#inicio" aria-label="Paganelli, início"><img class="literal-logo" src="/images/logo-paganelli.svg" alt="" width="1876" height="462"></a>
   <nav class="desktop-nav" aria-label="Principal"><a href="#oficio">O ofício</a><a href="#mesa">Da vitrine</a><a href="#avaliacoes">Avaliações</a><a href="#visita">Visite</a></nav>
@@ -232,7 +232,7 @@ else{
   document.body.classList.add('intro-playing');
   lenis?.stop();
   try{sessionStorage.setItem('pg-intro','1')}catch{}
-  setTimeout(()=>{document.body.classList.add('site-ready');document.body.classList.remove('intro-playing');if(!menu.classList.contains('open'))lenis?.start();document.querySelector('.hero-image')?.classList.add('built')},1200);
+  setTimeout(()=>{document.body.classList.add('site-ready');document.body.classList.remove('intro-playing');if(!menu.classList.contains('open'))lenis?.start();document.querySelector('.hero-image')?.classList.add('built')},1640);
  }
  const buildImage=el=>{const rail=el.closest('.atmosphere-rail');if(rail){if(rail.dataset.buildScheduled)return;rail.dataset.buildScheduled='true';rail.querySelectorAll('.image-build').forEach((card,i)=>setTimeout(()=>card.classList.add('built'),i*170))}else el.classList.add('built')};
  // Mesmas zonas do fallback revealPassed: texto comeca a entrar um pouco antes de aparecer
