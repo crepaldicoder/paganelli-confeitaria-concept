@@ -1,6 +1,7 @@
 // Uma funcao por bloco da pagina. O HTML e exatamente o que ficava na string unica do
 // main.js (mesmos espacos e quebras), so separado para dar para achar e editar cada parte.
-import { phone, maps, instagram, whatsapp } from '../content/business.js';
+import { phone, maps, instagram, whatsapp, whatsappOrder, phoneDisplay, street, district, postalCode, categories } from '../content/business.js';
+import { hasHours, hoursLines } from '../content/hours.js';
 import { svg, ratingStars } from '../content/icons.js';
 import { LOGO, photo } from '../content/media.js';
 import { ribbonItems } from '../content/ribbon.js';
@@ -17,7 +18,7 @@ export const topbar=()=>`<header class="topbar">
 export const mobileMenu=()=>`<div class="mobile-menu" id="menu" aria-hidden="true" data-lenis-prevent>
  <button class="menu-close" aria-label="Fechar menu"><span>Fechar</span><i aria-hidden="true"></i></button>
  <nav aria-label="Navegação móvel"><a href="#inicio">01 — Início</a><a href="#oficio">02 — O ofício</a><a href="#mesa">03 — Da vitrine</a><a href="#avaliacoes">04 — Avaliações</a><a href="#visita">05 — Visite</a></nav>
- <p>Rua Ondina, 334<br>Vila Redentora · Rio&nbsp;Preto</p>
+ <p>${street}<br>Vila Redentora · Rio&nbsp;Preto</p>
 </div>`;
 export const whatsappFloat=()=>`<a class="whatsapp-float" href="${whatsapp}" target="_blank" rel="noopener noreferrer" aria-label="Conversar com a Paganelli pelo WhatsApp"><span>Fale no WhatsApp</span>${svg('whatsapp')}</a>`;
 export const hero=()=>`<section class="threshold" id="inicio" data-panel="pink">
@@ -56,13 +57,13 @@ export const atmosphere=()=>`<section class="atmosphere construct" id="atmosfera
 </section>`;
 export const table=()=>`<section class="table-section construct" id="mesa" data-panel="pink">
  <div class="chapter light reveal"><span>Capítulo 02</span><b>Da vitrine</b></div>
- <div class="table-head reveal"><h2>Do doce ao salgado,<br><em>uma mesa inteira.</em></h2><p>Receitas para o café, para a sobremesa, para celebrar e para levar. Consulte a seleção do dia e encontre o sabor certo para cada ocasião.</p></div>
+ <div class="table-head reveal"><h2>Do doce ao salgado,<br><em>uma mesa inteira.</em></h2><p>Receitas para o café, para a sobremesa, para celebrar e para levar. A estrela da vitrine é a torta de frutas, feita com a massa folhada que o Sr. Valter criou.</p><ul class="rules" aria-label="O que tem na vitrine">${categories.map(c=>`<li>${c}</li>`).join('')}</ul></div>
  <figure class="table-image reveal image-build">${photo('torta-isolada','Torta de frutas da Paganelli vista de cima')}</figure>
- <div class="daily-card reveal"><small>A ESCOLHA CERTA É A DE HOJE</small><h3>Consulte a vitrine<br>e faça sua encomenda.</h3><a class="button paper" href="${phone}">${svg('phone')} (17) 3231-4174</a></div>
+ <div class="daily-card reveal"><small>A ESCOLHA CERTA É A DE HOJE</small><h3>Consulte a vitrine<br>e faça sua encomenda.</h3><div class="daily-actions"><a class="button paper" href="${whatsappOrder}" target="_blank" rel="noopener noreferrer">${svg('whatsapp')} Encomendar pelo WhatsApp</a><a class="button line" href="${phone}">${svg('phone')} ${phoneDisplay}</a></div></div>
 </section>`;
 export const heritage=()=>`<section class="heritage construct" data-panel="blue">
  <div class="heritage-number reveal"><small>Uma história desde</small><b>19<span>47</span></b></div>
- <div class="heritage-copy reveal"><h2>Uma tradição presente<br>na memória de Rio&nbsp;Preto.</h2><p>Décadas de receitas, encontros e celebrações fizeram da Paganelli um endereço querido por diferentes gerações.</p><div class="rules"><span>Feito com cuidado</span><span>Receitas que permanecem</span><span>Gente à mesa</span></div></div>
+ <div class="heritage-copy reveal"><h2>Uma tradição presente<br>na memória de Rio&nbsp;Preto.</h2><p>Tudo começou com o Sr. Valter Paganelli. Aos 13 anos, ele já fazia doces, tortas e bolos, só para a família.</p><p>Depois vieram a loja e uma massa folhada criada por ele, que deu origem à nossa torta de frutas: até hoje o carro-chefe da casa, conhecida em todo o Brasil.</p><p>Ingredientes de qualidade e a vontade de sempre melhorar cada receita construíram o nome Paganelli. Mais do que clientes, fizemos amigos pelo caminho, e hoje essa história já soma três gerações.</p><div class="rules"><span>Feito com cuidado</span><span>Receitas que permanecem</span><span>Gente à mesa</span></div></div>
 </section>`;
 export const reviews=()=>`<section class="reviews construct" id="avaliacoes">
  <div class="chapter reveal"><span>Capítulo 03</span><b>Avaliações</b></div>
@@ -81,7 +82,7 @@ export const guide=()=>`<section class="before-you-go construct" data-panel="pin
  <div class="guide-grid reveal">
   <article><b>01</b><h3>Conheça a vitrine</h3><p>Descubra os doces e salgados preparados para o dia e escolha seus favoritos.</p></article>
   <article><b>02</b><h3>Faça sua encomenda</h3><p>Converse com a equipe sobre sabores, tamanhos, antecedência e retirada.</p></article>
-  <article><b>03</b><h3>Venha nos visitar</h3><p>Estamos na Rua Ondina, 334, na Vila Redentora, em São José do Rio&nbsp;Preto.</p></article>
+  <article><b>03</b><h3>Venha nos visitar</h3><p>Estamos na ${street}, na Vila Redentora, em São José do Rio&nbsp;Preto.</p></article>
   <article><b>04</b><h3>Fale com a Paganelli</h3><p>Ligue para tirar dúvidas e preparar cada detalhe da sua próxima ocasião.</p></article>
  </div>
  <div class="compact-rail-status light-status" data-rail-status="guide"><b>01</b><span>/ 04</span><i aria-hidden="true"></i><small>Arraste para ver mais</small></div>
@@ -90,9 +91,9 @@ export const visit=()=>`<section class="visit construct" id="visita">
  <div class="chapter reveal"><span>Capítulo 04</span><b>Visite</b></div>
  <div class="visit-grid">
   <div class="visit-copy reveal"><p class="kicker">Vila Redentora · São José do Rio&nbsp;Preto</p><h2>O caminho<br>mais curto até<br><em>a vitrine.</em></h2></div>
-  <address class="address reveal"><span>Nosso endereço</span><b>Rua Ondina, 334</b><p>Vila Redentora<br>São José do Rio&nbsp;Preto — SP<br>CEP 15015-205</p></address>
+  <address class="address reveal"><span>Nosso endereço</span><b>${street}</b><p>Vila Redentora<br>São José do Rio&nbsp;Preto — SP<br>CEP ${postalCode}</p></address>
   <a class="map-card reveal" href="${maps}" target="_blank" rel="noopener noreferrer" aria-label="Abrir rota até a Confeitaria Paganelli no Google Maps"><span class="map-grid" aria-hidden="true"></span><span class="map-pin">${svg('pin')}</span><span class="map-copy"><small>COMO CHEGAR</small><b>Abra a rota até<br>a Paganelli</b><em>Google Maps ${svg('route')}</em></span></a>
-  <div class="contact reveal"><span>Telefone</span><a href="${phone}">(17) 3231-4174 ${svg('arrow')}</a><span>Instagram</span><a class="instagram-link" href="${instagram}" target="_blank" rel="noopener">@confeitariapaganelli ${svg('ig')}</a></div>
+  <div class="contact reveal"><span>Telefone</span><a href="${phone}">${phoneDisplay} ${svg('arrow')}</a><span>Instagram</span><a class="instagram-link" href="${instagram}" target="_blank" rel="noopener">@confeitariapaganelli ${svg('ig')}</a>${hasHours()?`<span>Horário</span><p class="hours">${hoursLines().join('<br>')}<b class="open-status" data-open-status hidden></b></p>`:''}</div>
  </div>
 </section>`;
 export const footer=()=>`<footer data-panel="pink"><div class="footer-brand"><img src="${LOGO}" alt="Paganelli Confeitaria" width="1876" height="462"></div><p>Confeitaria Paganelli · desde 1947<br>São José do Rio&nbsp;Preto — SP</p><a href="#inicio">Voltar ao início ${svg('arrow')}</a></footer>`;

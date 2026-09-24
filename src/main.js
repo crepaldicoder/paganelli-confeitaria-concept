@@ -31,6 +31,9 @@ import { initPointerEffects } from './features/pointer.js';
 import { initRibbon } from './features/ribbon.js';
 import { initReviewIndexes, initRails } from './features/rails.js';
 import { initDiagnostics } from './features/diagnostics.js';
+import { initOpenStatus } from './features/hours.js';
+import { initStructuredData } from './features/structured-data.js';
+import { initAnalytics } from './features/analytics.js';
 
 // A ordem de inicializacao e a mesma de quando tudo morava neste arquivo.
 renderPage(document.querySelector('#app'));
@@ -51,3 +54,6 @@ initReviewIndexes();
 initRibbon(reduced);
 initRails(reduced);
 initDiagnostics();
+initOpenStatus();
+initStructuredData();
+initAnalytics();

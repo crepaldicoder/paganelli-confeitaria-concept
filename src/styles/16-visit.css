@@ -371,3 +371,33 @@
     transition: none !important;
   }
 }
+
+/* Horario de funcionamento: mesmo ritmo das linhas de contato */
+.contact .hours {
+  width: 100%;
+  margin: 0 0 28px;
+  padding: 0 0 20px;
+  border-bottom: 1px solid var(--ink);
+  font: 600 18px/1.5 var(--display);
+}
+
+.contact .open-status {
+  display: block;
+  margin-top: 8px;
+  font: 800 10px var(--body);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--cherry);
+}
+
+.contact .open-status.is-open {
+  color: var(--leaf);
+}
+
+@media (max-width:900px) {
+  .contact .hours {
+    font-size: 16px;
+    margin-bottom: 12px;
+    padding-bottom: 14px;
+  }
+}
