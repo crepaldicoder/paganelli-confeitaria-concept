@@ -22,14 +22,20 @@ const ratingStars=(value,decorative=false)=>{
  const a11y=decorative?'aria-hidden="true"':`role="img" aria-label="${String(value).replace('.',',')} de 5 estrelas"`;
  return `<span class="rating-stars" ${a11y}>${stars}</span>`;
 };
-const photoSize={'hero-folhado':[1122,1402],'maos-oficio':[1086,1448],'interior-editorial':[1086,1448],'sala-rosa-editorial':[1023,1537],'ambiente-luzes-editorial':[1333,1180],'vitrine-editorial':[1453,1082],'torta-isolada':[809,810]};
-const photo=(name,alt,eager=false)=>{const [w,h]=photoSize[name];const load=eager?'fetchpriority="high"':'loading="lazy" decoding="async"';return `<picture><source srcset="/images/${name}.avif" type="image/avif"><source srcset="/images/${name}.webp" type="image/webp"><img src="/images/${name}.png" alt="${alt}" width="${w}" height="${h}" ${load}></picture>`};
+// Faixa em loop continuo: duas metades identicas (4 grupos cada, mais larga que qualquer
+// tela) e a animacao anda exatamente meia faixa. Antes andava 35% com o texto repetido em
+// outro ponto, entao pulava a cada volta e deixava o terco direito vazio. So o 1o grupo e
+// lido por leitor de tela.
+const ribbonWords=['massa folhada','receitas de família','produção artesanal','memória afetiva'];
+const ribbonItems=Array.from({length:8},(_,k)=>ribbonWords.map(w=>`<span${k?' aria-hidden="true"':''}>${w}</span><i aria-hidden="true"></i>`).join('')).join('');
+const photoSize={'hero-folhado':[1122,1402],'interior-editorial':[1086,1448],'sala-rosa-editorial':[1023,1537],'ambiente-luzes-editorial':[1333,1180],'vitrine-editorial':[1453,1082],'torta-isolada':[809,810]};
+const photo=(name,alt,eager=false)=>{const [w,h]=photoSize[name];const load=eager?'fetchpriority="high"':'loading="lazy" decoding="async"';return `<picture><source srcset="/images/${name}.avif" type="image/avif"><img src="/images/${name}.webp" alt="${alt}" width="${w}" height="${h}" ${load}></picture>`};
 
 document.querySelector('#app').innerHTML=`
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 <div class="build-intro" aria-hidden="true"><div class="intro-panel intro-panel--left"></div><div class="intro-panel intro-panel--right"></div><div class="intro-stage"><span class="intro-index">SÃO JOSÉ DO RIO PRETO · 1947</span><div class="intro-writing"><img class="intro-logo-revised" src="/images/logo-paganelli-intro.svg" alt="" width="1876" height="462"></div><p>uma receita construída<br>traço por traço</p></div></div>
 <header class="topbar">
-  <a class="brand" href="#inicio" aria-label="Paganelli, início"><img class="literal-logo" src="/images/logo-paganelli.svg" alt=""></a>
+  <a class="brand" href="#inicio" aria-label="Paganelli, início"><img class="literal-logo" src="/images/logo-paganelli.svg" alt="" width="1876" height="462"></a>
   <nav class="desktop-nav" aria-label="Principal"><a href="#oficio">O ofício</a><a href="#mesa">Da vitrine</a><a href="#avaliacoes">Avaliações</a><a href="#visita">Visite</a></nav>
   <a class="top-cta" href="${phone}">${svg('phone')} Ligar agora</a>
   <button class="menu-trigger" aria-expanded="false" aria-controls="menu"><span>Menu</span><i></i><i></i></button>
@@ -38,7 +44,7 @@ document.querySelector('#app').innerHTML=`
 <div class="mobile-menu" id="menu" aria-hidden="true" data-lenis-prevent>
  <button class="menu-close" aria-label="Fechar menu"><span>Fechar</span><i aria-hidden="true"></i></button>
  <nav aria-label="Navegação móvel"><a href="#inicio">01 — Início</a><a href="#oficio">02 — O ofício</a><a href="#mesa">03 — Da vitrine</a><a href="#avaliacoes">04 — Avaliações</a><a href="#visita">05 — Visite</a></nav>
- <p>Rua Ondina, 334<br>Vila Redentora · Rio Preto</p>
+ <p>Rua Ondina, 334<br>Vila Redentora · Rio&nbsp;Preto</p>
 </div>
 <a class="whatsapp-float" href="${whatsapp}" target="_blank" rel="noopener noreferrer" aria-label="Conversar com a Paganelli pelo WhatsApp"><span>Fale no WhatsApp</span>${svg('whatsapp')}</a>
 <main id="conteudo">
@@ -47,9 +53,9 @@ document.querySelector('#app').innerHTML=`
   <video class="threshold-video" muted playsinline webkit-playsinline preload="metadata" tabindex="-1" aria-hidden="true"></video>
   <div class="threshold-veil" aria-hidden="true"></div>
   <div class="hero-copy threshold-copy">
-   <p class="eyebrow">Confeitaria em São José do Rio Preto</p>
+   <p class="eyebrow">Confeitaria em São José do Rio&nbsp;Preto</p>
    <h1 class="hero-title"><span>Receitas</span><span>que o tempo</span><em>aperfeiçoa.</em></h1>
-   <p class="hero-intro">Há gerações, a Paganelli transforma o fazer artesanal, a vitrine generosa e o prazer de receber em uma tradição de Rio Preto.</p>
+   <p class="hero-intro">Há gerações, a Paganelli transforma o fazer artesanal, a vitrine generosa e o prazer de receber em uma tradição de Rio&nbsp;Preto.</p>
    <div class="hero-actions"><a class="button primary" href="${phone}">${svg('phone')} Falar com a confeitaria</a><a class="text-link" href="#oficio">Conheça nossa história ${svg('arrow')}</a></div>
    <div class="hero-facts"><span><b>4,7</b>${ratingStars(4.7,true)}<small>avaliação no Google</small></span></div>
    <div class="stamp" aria-hidden="true"><i class="stamp-glare"><i class="stamp-glare-spin"></i></i><span>feito com tempo</span><b>1947</b><small>RIO PRETO</small></div>
@@ -57,10 +63,10 @@ document.querySelector('#app').innerHTML=`
   <div class="threshold-exit" aria-hidden="true"></div>
  </div>
 </section>
-<section class="ribbon" aria-label="Valores" data-panel="blue"><div class="ribbon-track"><span>massa folhada</span><i aria-hidden="true"></i><span>receitas de família</span><i aria-hidden="true"></i><span>produção artesanal</span><i aria-hidden="true"></i><span>memória afetiva</span><i aria-hidden="true"></i><span>massa folhada</span><i aria-hidden="true"></i><span>receitas de família</span></div></section>
+<section class="ribbon" aria-label="Valores" data-panel="blue"><div class="ribbon-track">${ribbonItems}</div></section>
 <section class="manifesto construct" id="oficio">
  <div class="chapter reveal"><span>Capítulo 01</span><b>O ofício</b></div>
- <div class="manifesto-copy reveal"><p class="kicker">Nem toda receita começa no papel.</p><h2>Algumas começam <em>nas mãos.</em></h2><p>Desde 1947, a Paganelli faz parte da história de Rio Preto. Uma tradição construída com cuidado, repetição e aquele olhar atento que reconhece o ponto certo de cada receita.</p></div>
+ <div class="manifesto-copy reveal"><p class="kicker">Nem toda receita começa no papel.</p><h2>Algumas começam <em>nas mãos.</em></h2><p>Desde 1947, a Paganelli faz parte da história de Rio&nbsp;Preto. Uma tradição construída com cuidado, repetição e aquele olhar atento que reconhece o ponto certo de cada receita.</p></div>
  <figure class="craft-image reveal image-build">${photo('hero-folhado','Massa folhada com creme e frutas em uma bancada de confeitaria')}<figcaption><span>01</span> Delicadeza em cada camada</figcaption></figure>
  <div class="recipe-note reveal"><span>UMA BOA RECEITA PEDE</span><ul><li><b>01</b> matéria-prima</li><li><b>02</b> repetição e cuidado</li><li><b>03</b> tempo de forno</li><li><b>04</b> gente à mesa</li></ul></div>
 </section>
@@ -84,7 +90,7 @@ document.querySelector('#app').innerHTML=`
 </section>
 <section class="heritage construct" data-panel="blue">
  <div class="heritage-number reveal"><small>Uma história desde</small><b>19<span>47</span></b></div>
- <div class="heritage-copy reveal"><h2>Uma tradição presente<br>na memória de Rio Preto.</h2><p>Décadas de receitas, encontros e celebrações fizeram da Paganelli um endereço querido por diferentes gerações.</p><div class="rules"><span>Feito com cuidado</span><span>Receitas que permanecem</span><span>Gente à mesa</span></div></div>
+ <div class="heritage-copy reveal"><h2>Uma tradição presente<br>na memória de Rio&nbsp;Preto.</h2><p>Décadas de receitas, encontros e celebrações fizeram da Paganelli um endereço querido por diferentes gerações.</p><div class="rules"><span>Feito com cuidado</span><span>Receitas que permanecem</span><span>Gente à mesa</span></div></div>
 </section>
 <section class="reviews construct" id="avaliacoes">
  <div class="chapter reveal"><span>Capítulo 03</span><b>Avaliações</b></div>
@@ -103,7 +109,7 @@ document.querySelector('#app').innerHTML=`
  <div class="guide-grid reveal">
   <article><b>01</b><h3>Conheça a vitrine</h3><p>Descubra os doces e salgados preparados para o dia e escolha seus favoritos.</p></article>
   <article><b>02</b><h3>Faça sua encomenda</h3><p>Converse com a equipe sobre sabores, tamanhos, antecedência e retirada.</p></article>
-  <article><b>03</b><h3>Venha nos visitar</h3><p>Estamos na Rua Ondina, 334, na Vila Redentora, em São José do Rio Preto.</p></article>
+  <article><b>03</b><h3>Venha nos visitar</h3><p>Estamos na Rua Ondina, 334, na Vila Redentora, em São José do Rio&nbsp;Preto.</p></article>
   <article><b>04</b><h3>Fale com a Paganelli</h3><p>Ligue para tirar dúvidas e preparar cada detalhe da sua próxima ocasião.</p></article>
  </div>
  <div class="compact-rail-status light-status" data-rail-status="guide"><b>01</b><span>/ 04</span><i aria-hidden="true"></i><small>Arraste para ver mais</small></div>
@@ -111,14 +117,14 @@ document.querySelector('#app').innerHTML=`
 <section class="visit construct" id="visita">
  <div class="chapter reveal"><span>Capítulo 04</span><b>Visite</b></div>
  <div class="visit-grid">
-  <div class="visit-copy reveal"><p class="kicker">Vila Redentora · São José do Rio Preto</p><h2>O caminho<br>mais curto até<br><em>a vitrine.</em></h2></div>
-  <address class="address reveal"><span>Nosso endereço</span><b>Rua Ondina, 334</b><p>Vila Redentora<br>São José do Rio Preto — SP<br>CEP 15015-205</p></address>
+  <div class="visit-copy reveal"><p class="kicker">Vila Redentora · São José do Rio&nbsp;Preto</p><h2>O caminho<br>mais curto até<br><em>a vitrine.</em></h2></div>
+  <address class="address reveal"><span>Nosso endereço</span><b>Rua Ondina, 334</b><p>Vila Redentora<br>São José do Rio&nbsp;Preto — SP<br>CEP 15015-205</p></address>
   <a class="map-card reveal" href="${maps}" target="_blank" rel="noopener noreferrer" aria-label="Abrir rota até a Confeitaria Paganelli no Google Maps"><span class="map-grid" aria-hidden="true"></span><span class="map-pin">${svg('pin')}</span><span class="map-copy"><small>COMO CHEGAR</small><b>Abra a rota até<br>a Paganelli</b><em>Google Maps ${svg('route')}</em></span></a>
   <div class="contact reveal"><span>Telefone</span><a href="${phone}">(17) 3231-4174 ${svg('arrow')}</a><span>Instagram</span><a class="instagram-link" href="${instagram}" target="_blank" rel="noopener">@confeitariapaganelli ${svg('ig')}</a></div>
  </div>
 </section>
 </main>
-<footer data-panel="pink"><div class="footer-brand"><img src="/images/logo-paganelli.svg" alt="Paganelli Confeitaria"></div><p>Confeitaria Paganelli · desde 1947<br>São José do Rio Preto — SP</p><a href="#inicio">Voltar ao início ${svg('arrow')}</a></footer>`;
+<footer data-panel="pink"><div class="footer-brand"><img src="/images/logo-paganelli.svg" alt="Paganelli Confeitaria" width="1876" height="462"></div><p>Confeitaria Paganelli · desde 1947<br>São José do Rio&nbsp;Preto — SP</p><a href="#inicio">Voltar ao início ${svg('arrow')}</a></footer>`;
 
 const writingTargets=document.querySelectorAll('.manifesto-copy h2,.quote-band p,.atmosphere-head h2,.table-head h2,.heritage-copy h2,.reviews-head h2,.guide-head h2,.visit-copy h2');
 const wrapWords=(root)=>{
@@ -128,7 +134,8 @@ const wrapWords=(root)=>{
  while(walker.nextNode()) if(walker.currentNode.nodeValue.trim()) nodes.push(walker.currentNode);
  nodes.forEach(node=>{
   const fragment=document.createDocumentFragment();
-  node.nodeValue.split(/(\s+)/).forEach(part=>{
+  // separa em espaco comum, mas nao no &nbsp; ("Rio Preto" fica uma palavra so)
+  node.nodeValue.split(/([^\S ]+)/).forEach(part=>{
    if(!part.trim()){fragment.append(part);return}
    const span=document.createElement('span');span.className='scribe-word';span.style.setProperty('--word',index++);span.textContent=part;fragment.append(span);
   });
@@ -143,22 +150,28 @@ const trigger=document.querySelector('.menu-trigger'), menu=document.querySelect
 menu.inert=true;
 const focusables=()=>[close,...menu.querySelectorAll('a')];
 function openMenu(){menu.inert=false;menu.classList.add('open');menu.setAttribute('aria-hidden','false');trigger.setAttribute('aria-expanded','true');document.body.classList.add('menu-open');lenis?.stop();setTimeout(()=>close.focus(),120)}
-function closeMenu(){menu.classList.remove('open');menu.setAttribute('aria-hidden','true');menu.inert=true;trigger.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open');lenis?.start();trigger.focus()}
+function closeMenu(){menu.classList.remove('open');menu.setAttribute('aria-hidden','true');menu.inert=true;trigger.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open');if(!document.body.classList.contains('intro-playing'))lenis?.start();trigger.focus()}
 trigger.addEventListener('click',openMenu);close.addEventListener('click',closeMenu);menu.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',closeMenu));
-document.addEventListener('keydown',e=>{if(!menu.classList.contains('open'))return;if(e.key==='Escape')closeMenu();if(e.key==='Tab'){const f=focusables(),first=f[0],last=f.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+document.addEventListener('keydown',e=>{if(!menu.classList.contains('open'))return;if(e.key==='Escape')closeMenu();if(e.key==='Tab'){const f=focusables(),first=f[0],last=f.at(-1);if(!menu.contains(document.activeElement)){e.preventDefault();(e.shiftKey?last:first).focus();return}if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 // Lenis suaviza a entrada da roda/trackpad: sem ele cada "tick" da roda pula ~100px
 // de uma vez e o scrub do video salta junto. Com ele o scroll anda um pouco a cada
 // frame e o video acompanha continuo. No toque fica o scroll nativo (syncTouch off):
 // a inercia do iOS ja e suave e emula-la em JS piora a sensacao.
 const lenis=reduced?null:new Lenis({autoRaf:true,lerp:.09,anchors:true,stopInertiaOnNavigate:true});
-let updateThresholdRef=null,primeVideoRef=null,lastVideoPaint=0;
-const thresholdEl=document.querySelector('.threshold'),thresholdVideo=document.querySelector('.threshold-video'),portraitStage=matchMedia('(max-width:900px)').matches,stageVariant=portraitStage?'9x16':'16x9';
+let updateThresholdRef=null,primeVideoRef=null,lastVideoPaint=0,pausedPaintSeen=false,seeksSincePaint=0;
+// Os arquivos em /images ficam em cache por 1 dia (vercel.json). Ao trocar o video ou o
+// poster mantendo o mesmo nome, suba MEDIA_V (e o ?v= dos preloads em index.html) para
+// que ninguem fique vendo a versao antiga.
+const MEDIA_V='3';
+const stageQuery=matchMedia('(max-width:900px)'),stageVariant=()=>stageQuery.matches?'9x16':'16x9';
+const videoUrl=v=>`/images/fachada-entrada-${v}.mp4?v=${MEDIA_V}`,posterUrl=v=>`/images/fachada-poster-${v}.webp?v=${MEDIA_V}`;
+const thresholdEl=document.querySelector('.threshold'),thresholdVideo=document.querySelector('.threshold-video');
 const thresholdCopyEl=document.querySelector('.threshold .hero-copy'),thresholdVeilEl=document.querySelector('.threshold-veil'),thresholdStampEl=document.querySelector('.threshold .stamp'),thresholdExitEl=document.querySelector('.threshold-exit');
 if(thresholdVideo){
- thresholdVideo.poster=`/images/fachada-poster-${stageVariant}.webp`;
+ thresholdVideo.poster=posterUrl(stageVariant());
  if(!reduced){
-  thresholdVideo.src=`/images/fachada-entrada-${stageVariant}.mp4`;
+  thresholdVideo.src=videoUrl(stageVariant());
   thresholdVideo.muted=true;thresholdVideo.playsInline=true;
   // Aquecer o video tem que ser teimoso: o Chrome do Android corta preload em rede movel
   // ou economia de dados, e se a duracao nunca fica conhecida o scrub nunca comeca — o
@@ -167,11 +180,15 @@ if(thresholdVideo){
   let gestureHook=null;
   const primeVideo=()=>{
    thresholdVideo.preload='auto';
-   if(thresholdVideo.readyState===0)thresholdVideo.load();
+   // load() so quando nada esta baixando: chamar com o metadata ainda a caminho cancela e
+   // recomeca o download do zero (em rede lenta o vigia fazia isso a cada 1,5 s).
+   if(thresholdVideo.readyState===0&&thresholdVideo.networkState!==HTMLMediaElement.NETWORK_LOADING)thresholdVideo.load();
    const started=thresholdVideo.play();
-   if(started&&started.then)started.then(()=>thresholdVideo.pause()).catch(()=>{
-    // autoplay bloqueado (economia de bateria, ajuste do usuario): tenta no proximo toque
-    if(gestureHook)return;
+   // depois do pause, volta o video para o quadro do scroll (o play pode ter avancado)
+   if(started&&started.then)started.then(()=>{thresholdVideo.pause();updateThresholdRef?.()}).catch(err=>{
+    // so bloqueio de autoplay (economia de bateria, ajuste do usuario) espera um toque;
+    // AbortError e so um play interrompido por load()/pause(), nao precisa de nada
+    if(err?.name!=='NotAllowedError'||gestureHook)return;
     const retry=()=>{gestureHook=null;removeEventListener('touchstart',retry);removeEventListener('pointerdown',retry);primeVideo()};
     gestureHook=retry;
     addEventListener('touchstart',retry,{passive:true,once:true});addEventListener('pointerdown',retry,{once:true});
@@ -180,7 +197,7 @@ if(thresholdVideo){
   primeVideoRef=primeVideo;
   'requestIdleCallback' in window?requestIdleCallback(primeVideo,{timeout:2000}):setTimeout(primeVideo,700);
   // o primeiro gesto tambem aquece, caso o idle callback tenha pegado a rede cortada
-  const firstGesture=()=>{removeEventListener('touchstart',firstGesture);removeEventListener('pointerdown',firstGesture);primeVideo()};
+  const firstGesture=()=>{removeEventListener('touchstart',firstGesture);removeEventListener('pointerdown',firstGesture);if(thresholdVideo.readyState<2||!lastVideoPaint)primeVideo()};
   addEventListener('touchstart',firstGesture,{passive:true,once:true});addEventListener('pointerdown',firstGesture,{once:true});
   // insiste enquanto o hero estiver na tela e nao houver nenhum quadro decodificado
   let tries=0;
@@ -192,10 +209,17 @@ if(thresholdVideo){
   // 'requestVideoFrameCallback' avisa a cada quadro realmente pintado: e assim que da
   // para notar que os seeks terminam mas a tela continua parada (decodificador solto).
   if('requestVideoFrameCallback' in HTMLVideoElement.prototype){
-   const onPaint=()=>{lastVideoPaint=performance.now();thresholdVideo.requestVideoFrameCallback(onPaint)};
+   const onPaint=()=>{lastVideoPaint=performance.now();seeksSincePaint=0;if(thresholdVideo.paused)pausedPaintSeen=true;thresholdVideo.requestVideoFrameCallback(onPaint)};
    thresholdVideo.requestVideoFrameCallback(onPaint);
   }
- }
+  // girar o tablet/redimensionar atravessando 900px troca o recorte (16:9 x 9:16)
+  stageQuery.addEventListener('change',()=>{
+   thresholdVideo.poster=posterUrl(stageVariant());
+   thresholdVideo.src=videoUrl(stageVariant());
+   thresholdVideo.load();lastVideoPaint=0;pausedPaintSeen=false;
+   primeVideo();
+  });
+ }else stageQuery.addEventListener('change',()=>{thresholdVideo.poster=posterUrl(stageVariant())});
 }
 document.querySelectorAll('.quote-band,.table-section,.heritage-number,.before-you-go').forEach(section=>{section.classList.add('motion-scene');const field=document.createElement('span');field.className='print-motion-field';field.setAttribute('aria-hidden','true');section.prepend(field)});
 const revealTargets=[...document.querySelectorAll('.reveal,.construct,.image-build')];
@@ -208,18 +232,31 @@ else{
   document.body.classList.add('intro-playing');
   lenis?.stop();
   try{sessionStorage.setItem('pg-intro','1')}catch{}
-  setTimeout(()=>{document.body.classList.add('site-ready');document.body.classList.remove('intro-playing');lenis?.start();document.querySelector('.hero-image')?.classList.add('built')},1200);
+  setTimeout(()=>{document.body.classList.add('site-ready');document.body.classList.remove('intro-playing');if(!menu.classList.contains('open'))lenis?.start();document.querySelector('.hero-image')?.classList.add('built')},1200);
  }
  const buildImage=el=>{const rail=el.closest('.atmosphere-rail');if(rail){if(rail.dataset.buildScheduled)return;rail.dataset.buildScheduled='true';rail.querySelectorAll('.image-build').forEach((card,i)=>setTimeout(()=>card.classList.add('built'),i*170))}else el.classList.add('built')};
- const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target;if(el.classList.contains('reveal'))el.classList.add('visible');if(el.classList.contains('construct'))el.classList.add('built');if(el.classList.contains('image-build'))buildImage(el);io.unobserve(el)}),{threshold:.1,rootMargin:'0px 0px -10%'});
- revealTargets.forEach((el,i)=>{if(el.classList.contains('reveal'))el.style.setProperty('--reveal-delay',`${(i%4)*90}ms`);io.observe(el)});
+ // Mesmas zonas do fallback revealPassed: texto comeca a entrar um pouco antes de aparecer
+ // (topo < 108% da tela), imagem quando o topo passa de 88%. Com o observer mais tardio
+ // (threshold .1 e -10%), quem vencia dependia da velocidade do scroll e do timer de 400 ms.
+ const onReveal=(entries,obs)=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target;if(el.classList.contains('reveal'))el.classList.add('visible');if(el.classList.contains('construct'))el.classList.add('built');if(el.classList.contains('image-build'))buildImage(el);obs.unobserve(el)});
+ const io=new IntersectionObserver(onReveal,{rootMargin:'0px 0px 8% 0px'}),ioImage=new IntersectionObserver(onReveal,{rootMargin:'0px 0px -12% 0px'});
+ revealTargets.forEach((el,i)=>{if(el.classList.contains('reveal'))el.style.setProperty('--reveal-delay',`${(i%4)*90}ms`);(el.classList.contains('image-build')?ioImage:io).observe(el)});
  const topProgress=document.querySelector('.topbar-progress'),navLinks=[...document.querySelectorAll('.desktop-nav a')],chapterStops=[['inicio','Início'],['oficio','O ofício'],['mesa','Da vitrine'],['avaliacoes','Avaliações'],['visita','Visite']].map(([id,label])=>({el:document.getElementById(id),label})),scenePanels=[...document.querySelectorAll('.motion-scene')],parallaxFrames=[...document.querySelectorAll('.image-build')],panelSections=[...document.querySelectorAll('[data-panel]')];let ticking=false,lastChapter=-1,mobileParallaxSettled=false;
  // O parallax so importa perto da tela, mas antes lia/escrevia os 6 quadros em todo
  // frame de scroll — inclusive durante o scroll inteiro do hero, bem antes de
  // qualquer um deles existir na tela. Um IntersectionObserver com margem generosa
  // mantem um conjunto pequeno de "quem vale a pena medir agora"; fora dele o loop
  // nem chega a rodar.
- const parallaxIndex=new Map(parallaxFrames.map((f,i)=>[f,i])),activeParallax=new Set();
+ const parallaxIndex=new Map(parallaxFrames.map((f,i)=>[f,i])),activeParallax=new Set(),activeScenes=new Set();
+ // as variaveis de parallax vao no <img>, unico que as usa: na <figure> elas herdavam para
+ // ~10 elementos por card e todos recalculavam estilo a cada frame
+ const parallaxImg=new Map(parallaxFrames.map(f=>[f,f.querySelector('img')||f]));
+ if(scenePanels.length){
+  const sceneObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+   if(entry.isIntersecting)activeScenes.add(entry.target);else activeScenes.delete(entry.target)
+  }),{rootMargin:'35% 0px'});
+  scenePanels.forEach(p=>sceneObserver.observe(p));
+ }
  if(parallaxFrames.length){
   const parallaxObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
    if(entry.isIntersecting)activeParallax.add(entry.target);else activeParallax.delete(entry.target)
@@ -230,7 +267,7 @@ else{
  // engasgam o decoder. Aqui so existe um seek em voo por vez: o alvo mais recente
  // fica guardado e e perseguido assim que o anterior termina. Sem fila, sem atraso
  // artificial, e sem depender da cadencia de rAF (que o iOS estrangula no scroll).
- let seekTarget=0,seekBusy=false,seekGuard=0;
+ let seekTarget=0,seekBusy=false,seekGuard=0,seekStartedAt=0;
  // Interpolacao RIFE do master 1080p, servida a 60 fps em resolucao cheia no desktop
  // (antes era reduzida para 1440x810 a metade do bitrate), keyframe a cada 4 quadros
  // para o seek continuar barato.
@@ -239,11 +276,16 @@ else{
   if(seekBusy||!thresholdVideo||!thresholdVideo.duration)return;
   // Ignora apenas diferenças inferiores a um quadro para não criar seeks redundantes.
   if(Math.abs(seekTarget-thresholdVideo.currentTime)<scrubFrameStep*.9)return;
-  seekBusy=true;
+  seekBusy=true;seekStartedAt=performance.now();
   clearTimeout(seekGuard);
-  // se o 'seeked' nunca vier (midia em buffer, aba oculta), nao trava para sempre
-  seekGuard=setTimeout(()=>{seekBusy=false;flushSeek()},400);
+  // se o 'seeked' nunca vier (midia em buffer, aba oculta), nao trava para sempre; mas
+  // enquanto o proprio video diz que ainda esta buscando (ate 1,6 s), nao empilha outro
+  seekGuard=setTimeout(releaseSeek,400);
   thresholdVideo.currentTime=seekTarget;
+ };
+ const releaseSeek=()=>{
+  if(thresholdVideo.seeking&&performance.now()-seekStartedAt<1600){seekGuard=setTimeout(releaseSeek,200);return}
+  seekBusy=false;flushSeek();
  };
  thresholdVideo?.addEventListener('seeked',()=>{clearTimeout(seekGuard);seekBusy=false;flushSeek()});
  // Aceita medidas ja lidas por quem chamou, para o updateMotion poder agrupar todas
@@ -253,6 +295,22 @@ else{
   const rectTop=preRead?preRead.top:thresholdEl.getBoundingClientRect().top;
   const boxH=preRead?preRead.boxH:thresholdEl.offsetHeight;
   const span=boxH-innerHeight,p=Math.max(0,Math.min(1,-rectTop/(span||1)));
+  if(p!==lastHeroP){lastHeroP=p;writeHeroStyles(p)}
+  // scrub nos dois formatos: o 9:16 agora tem keyframes densos, entao aceita seek.
+  // Seek nao exige gesto do usuario, o que tira a politica de autoplay do caminho.
+  // Basta a duracao (metadata). Exigir readyState>=2 travava o video para sempre quando
+  // o Safari descartava os dados de um video parado fora da tela: o alvo parava de ser
+  // atualizado e a tela ficava congelada no ultimo quadro (o creme). Um seek com
+  // readyState 1 e justamente o que faz o navegador buscar e decodificar de novo.
+  if(thresholdVideo&&thresholdVideo.duration){
+   seekTarget=Math.min(thresholdVideo.duration-.05,p*thresholdVideo.duration);
+   flushSeek();
+  }
+ };
+ // Abaixo do hero p fica cravado em 1: reescrever os mesmos 6 estilos a cada frame do
+ // resto da pagina era trabalho a toa. So o seek continua rodando sempre (o resync depende).
+ let lastHeroP=-1;
+ const writeHeroStyles=p=>{
   // transform direto no video: --t no .threshold herdava para todo o hero e custava
   // ~8 ms de recalculo de estilo por frame so para escalar uma camada.
   if(thresholdVideo)thresholdVideo.style.transform=`scale(${(1+p*.07).toFixed(4)})`;
@@ -270,16 +328,6 @@ else{
   if(thresholdCopyEl){const rise=ramp(p,.04,.42);thresholdCopyEl.style.opacity=out(.04,.42);thresholdCopyEl.style.transform=`translateY(${(rise*-46).toFixed(2)}px)`}
   if(thresholdVeilEl)thresholdVeilEl.style.opacity=out(0,.52);
   if(thresholdExitEl)thresholdExitEl.style.opacity=ramp(p,.76,1);
-  // scrub nos dois formatos: o 9:16 agora tem keyframes densos, entao aceita seek.
-  // Seek nao exige gesto do usuario, o que tira a politica de autoplay do caminho.
-  // Basta a duracao (metadata). Exigir readyState>=2 travava o video para sempre quando
-  // o Safari descartava os dados de um video parado fora da tela: o alvo parava de ser
-  // atualizado e a tela ficava congelada no ultimo quadro (o creme). Um seek com
-  // readyState 1 e justamente o que faz o navegador buscar e decodificar de novo.
-  if(thresholdVideo&&thresholdVideo.duration){
-   seekTarget=Math.min(thresholdVideo.duration-.05,p*thresholdVideo.duration);
-   flushSeek();
-  }
  };
  updateThresholdRef=updateThreshold;
  // Recuperacao quando o hero volta a aparecer. O iOS libera o decodificador de um video
@@ -289,13 +337,20 @@ else{
  // ressincroniza com o scroll. Se os dados foram descartados por completo, recarrega.
  if(thresholdVideo&&thresholdEl&&thresholdVideo.getAttribute('src')){
   let heroAwaySince=0;
-  const resync=()=>{clearTimeout(seekGuard);seekBusy=false;updateThreshold()};
+  const resync=()=>{if(!thresholdVideo.seeking){clearTimeout(seekGuard);seekBusy=false}updateThreshold()};
   const revive=()=>{primeVideoRef&&primeVideoRef();resync()};
   // seeks terminando sem nenhum quadro novo pintado = decodificador solto; reacorda.
+  // Conta seeks concluidos sem nenhum quadro pintado (3 seguidos = travado de verdade). Antes
+  // era "1,2 s sem quadro", o que disparava so por o usuario ter parado de rolar e dava
+  // um play no meio do scrub. So vale em navegador que ja provou avisar quadro de seek
+  // com o video pausado; nos outros, o contador nunca zeraria e viraria play a cada 2 s.
+  let lastStallPrime=0;
   thresholdVideo.addEventListener('seeked',()=>{
-   if(!lastVideoPaint||performance.now()-lastVideoPaint<1200)return;
+   if(!pausedPaintSeen||!thresholdVideo.paused||++seeksSincePaint<3)return;
+   const now=performance.now();if(now-lastStallPrime<2000)return;
+   seeksSincePaint=0;lastStallPrime=now;
    const box=thresholdEl.getBoundingClientRect();
-   if(box.bottom>0&&box.top<innerHeight)primeVideoRef&&primeVideoRef();
+   if(box.bottom>0&&box.top<innerHeight)primeVideoRef?.();
   });
   new IntersectionObserver(entries=>{
    const entry=entries[entries.length-1];
@@ -314,24 +369,24 @@ else{
   const wide=innerWidth>900;
   // ---- FASE DE LEITURA: tudo que consulta layout, agrupado, antes de escrever ----
   const thresholdRead=thresholdEl?{top:thresholdEl.getBoundingClientRect().top,boxH:thresholdEl.offsetHeight}:null;
-  const max=document.documentElement.scrollHeight-innerHeight;
+  const max=document.documentElement.scrollHeight-innerHeight,sy=scrollY;
   let active=0;
   chapterStops.forEach((stop,i)=>{if(stop.el&&stop.el.getBoundingClientRect().top<=innerHeight*.45)active=i});
   const parallaxRead=[];
   if(wide)activeParallax.forEach(frame=>{const r=frame.getBoundingClientRect();parallaxRead.push([frame,(r.top+r.height/2-innerHeight/2)/innerHeight])});
   // So no desktop: abaixo de 900px o CSS zera esse transform (transform:none!important),
   // entao medir e escrever ali era trabalho jogado fora a cada frame de scroll.
-  const sceneRead=wide?scenePanels.map(panel=>{const r=panel.getBoundingClientRect();return [panel,Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight))]}):[];
+  const sceneRead=wide?[...activeScenes].map(panel=>{const r=panel.getBoundingClientRect();return [panel,Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight))]}):[];
   // ---- FASE DE ESCRITA: daqui pra baixo nada le layout, entao nao forca reflow ----
   updateThreshold(thresholdRead);
-  const p=Math.max(0,Math.min(1,scrollY/(max||1)));
+  const p=Math.max(0,Math.min(1,sy/(max||1)));
   topProgress?.style.setProperty('--progress',p);
   if(active!==lastChapter){/* chapterStops[0] e o hero, que nao tem link no topo */navLinks.forEach((a,i)=>a.classList.toggle('is-active',i===active-1));lastChapter=active}
   // transform direto no <span> decorativo: --scene-shift-* na secao herdava para todo o
   // conteudo dela e custava ~7 ms de recalculo de estilo por frame.
   sceneRead.forEach(([panel,local])=>{const field=panel.firstElementChild;if(field?.classList.contains('print-motion-field'))field.style.transform=`translate3d(${(local*28).toFixed(1)}px,${(local*-12).toFixed(1)}px,0) rotate(-1.5deg)`});
-  if(!wide){if(!mobileParallaxSettled){parallaxFrames.forEach(frame=>{frame.style.setProperty('--parallax-y','0px');frame.style.setProperty('--parallax-x','0px');frame.style.setProperty('--parallax-scale','1.045')});mobileParallaxSettled=true}}
-  else{mobileParallaxSettled=false;parallaxRead.forEach(([frame,d])=>{const index=parallaxIndex.get(frame),depth=.72+(index%3)*.14;frame.style.setProperty('--parallax-y',`${Math.max(-34,Math.min(34,-d*27*depth))}px`);frame.style.setProperty('--parallax-x',`${Math.max(-9,Math.min(9,d*(index%2?6:-6)))}px`);frame.style.setProperty('--parallax-scale',String(1.04+Math.min(.035,Math.abs(d)*.025)))})}
+  if(!wide){if(!mobileParallaxSettled){parallaxFrames.forEach(frame=>{const img=parallaxImg.get(frame);img.style.setProperty('--parallax-y','0px');img.style.setProperty('--parallax-x','0px');img.style.setProperty('--parallax-scale','1.045')});mobileParallaxSettled=true}}
+  else{mobileParallaxSettled=false;parallaxRead.forEach(([frame,d])=>{const index=parallaxIndex.get(frame),depth=.72+(index%3)*.14,img=parallaxImg.get(frame);img.style.setProperty('--parallax-y',`${Math.max(-34,Math.min(34,-d*27*depth))}px`);img.style.setProperty('--parallax-x',`${Math.max(-9,Math.min(9,d*(index%2?6:-6)))}px`);img.style.setProperty('--parallax-scale',String(1.04+Math.min(.035,Math.abs(d)*.025)))})}
  };
  let pendingReveal=[...revealTargets];
  // Fallback: o IntersectionObserver (io, abaixo) e quem revela na pratica. Isso aqui
@@ -371,10 +426,18 @@ if(!reduced&&matchMedia('(hover:hover) and (pointer:fine)').matches){document.qu
 
 document.querySelectorAll('.review').forEach((card,i)=>card.dataset.index=String(i+1).padStart(2,'0'));
 
+// A faixa em marquee roda infinita; fora da tela (todo o hero e o resto da pagina) so
+// gastava frame do compositor. Pausa com 100px de folga, retoma do mesmo ponto.
+const ribbonEl=document.querySelector('.ribbon');
+if(ribbonEl&&!reduced)new IntersectionObserver(([e])=>ribbonEl.classList.toggle('is-offscreen',!e.isIntersecting),{rootMargin:'100px 0px'}).observe(ribbonEl);
+
 const atmosphereRail=document.querySelector('.atmosphere-rail');
 if(atmosphereRail){const cards=[...atmosphereRail.querySelectorAll('.atmosphere-card')],status=document.querySelector('[data-rail="atmosphere"]'),dots=[...status.querySelectorAll('button')],label=status.querySelector('p span'),count=status.querySelector('p b'),names=['O salão como cenário','Rosa em todos os detalhes','Luzes sobre o jardim','A vitrine como primeiro convite'];let raf=false,active=0;const setActive=i=>{active=i;dots.forEach((d,n)=>{d.classList.toggle('active',n===i);d.setAttribute('aria-selected',String(n===i))});count.textContent=String(i+1).padStart(2,'0');label.textContent=names[i]};const update=()=>{const c=atmosphereRail.scrollLeft+atmosphereRail.clientWidth/2;let best=0,dist=Infinity;cards.forEach((card,i)=>{const d=Math.abs(card.offsetLeft+card.offsetWidth/2-c);if(d<dist){dist=d;best=i}});if(best!==active)setActive(best);raf=false};atmosphereRail.addEventListener('scroll',()=>{if(!raf){requestAnimationFrame(update);raf=true}},{passive:true});dots.forEach((dot,i)=>dot.addEventListener('click',()=>{atmosphereRail.scrollTo({left:cards[i].offsetLeft-atmosphereRail.offsetLeft,behavior:reduced?'auto':'smooth'});setActive(i)}));setActive(0)}
 
-for(const [selector,key] of [['.reviews-grid','reviews'],['.guide-grid','guide']]){const rail=document.querySelector(selector),status=document.querySelector(`[data-rail-status="${key}"]`);if(!rail||!status)continue;const cards=[...rail.children],number=status.querySelector('b'),bar=status.querySelector('i');let frame=false;const update=()=>{const center=rail.scrollLeft+rail.clientWidth/2;let active=0,distance=Infinity;cards.forEach((card,i)=>{const d=Math.abs(card.offsetLeft+card.offsetWidth/2-center);if(d<distance){distance=d;active=i}});number.textContent=String(active+1).padStart(2,'0');bar.style.setProperty('--rail-progress',`${((active+1)/cards.length)*100}%`);frame=false};rail.addEventListener('scroll',()=>{if(!frame){requestAnimationFrame(update);frame=true}},{passive:true});update()}
+for(const [selector,key] of [['.reviews-grid','reviews'],['.guide-grid','guide']]){const rail=document.querySelector(selector),status=document.querySelector(`[data-rail-status="${key}"]`);if(!rail||!status)continue;const cards=[...rail.children],number=status.querySelector('b'),bar=status.querySelector('i');let frame=false,shown=-1;const update=()=>{const center=rail.scrollLeft+rail.clientWidth/2;let active=0,distance=Infinity;cards.forEach((card,i)=>{const d=Math.abs(card.offsetLeft+card.offsetWidth/2-center);if(d<distance){distance=d;active=i}});if(active!==shown){shown=active;number.textContent=String(active+1).padStart(2,'0');bar.style.setProperty('--rail-progress',`${((active+1)/cards.length)*100}%`)}frame=false};rail.addEventListener('scroll',()=>{if(!frame){requestAnimationFrame(update);frame=true}},{passive:true});update();
+ // o contador "01 / 04, arraste" so faz sentido quando o trilho rola de fato (entre 521 e
+ // 900px a grade de guias vira 2x2 e o contador ficava parado, sugerindo um gesto inexistente)
+ const syncStatic=()=>status.classList.toggle('rail-static',rail.scrollWidth<=rail.clientWidth+1);syncStatic();new ResizeObserver(syncStatic).observe(rail)}
 
 // Diagnostico sob demanda (so com ?diag=1 na URL): mostra na tela o estado real do video
 // no aparelho, que e a unica forma de ver o que acontece num Android/iPhone de verdade.

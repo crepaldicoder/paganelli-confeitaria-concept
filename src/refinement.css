@@ -65,3 +65,17 @@
  .manifesto>.chapter,.reviews>.chapter,.before-you-go>.chapter,.atmosphere>.chapter{grid-column:1/-1;grid-row:auto;writing-mode:horizontal-tb;align-self:start;margin-bottom:10px}
  .manifesto>.chapter:before,.reviews>.chapter:before,.before-you-go>.chapter:before,.atmosphere>.chapter:before{width:54px;height:1px}
 }
+
+/* ===== revisao profunda (set/2026) =====
+   A torta tem entrada propria (chega girando, com sombra, sem cortina), mas as regras
+   genericas de .image-build tinham mais especificidade: ela entrava com a cortina,
+   dessaturada e sem sombra. Mesmos valores de cima, so com especificidade suficiente. */
+@media(min-width:901px){
+ .table-image.image-build img,.table-image.image-build.built img{clip-path:none;filter:drop-shadow(0 34px 26px rgba(70,25,34,.28)) drop-shadow(0 10px 8px rgba(70,25,34,.18))}
+ .motion-ready .table-image.image-build:not(.built) img{opacity:0;clip-path:none;transform:translate3d(34%,10%,0) rotate(9deg) scale(.76);filter:drop-shadow(0 34px 26px rgba(70,25,34,.28)) drop-shadow(0 10px 8px rgba(70,25,34,.18))}
+}
+@media(max-width:900px){
+ .table-image.image-build img,.table-image.image-build.built img{clip-path:none;filter:drop-shadow(0 18px 16px rgba(70,25,34,.3))}
+ .motion-ready .table-image.image-build:not(.built) img{opacity:0;clip-path:none;transform:translate3d(-14%,6%,0) rotate(-7deg) scale(.86);filter:drop-shadow(0 18px 16px rgba(70,25,34,.3))}
+}
+@media(prefers-reduced-motion:reduce){.table-image.image-build img{opacity:1!important;transform:none!important;transition:none!important}}

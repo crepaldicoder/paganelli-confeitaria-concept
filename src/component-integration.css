@@ -6,7 +6,7 @@ main{position:relative;isolation:isolate}
 
 /* The chapter marker replaces disconnected decorative writing rules. */
 .write-line,.construct::before{display:none!important}
-.skip{visibility:hidden!important;opacity:0!important}
+.skip:not(:focus){opacity:0!important;pointer-events:none}
 .skip:focus-visible{visibility:visible!important;opacity:1!important;transform:none!important}
 
 /* Progresso horizontal no topo, ancorado nos botoes que ja existem. */
