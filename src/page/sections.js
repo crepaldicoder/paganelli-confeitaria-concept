@@ -43,7 +43,7 @@ export const manifesto=()=>`<section class="manifesto construct" id="oficio">
  <figure class="craft-image reveal image-build">${photo('hero-folhado','Massa folhada com creme e frutas em uma bancada de confeitaria')}<figcaption><span>01</span> Delicadeza em cada camada</figcaption></figure>
  <div class="recipe-note reveal"><span>UMA BOA RECEITA PEDE</span><ul><li><b>01</b> matéria-prima</li><li><b>02</b> repetição e cuidado</li><li><b>03</b> tempo de forno</li><li><b>04</b> gente à mesa</li></ul></div>
 </section>`;
-export const quote=()=>`<section class="quote-band reveal construct" data-panel="pink"><p>“Tradição não é ficar parada.<br><em>É saber o que não pode se perder.</em>”</p><span>— Paganelli, desde 1947</span></section>`;
+export const quote=()=>`<section class="quote-band reveal construct" data-panel="pink"><p>“Mais do que a satisfação do cliente,<br><em>encontramos amigos que nos acompanham nessa jornada.</em>”</p><span>— Confeitaria Paganelli</span></section>`;
 export const atmosphere=()=>`<section class="atmosphere construct" id="atmosfera">
  <div class="chapter reveal"><span>Interlúdio</span><b>Por dentro</b></div>
  <div class="atmosphere-head reveal"><p class="kicker">Matéria, cor e memória</p><h2>Uma atmosfera<br><em>que também alimenta.</em></h2><p>Um espaço pensado para acolher, escolher com calma e transformar uma visita à confeitaria em parte do dia.</p></div>
