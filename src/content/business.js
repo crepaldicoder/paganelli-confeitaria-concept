@@ -22,7 +22,6 @@ export const whatsappOrder='https://wa.me/551732314174?text='+encodeURIComponent
 // O que tem na vitrine (fontes: site antigo da Paganelli e diretórios locais).
 export const categories=['Bolos','Tortas e folhados','Salgados','Doces e sobremesas','Pães especiais','Sonhos','Bolos diet'];
 
-// Horário de funcionamento. Ainda NÃO confirmado com a Paganelli, então fica null e nada
-// aparece no site. Formato: [[dias (0=dom … 6=sáb), abre, fecha], ...]
-// Ex.: [[[1,2,3,4,5],'08:00','19:00'],[[6],'08:00','14:00']]
-export const hours=null;
+// Horário de funcionamento (ficha da Paganelli no Google, set/2026).
+// Formato: [[dias (0=dom … 6=sáb), abre, fecha], ...]
+export const hours=[[[1,2,3,4,5],'08:00','18:00'],[[6],'08:00','17:00'],[[0],'08:30','11:00']];

@@ -69,12 +69,12 @@ export const reviews=()=>`<section class="reviews construct" id="avaliacoes">
  <div class="chapter reveal"><span>Capítulo 03</span><b>Avaliações</b></div>
  <div class="reviews-head reveal"><p class="kicker">Quem conhece, recomenda</p><h2>O que fica<br><em>depois da visita.</em></h2><div class="review-score"><b>4,7</b>${ratingStars(4.7)}<small>avaliação no Google</small></div></div>
  <div class="reviews-grid">
-  <article class="review review--lead reveal"><blockquote>“Atendimento excelente das meninas do balcão… produtos de qualidade… sem falar na decoração que está espetacular.”</blockquote><div class="review-meta"><b>Sabrina Sampaio</b><small>Foursquare · 4 anos atrás</small></div></article>
-  <article class="review reveal"><blockquote>“Os produtos de qualidade e fresquinho… A decoração é muito charmosa.”</blockquote><div class="review-meta"><b>Sabrina Sampaio</b><small>Restaurant Guru · 4 anos atrás</small></div></article>
-  <article class="review reveal"><blockquote>“Bolos e tortas deliciosas em massa folheada.”</blockquote><div class="review-meta"><b>Fernanda Oliveira Brito</b><small>Foursquare · 9 anos atrás</small></div></article>
+  <article class="review review--lead reveal"><blockquote>“Há anos sou apaixonada pela torta de frutas dessa confeitaria. Mesmo morando fora da cidade, sempre que visitava passava pra comer. Não tem igual em lugar algum!”</blockquote><div class="review-meta"><b>Lilian Rose P.</b><small>Google · 2026</small></div></article>
+  <article class="review reveal"><blockquote>“Espaço gracioso, salgado e doces deliciosos. Sem falar na tradicional torta de frutas preparada na hora.”</blockquote><div class="review-meta"><b>Maria de Fátima D.</b><small>Google · 2026</small></div></article>
+  <article class="review reveal"><blockquote>“Excelente opção para um café ou lanche da tarde. Boas opções de tortas, bolos e salgados. A decoração do local é bem interessante. Recomendo a visita.”</blockquote><div class="review-meta"><b>Pierre D.</b><small>Google · 2024</small></div></article>
  </div>
  <div class="compact-rail-status" data-rail-status="reviews"><b>01</b><span>/ 03</span><i aria-hidden="true"></i><small>Arraste para ver outras avaliações</small></div>
- <div class="reviews-note reveal"><p>Experiências compartilhadas por clientes que passaram pela Paganelli.</p><a class="text-link" href="https://restaurantguru.com.br/Paganelli-Sao-Jose-do-Rio-Preto" target="_blank" rel="noopener">Ver avaliações ${svg('arrow')}</a></div>
+ <div class="reviews-note reveal"><p>Avaliações de clientes publicadas no Google.</p><a class="text-link" href="${maps}" target="_blank" rel="noopener noreferrer">Ver no Google ${svg('arrow')}</a></div>
 </section>`;
 export const guide=()=>`<section class="before-you-go construct" data-panel="pink">
  <div class="chapter reveal"><span>Antes de sair</span><b>Planeje sua visita</b></div>
