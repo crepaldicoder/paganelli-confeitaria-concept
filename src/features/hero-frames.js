@@ -1,3 +1,4 @@
+import { DIAG, probe } from './perf-probe.js';
 // Hero do celular como sequencia de quadros num <canvas> (o mesmo truque das paginas de
 // produto da Apple). No iPhone cada seek do <video> levava ~110 ms nos quadros pesados do
 // comeco (fachada detalhada, keyframes de ~78 KB): o scrub andava a ~9 quadros/s e so ficava
@@ -25,7 +26,9 @@ export const createHeroFrames=(canvas,{count,url,parallel=6})=>{
   if(!natW)return;
   const i=nearestLoaded(target);
   if(i<0||i===drawn)return;
+  const t=DIAG?performance.now():0;
   ctx.drawImage(imgs[i],sx,sy,sw,sh,0,0,canvas.width,canvas.height);
+  if(DIAG)probe.draw(performance.now()-t);
   drawn=i;
  };
  // Recorte "cover" centralizado, igual ao object-fit:cover do <video> que ele substitui. O

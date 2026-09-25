@@ -1,3 +1,4 @@
+import { DIAG, probe } from './perf-probe.js';
 // Movimento da pagina: campos de impressao, intro, revelacao das secoes, parallax das
 // fotos, progresso no topo e o loop de scroll (que tambem move o hero).
 export const initMotion=({reduced,lenis,menu,hero})=>{
@@ -81,7 +82,7 @@ else{
  // O update roda dentro do proprio frame do Lenis (mesmo quadro em que o scroll mudou).
  // (Havia um fallback com o evento 'scroll' nativo, mas ele nunca rodava: este bloco so
  // existe sem reduced motion, e nesse caso o Lenis sempre existe.)
- lenis.on('scroll',updateMotion);
+ lenis.on('scroll',DIAG?()=>{const t=performance.now();updateMotion();probe.js(performance.now()-t)}:updateMotion);
  updateMotion();revealPassed();
 }
 };

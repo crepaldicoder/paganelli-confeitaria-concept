@@ -2,6 +2,7 @@
 // o navegador descarta o video ou solta o decodificador. Celular (<=900px): sequencia de
 // quadros num <canvas> (hero-frames.js), porque o seek do Safari no iPhone nao acompanha.
 import { createHeroFrames } from './hero-frames.js';
+import { DIAG, probe } from './perf-probe.js';
 
 // Os arquivos em /images ficam em cache por 1 dia (vercel.json). Ao trocar o video ou o
 // poster mantendo o mesmo nome, suba MEDIA_V (e o ?v= dos preloads em index.html) para
@@ -135,6 +136,7 @@ export const initHeroVideo=reduced=>{
   const rectTop=preRead?preRead.top:thresholdEl.getBoundingClientRect().top;
   const boxH=preRead?preRead.boxH:thresholdEl.offsetHeight;
   const span=boxH-innerHeight,p=Math.max(0,Math.min(1,-rectTop/(span||1)));
+  if(DIAG)probe.hero(p);
   if(p!==lastHeroP||force){lastHeroP=p;writeHeroStyles(p)}
   if(framesActive){heroFrames?.show(p);return}
   // scrub nos dois formatos: o 9:16 agora tem keyframes densos, entao aceita seek.

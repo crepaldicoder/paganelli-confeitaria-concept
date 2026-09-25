@@ -1,4 +1,5 @@
 import { heroVideoDebug } from './hero-video.js';
+import { probe } from './perf-probe.js';
 
 // Diagnostico sob demanda (so com ?diag=1 na URL): mostra na tela o estado real do video
 // no aparelho, que e a unica forma de ver o que acontece num Android/iPhone de verdade.
@@ -12,7 +13,8 @@ export const initDiagnostics=()=>{
  setInterval(()=>{
   const v=thresholdVideo,e=v.error,lastVideoPaint=heroVideoDebug.lastPaint,paint=lastVideoPaint?Math.round(performance.now()-lastVideoPaint)+'ms':'NUNCA';
   const f=heroVideoDebug.frames;
-  if(f){box.textContent=['modo      quadros (canvas)','carregados '+f.loaded+'/'+f.count,'na tela   '+f.drawn+' (alvo '+f.target+')','canvas    '+f.size,'tela      '+innerWidth+'x'+innerHeight].join('\n');return}
+  const extra=[...document.documentElement.classList].filter(c=>c.startsWith('diag-')).map(c=>c.slice(5)).join(' ')||'nenhum';
+  if(f){box.textContent=[...probe.lines(),'desligado '+extra,'carregados '+f.loaded+'/'+f.count,'na tela   '+f.drawn+' (alvo '+f.target+')','tela      '+innerWidth+'x'+innerHeight].join('\n');return}
   box.textContent=[
    'arquivo   '+(v.currentSrc||v.src||'(sem src)').split('/').pop(),
    'readyState '+(estados[v.readyState]||v.readyState),
