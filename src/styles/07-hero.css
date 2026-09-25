@@ -357,6 +357,17 @@ body.site-ready .hero-copy>:nth-child(5) {
   transform-origin: 52% 62%;
 }
 
+.threshold-video[hidden] {
+  display: none;
+}
+
+/* canvas dos quadros no celular: o poster (url vem do JS) fica por baixo ate o 1o quadro */
+.threshold-frames {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .threshold-veil {
   position: absolute;
   inset: 0;

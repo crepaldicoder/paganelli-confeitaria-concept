@@ -11,6 +11,8 @@ export const initDiagnostics=()=>{
  const estados=['0 vazio','1 metadata','2 quadro atual','3 dados a frente','4 completo'];
  setInterval(()=>{
   const v=thresholdVideo,e=v.error,lastVideoPaint=heroVideoDebug.lastPaint,paint=lastVideoPaint?Math.round(performance.now()-lastVideoPaint)+'ms':'NUNCA';
+  const f=heroVideoDebug.frames;
+  if(f){box.textContent=['modo      quadros (canvas)','carregados '+f.loaded+'/'+f.count,'na tela   '+f.drawn+' (alvo '+f.target+')','canvas    '+f.size,'tela      '+innerWidth+'x'+innerHeight].join('\n');return}
   box.textContent=[
    'arquivo   '+(v.currentSrc||v.src||'(sem src)').split('/').pop(),
    'readyState '+(estados[v.readyState]||v.readyState),

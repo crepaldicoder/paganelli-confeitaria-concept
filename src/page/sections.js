@@ -24,6 +24,7 @@ export const whatsappFloat=()=>`<a class="whatsapp-float" href="${whatsapp}" tar
 export const hero=()=>`<section class="threshold" id="inicio" data-panel="pink">
  <div class="threshold-stage">
   <video class="threshold-video" muted playsinline webkit-playsinline preload="metadata" tabindex="-1" aria-hidden="true"></video>
+  <canvas class="threshold-video threshold-frames" aria-hidden="true" hidden></canvas>
   <div class="threshold-veil" aria-hidden="true"></div>
   <div class="hero-copy threshold-copy">
    <p class="eyebrow">Confeitaria em São José do Rio&nbsp;Preto</p>
