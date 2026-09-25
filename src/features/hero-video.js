@@ -137,8 +137,15 @@ export const initHeroVideo=reduced=>{
   const boxH=preRead?preRead.boxH:thresholdEl.offsetHeight;
   const span=boxH-innerHeight,p=Math.max(0,Math.min(1,-rectTop/(span||1)));
   if(DIAG)probe.hero(p);
+  if(framesActive){
+   // No celular o hero nao salta direto para o scroll: persegue o alvo a cada quadro.
+   if(p!==targetP&&DIAG)probe.input();
+   targetP=p;
+   if(force||shownP<0||!SMOOTH){cancelAnimationFrame(smoothRaf);smoothRaf=0;shownP=p;renderFrames(p,force)}
+   else if(!smoothRaf){smoothLast=0;smoothRaf=requestAnimationFrame(chase)}
+   return;
+  }
   if(p!==lastHeroP||force){lastHeroP=p;writeHeroStyles(p)}
-  if(framesActive){heroFrames?.show(p);return}
   // scrub nos dois formatos: o 9:16 agora tem keyframes densos, entao aceita seek.
   // Seek nao exige gesto do usuario, o que tira a politica de autoplay do caminho.
   // Basta a duracao (metadata). Exigir readyState>=2 travava o video para sempre quando
@@ -153,6 +160,26 @@ export const initHeroVideo=reduced=>{
  // Abaixo do hero p fica cravado em 1: reescrever os mesmos 6 estilos a cada frame do
  // resto da pagina era trabalho a toa. So o seek continua rodando sempre (o resync depende).
  let lastHeroP=-1;
+ // Perseguicao suave do celular. Medido num iPhone (?diag): a pagina roda a 58 fps e cada
+ // quadro leva ~6 ms para desenhar, mas num arrasto rapido ou no deslize depois de soltar
+ // o dedo o iOS so entrega a posicao do scroll para a pagina a cada ~110 ms. Pulando direto
+ // para cada posicao nova, a fachada andava a ~9 quadros/s. Aqui cada quadro de tela anda
+ // uma fracao do caminho ate o alvo (constante de tempo ~58 ms), e os saltos viram
+ // movimento continuo. No desktop quem suaviza e o Lenis, entao la continua direto.
+ const SMOOTH=DIAG&&location.search.includes('semsuave')?0:.25;
+ let targetP=0,shownP=-1,smoothRaf=0,smoothLast=0;
+ const renderFrames=(p,force)=>{
+  if(p!==lastHeroP||force){lastHeroP=p;writeHeroStyles(p)}
+  heroFrames?.show(p);
+ };
+ const chase=now=>{
+  // independente da taxa da tela (60 ou 120 Hz): mesma fracao por unidade de tempo
+  const dt=smoothLast?Math.min(64,now-smoothLast):16.7;smoothLast=now;
+  shownP+=(targetP-shownP)*(1-Math.pow(1-SMOOTH,dt/16.7));
+  if(Math.abs(targetP-shownP)<.0004)shownP=targetP;
+  renderFrames(shownP);
+  smoothRaf=shownP===targetP?0:requestAnimationFrame(chase);
+ };
  const writeHeroStyles=p=>{
   // transform direto no video: --t no .threshold herdava para todo o hero e custava
   // ~8 ms de recalculo de estilo por frame so para escalar uma camada.
